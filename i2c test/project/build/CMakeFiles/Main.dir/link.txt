@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Main.dir/src/main.cpp.o -o Main   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -li2c 

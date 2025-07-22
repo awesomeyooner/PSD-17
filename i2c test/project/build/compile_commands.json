@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/dev/Documents/GitHub/PSD-17/i2c test/project/build",
+  "command": "/usr/bin/g++ -I\"/home/dev/Documents/GitHub/PSD-17/i2c test/project/include\" -g -o CMakeFiles/Main.dir/src/main.cpp.o -c \"/home/dev/Documents/GitHub/PSD-17/i2c test/project/src/main.cpp\"",
+  "file": "/home/dev/Documents/GitHub/PSD-17/i2c test/project/src/main.cpp"
+},
+{
+  "directory": "/home/dev/Documents/GitHub/PSD-17/i2c test/project/build",
+  "command": "/usr/bin/g++ -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I\"/home/dev/Documents/GitHub/PSD-17/i2c test/project/include\" -isystem /home/dev/anaconda3/include -g -o CMakeFiles/Test.dir/test/test.cpp.o -c \"/home/dev/Documents/GitHub/PSD-17/i2c test/project/test/test.cpp\"",
+  "file": "/home/dev/Documents/GitHub/PSD-17/i2c test/project/test/test.cpp"
+}
+]

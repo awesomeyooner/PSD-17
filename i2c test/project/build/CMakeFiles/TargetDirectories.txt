@@ -1,0 +1,7 @@
+/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/CMakeFiles/uninstall.dir
+/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/CMakeFiles/i2c_test_uninstall.dir
+/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/CMakeFiles/Main.dir
+/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/CMakeFiles/Test.dir
+/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/CMakeFiles/test.dir
+/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/CMakeFiles/edit_cache.dir
+/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/CMakeFiles/rebuild_cache.dir
