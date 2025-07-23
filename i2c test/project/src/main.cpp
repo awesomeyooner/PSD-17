@@ -1,5 +1,3 @@
-#include "i2c/i2c.h"
-
 #include <string>
 #include <iostream>
 #include <unistd.h>
@@ -7,56 +5,53 @@
 #include <thread>
 #include <mutex>
 
-#include "bno055.hpp"
+// #include "bno055.hpp"
+
+#include "i2c/i2c.hpp"
 
 #include "util.hpp"
 #include "math/math_helper.hpp"
 
 // i2cdetect -l
 
-BNO055 imu;
-
 int main(int argc, char* argv[]) {
     // Code to be executed
 
-    int bus = i2c_open("/dev/i2c-9");
+    // if(I2C::init("/dev/i2c-9") == StatusCode::FAILED)
+    //     return -1;
 
-    if(bus == -1)
-        return 1;
+    // i2c_device device;
+    //     device.addr = 4;
+    //     device.bus = I2C::get_bus();
+    //     device.iaddr_bytes = 1;
+    //     device.page_bytes = 1;
 
-    i2c_device device;
+    // while(true){
 
-    device.addr = 4;
-    device.bus = bus;
-    device.iaddr_bytes = 1;
-    device.page_bytes = 1;
+    //     std::string buffer;
 
-    while(true){
+    //     std::cout << "Say something!" << std::endl;
 
-        std::string buffer;
+    //     std::getline(std::cin, buffer);
 
-        std::cout << "Say something!" << std::endl;
+    //     if(buffer == "exit")
+    //         break;
 
-        std::getline(std::cin, buffer);
+    //     uint8_t data[buffer.length()];
 
-        if(buffer == "exit")
-            break;
+    //     for(size_t i = 0; i < buffer.length(); i++){
+    //         data[i] = buffer.at(i);
+    //     }
 
-        uint8_t data[buffer.length()];
+    //     StatusCode status = I2C::write_bus(&device, data);
+    
+    //     if(status == StatusCode::OK)
+    //         std::cout << "Sent Successfully!" << std::endl;
+    //     else if(status == StatusCode::FAILED)
+    //         std::cout << "Failed to Send!" << std::endl;
 
-        for(size_t i = 0; i < buffer.length(); i++){
-            data[i] = buffer.at(i);
-        }
-
-        StatusCode status = i2c_write(&device, 0, data, sizeof(data)) == sizeof(data) ? StatusCode::OK : StatusCode::FAILED;
-
-        if(status == StatusCode::OK)
-            std::cout << "Sent Successfully!" << std::endl;
-        else if(status == StatusCode::FAILED)
-            std::cout << "Failed to Send!" << std::endl;
-
-        // std::cout << "You said: " << buffer << std::endl;
-    }
+    //     // std::cout << "You said: " << buffer << std::endl;
+    // }
 
     
     

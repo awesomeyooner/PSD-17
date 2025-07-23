@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Site BuildName="(empty)"
-	BuildStamp="20250722-0817-Experimental"
+	BuildStamp="20250723-1814-Experimental"
 	Name="workstation"
 	Generator="ctest-3.22.1"
 	CompilerName="/usr/bin/g++"
@@ -21,14 +21,14 @@
 	TotalVirtualMemory="2047"
 	TotalPhysicalMemory="15387"
 	LogicalProcessorsPerPhysical="2"
-	ProcessorClockFrequency="4156.02"
+	ProcessorClockFrequency="4113.86"
 	>
 	<Testing>
-		<StartDateTime>Jul 22 12:40 PDT</StartDateTime>
-		<StartTestTime>1753213201</StartTestTime>
+		<StartDateTime>Jul 23 11:14 PDT</StartDateTime>
+		<StartTestTime>1753294453</StartTestTime>
 		<TestList/>
-		<EndDateTime>Jul 22 12:40 PDT</EndDateTime>
-		<EndTestTime>1753213201</EndTestTime>
+		<EndDateTime>Jul 23 11:14 PDT</EndDateTime>
+		<EndTestTime>1753294453</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

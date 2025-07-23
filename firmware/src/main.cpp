@@ -9,9 +9,9 @@ BuiltinLED led;
 
 void on_recieve(int bytes){
     while(Wire.available() > 0){
-        char c = Wire.read();
+        int8_t c = Wire.read();
 
-        Serial.print(c);
+        Serial.println(c);
     }
 }
 
@@ -32,3 +32,8 @@ void loop() {
 void on_request(){
 
 }
+
+// master writes to slave asking WHAT to send
+// slave recieves with on_recieve, logging the requested data
+// master requests bytes
+// slave on_request gets called and writes to master wahtever the WHAT is
