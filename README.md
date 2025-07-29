@@ -8,6 +8,6 @@ The PSD-21 is an FOC controller designed for stepper motors, specifically for NE
 - DRV8874 DC Motor Driver (2x)
 - SAMD21 Seeed Studio Xiao
 
-### Datasheets
+## Datasheets
 
-#### [AS5047P](https://www.mouser.com/datasheet/2/588/AS5047P-TS_EK_AB_Operation-Manual_Rev.1.0-775823.pdf)
+### [AS5047P](https://www.mouser.com/datasheet/2/588/AS5047P-TS_EK_AB_Operation-Manual_Rev.1.0-775823.pdf)
