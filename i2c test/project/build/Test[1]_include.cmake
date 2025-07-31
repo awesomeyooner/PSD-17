@@ -1,5 +1,0 @@
-if(EXISTS "/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/Test[1]_tests.cmake")
-  include("/home/dev/Documents/GitHub/PSD-17/i2c test/project/build/Test[1]_tests.cmake")
-else()
-  add_test(Test_NOT_BUILT Test_NOT_BUILT)
-endif()
