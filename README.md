@@ -1,16 +1,18 @@
 # PSD-17
 The PSD-21 is an FOC controller designed for stepper motors, specifically for NEMA 17 stepper motors.
 
-## Folder Directory
+## Folder Tree
 
 ```bash
 .
-├── esp_test_firmware
-│   └── firmware
-├── firmware # Bob
-├── i2c_test
-├── pcb
-├── samd21_test_firmware 
+├── esp_test_firmware # Test firmware on ESP32
+│   └── firmware # PlatformIO Project
+├── firmware # Main firmware (SAMD21)
+├── i2c_test # I2C Master Communication Test
+│   └── project  # CMake Project
+├── pcb # KiCad Project
+├── samd21_test_firmware # Test firmware on SAMD21
+│   └── firmware # PlatformIO Project
 └── README.md
 ```
 
