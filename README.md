@@ -1,4 +1,7 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 # PSD-17
+
 The PSD-21 is an FOC controller designed for stepper motors, specifically for NEMA 17 stepper motors.
 
 ## Folder Tree
@@ -41,3 +44,7 @@ The PSD-21 is an FOC controller designed for stepper motors, specifically for NE
 ### SAMD21
 - [Seeed Studio Xiao](https://wiki.seeedstudio.com/Seeeduino-XIAO/)
 - [SAMD21 Chip](https://ww1.microchip.com/downloads/en/DeviceDoc/SAM_D21_DA1_Family_DataSheet_DS40001882F.pdf)
+
+## Contact
+Feel free to reach out!
+- awesomeyooner@gmail.com
