@@ -45,6 +45,9 @@ The PSD-21 is an FOC controller designed for stepper motors, specifically for NE
 - [Seeed Studio Xiao](https://wiki.seeedstudio.com/Seeeduino-XIAO/)
 - [SAMD21 Chip](https://ww1.microchip.com/downloads/en/DeviceDoc/SAM_D21_DA1_Family_DataSheet_DS40001882F.pdf)
 
+### NEMA 17
+- [23mm](https://www.omc-stepperonline.com/e-series-nema-17-bipolar-1-8deg-17ncm-24-07oz-in-1a-42x42x23mm-4-wires-17he08-1004s)
+
 ## Contact
 Feel free to reach out!
 - awesomeyooner@gmail.com
