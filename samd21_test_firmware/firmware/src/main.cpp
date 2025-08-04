@@ -4,17 +4,15 @@
 
 #include "devices/led/builtin_led.hpp"
 
-#define ENA 0
-#define IN1 1
-#define IN2 2
-#define IN3 3
-#define IN4 4
-#define ENB 5
+#define IN1_A 0
+#define IN1_B 1
+#define IN2_A 2
+#define IN2_B 3
 
 BuiltinLED led;
 
 StepperMotor motor = StepperMotor(50);
-StepperDriver4PWM driver = StepperDriver4PWM(IN1, IN2, IN3, IN4, ENA, ENB);
+StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
 
 Commander command = Commander(Serial);
 
@@ -23,39 +21,36 @@ void do_target(char* cmd){
 }
 
 void setup() {
-    Serial.begin(115200);
-    SimpleFOCDebug::enable(&Serial);
+  led.initialize();
 
-    led.initialize();
-    led.turn_on();
+  driver.voltage_limit = 12;
+  driver.voltage_power_supply = 25;
+  driver.init();
 
-    driver.voltage_limit = 12;
-    driver.voltage_power_supply = 24;
-    driver.init();
+  motor.linkDriver(&driver);
 
-    motor.linkDriver(&driver);
+  motor.foc_modulation = FOCModulationType::SinePWM;
+  motor.controller = MotionControlType::velocity_openloop;
+  motor.phase_resistance = 3.6;
+  motor.current_limit = 1;
+  motor.voltage_limit = 12;
 
-    motor.controller = MotionControlType::velocity_openloop;
-    motor.phase_resistance = 3.6;
-    motor.current_limit = 1;
-    motor.voltage_limit = 12;
+  motor.init();
+  motor.initFOC();
 
-    motor.init();
-    motor.initFOC();
+  command.add('T', do_target, "Target Velocity");
+  
+  Serial.begin(115200);
+  SimpleFOCDebug::enable(&Serial);
 
-    command.add('T', do_target, "Target Velocity");
-    
-    Serial.begin(115200);
-    Serial.println("Motor Ready!");
-    Serial.println("Set target velocity [rad/s]");
+  Serial.println("Motor Ready!");
+  Serial.println("Set target velocity [rad/s]");
 
-    led.initialize();
-    led.turn_on();
-
-    delay(1000);
+  delay(1000);
 }
 
 void loop() {
-    motor.move();
-    command.run();
+  motor.loopFOC();
+  motor.move();
+  command.run();
 }
