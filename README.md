@@ -21,7 +21,9 @@ The PSD-21 is an FOC controller designed for stepper motors, specifically for NE
 
 ## Hardware Details
 
-- [STEPPERONLINE NEMA 17 Motor](https://www.amazon.com/dp/B0B93PNYCP?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) (23mm)
+- [NEMA 17 Motor](https://www.omc-stepperonline.com/nema-17-stepper-motor)
+    - [STEPPERONLINE 23mm](https://www.amazon.com/dp/B0B93PNYCP?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
+    - [STEPPERONLINE 38mm](https://www.amazon.com/dp/B0B38GX54H?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
 - [AS5047P Magnetic Encoder](https://www.digikey.com/en/products/detail/ams-osram-usa-inc/AS5047P-ADAPTERBOARD/5452344?s=N4IgTCBcDaIIYGcCsAGALAdgA4gLoF8g)
     - [Diametric Magnet](https://www.digikey.com/en/products/detail/radial-magnets-inc/9049/6030786) (6mm x 2.5mm )
 - [DRV8874 DC Motor Driver](https://www.pololu.com/product/4035) (2x)
@@ -47,6 +49,7 @@ The PSD-21 is an FOC controller designed for stepper motors, specifically for NE
 
 ### NEMA 17
 - [23mm](https://www.omc-stepperonline.com/e-series-nema-17-bipolar-1-8deg-17ncm-24-07oz-in-1a-42x42x23mm-4-wires-17he08-1004s)
+- [38mm](https://www.omc-stepperonline.com/e-series-nema-17-bipolar-42ncm-59-49oz-in-1-5a-42x42x38mm-4-wires-w-1m-cable-connector-17he15-1504s)
 
 ## Contact
 Feel free to reach out!
