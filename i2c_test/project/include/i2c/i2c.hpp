@@ -9,8 +9,13 @@
 #include <vector>
 #include <cstring>
 #include <cstdint>
+#include <fstream>
+#include <filesystem>
+#include <system_error>
 
 #include "status.hpp"
+
+namespace fs = std::filesystem;
 
 class I2C{
 
@@ -24,6 +29,46 @@ class I2C{
                 return StatusCode::FAILED;
             else
                 return StatusCode::OK;
+        }
+
+        static StatusCode init_name(std::string name){
+            const fs::path i2c_path = "/sys/bus/i2c/devices";
+
+            for(auto entry : fs::directory_iterator(i2c_path)){
+                std::string directory_name = entry.path().filename().string();
+
+                // If it's not an i2c device then skip
+                if(directory_name.compare(0, 4, "i2c-") != 0)
+                    continue;
+
+                int adapter_number;
+                
+                try{
+                    adapter_number = std::stoi(directory_name.substr(4));
+                }
+                catch(std::exception& e){
+                    continue;
+                }
+
+                auto name_file = entry.path() / "name";
+
+                if(!fs::is_regular_file(name_file))
+                    continue;
+
+                std::ifstream file(name_file);
+
+                if(!file.is_open())
+                    continue;
+
+                std::string adapter_name;
+
+                std::getline(file, adapter_name);
+
+                if(adapter_name.empty())
+                    continue;
+
+                // do something with name and number
+            }
         }
 
         static int get_bus(){
