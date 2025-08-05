@@ -4,6 +4,7 @@
 
 The PSD-21 is an FOC controller designed for stepper motors, specifically for NEMA 17 stepper motors.
 
+Click here for the [manual](./docs/Manual.md)
 ## Folder Tree
 
 ```bash
