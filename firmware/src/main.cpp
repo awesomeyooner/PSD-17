@@ -2,6 +2,7 @@
 #include <Wire.h>
 
 #include <string>
+#include <vector>
 
 #include "devices/led/builtin_led.hpp"
 
@@ -9,14 +10,32 @@
 
 BuiltinLED led;
 
-void on_recieve(int bytes){
+std::vector<uint8_t> buffer;
 
-    Serial.print("Recieved: ");
+void on_recieve(int num_bytes){
 
+    if(num_bytes == 0)
+        return;
+
+    buffer.clear();
+    
     while(Wire.available()){
         uint8_t c = Wire.read();
 
+        buffer.push_back(c);
+    }
+
+    Serial.println("\nDecimal Values: ");
+
+    for(uint8_t c : buffer){
         Serial.print(c);
+        Serial.print(" ");
+    }
+
+    Serial.println("\nASCII Values: ");
+    
+    for(uint8_t c : buffer){
+        Serial.print((char)c);
         Serial.print(" ");
     }
 
@@ -24,10 +43,9 @@ void on_recieve(int bytes){
 }
 
 void on_request(){
-    Serial.println("Request!");
-    Wire.write(100);
-    Wire.write(100);
-    Wire.write(100);
+    for(uint8_t c : buffer){
+        Wire.write(c);
+    }
 }
 
 void setup() {

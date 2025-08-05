@@ -44,24 +44,32 @@ int main(int argc, char* argv[]) {
             break;
         }
 
-        uint8_t data[buffer.length()];
+        std::vector<uint8_t> data(buffer.begin(), buffer.end());
 
-        std::cout << "You said: ";
-
-        for(size_t i = 0; i < buffer.length(); i++){
-            data[i] = buffer.at(i);
-            
-            std::cout << data[i];
-        }
-
-        std::cout << std::endl;
-
-        if(sizeof(data) == 0){
+        if(data.size() == 0){
             std::cout << "Nothing to send! Skipping..." << std::endl;
             continue;
         }
 
-        StatusCode status = I2C::write_bus(&device, data, sizeof(data));
+        // Decimal Print
+        std::cout << "Decimal Value: ";
+
+        for(uint8_t c : data){
+            std::cout << (int)c << " ";
+        }
+
+        std::cout << std::endl;
+
+        // ASCII print
+        std::cout << "ASCII Value: ";
+
+        for(uint8_t c : data){
+            std::cout << (char)c;
+        }
+
+        std::cout << std::endl;
+
+        StatusCode status = I2C::write_bus(&device, data);
     
         if(status == StatusCode::OK)
             std::cout << "Sent Successfully!" << std::endl;
@@ -70,7 +78,7 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
-        StatusedValue<std::vector<uint8_t>> read = I2C::read_bus(&device, sizeof(data));
+        StatusedValue<std::vector<uint8_t>> read = I2C::read_bus(&device, data.size());
 
         if(read.is_OK())
             std::cout << "Read Successfully!" << std::endl;
@@ -79,10 +87,18 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
-        std::cout << "I heard: ";
+        std::cout << "Decimal Value: ";
 
         for(uint8_t r : read.value){
-            std::cout << (int)r;
+            std::cout << (int)r << " ";
+        }
+
+        std::cout << std::endl;
+
+        std::cout << "ASCII Value: ";
+
+        for(uint8_t r : read.value){
+            std::cout << (char)r;
         }
 
         std::cout << std::endl;

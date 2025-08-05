@@ -31,7 +31,7 @@ class I2C{
         static StatusedValue<std::vector<uint8_t>> read_bus(i2c_device* device, size_t num_bytes){
             uint8_t buffer[num_bytes] = {};
 
-            StatusCode status = i2c_read(device, 0, buffer, sizeof(buffer)) == sizeof(buffer) ? StatusCode::OK : StatusCode::FAILED;
+            StatusCode status = i2c_read(device, 0, buffer, num_bytes) == num_bytes ? StatusCode::OK : StatusCode::FAILED;
 
             std::vector<uint8_t> vec(buffer, buffer + num_bytes);
 
@@ -39,12 +39,17 @@ class I2C{
         }
 
         static StatusCode write_bus(i2c_device* device, uint8_t write){
-            uint8_t data[] = {write};
-            write_bus(device, data, 1);
+            std::vector data = {write};
+
+            write_bus(device, data);
         }
 
-        static StatusCode write_bus(i2c_device* device, uint8_t write[], size_t size){
-            return i2c_write(device, 0, write, size) == size ? StatusCode::OK : StatusCode::FAILED;
+        static StatusCode write_bus(i2c_device* device, std::vector<uint8_t>& write){
+            uint8_t buffer[write.size()];
+
+            std::copy(write.begin(), write.end(), buffer);
+
+            return i2c_write(device, 0, buffer, write.size()) == write.size() ? StatusCode::OK : StatusCode::FAILED;
         }
 
 
