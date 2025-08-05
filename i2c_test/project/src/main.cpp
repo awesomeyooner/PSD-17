@@ -53,22 +53,19 @@ int main(int argc, char* argv[]) {
 
         // Decimal Print
         std::cout << "Decimal Value: ";
-
         for(uint8_t c : data){
             std::cout << (int)c << " ";
         }
-
         std::cout << std::endl;
 
         // ASCII print
         std::cout << "ASCII Value: ";
-
         for(uint8_t c : data){
             std::cout << (char)c;
         }
-
         std::cout << std::endl;
 
+        // Read Bus
         StatusCode status = I2C::write_bus(&device, data);
     
         if(status == StatusCode::OK)
@@ -87,20 +84,18 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
+        // Decimal Print
         std::cout << "Decimal Value: ";
-
         for(uint8_t r : read.value){
             std::cout << (int)r << " ";
         }
-
         std::cout << std::endl;
 
+        // ASCII Print
         std::cout << "ASCII Value: ";
-
         for(uint8_t r : read.value){
             std::cout << (char)r;
         }
-
         std::cout << std::endl;
     }
     
