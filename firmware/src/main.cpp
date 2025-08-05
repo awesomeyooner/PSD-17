@@ -36,7 +36,6 @@ void on_recieve(int num_bytes){
     
     for(uint8_t c : buffer){
         Serial.print((char)c);
-        Serial.print(" ");
     }
 
     Serial.println();

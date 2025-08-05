@@ -5,9 +5,8 @@
 #include <thread>
 #include <mutex>
 
-// #include "bno055.hpp"
-
 #include "i2c/i2c.hpp"
+#include "i2c/wire_device.hpp"
 
 #include "util.hpp"
 #include "math/math_helper.hpp"
@@ -22,14 +21,7 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    i2c_device device;
-        device.addr = 4;
-        device.bus = I2C::get_bus();
-        device.iaddr_bytes = 0;
-        device.page_bytes = 8; // max for MCP2221A
-        device.tenbit = 0;
-        device.flags = 0;
-        device.delay = 10;
+    WireDevice device(I2C::get_bus(), 4);
 
     while(true){
 
@@ -51,22 +43,8 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
-        // Decimal Print
-        std::cout << "Decimal Value: ";
-        for(uint8_t c : data){
-            std::cout << (int)c << " ";
-        }
-        std::cout << std::endl;
-
-        // ASCII print
-        std::cout << "ASCII Value: ";
-        for(uint8_t c : data){
-            std::cout << (char)c;
-        }
-        std::cout << std::endl;
-
-        // Read Bus
-        StatusCode status = I2C::write_bus(&device, data);
+        // Write Bus
+        StatusCode status = device.write(data);
     
         if(status == StatusCode::OK)
             std::cout << "Sent Successfully!" << std::endl;
@@ -75,7 +53,8 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
-        StatusedValue<std::vector<uint8_t>> read = I2C::read_bus(&device, data.size());
+        // Read Bus
+        StatusedValue<std::vector<uint8_t>> read = device.read(data.size());
 
         if(read.is_OK())
             std::cout << "Read Successfully!" << std::endl;
@@ -84,14 +63,28 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
-        // Decimal Print
+        // Decimal Print (write)
+        std::cout << "Decimal Value: ";
+        for(uint8_t c : data){
+            std::cout << (int)c << " ";
+        }
+        std::cout << std::endl;
+
+        // Decimal Print (read)
         std::cout << "Decimal Value: ";
         for(uint8_t r : read.value){
             std::cout << (int)r << " ";
         }
         std::cout << std::endl;
 
-        // ASCII Print
+        // ASCII print (write)
+        std::cout << "ASCII Value: ";
+        for(uint8_t c : data){
+            std::cout << (char)c;
+        }
+        std::cout << std::endl;
+
+        // ASCII Print (read)
         std::cout << "ASCII Value: ";
         for(uint8_t r : read.value){
             std::cout << (char)r;

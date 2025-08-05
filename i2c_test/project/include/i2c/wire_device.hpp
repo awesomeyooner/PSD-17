@@ -29,16 +29,24 @@ class WireDevice{
             return &device;
         }
 
-        StatusedValue<std::vector<uint8_t>> read_bus(size_t num_bytes){
+        StatusedValue<std::vector<uint8_t>> read(size_t num_bytes){
             return I2C::read_bus(&device, num_bytes);
         }
 
-        StatusCode write_bus(uint8_t write){
+        StatusedValue<float> read(){
+            return I2C::read_bus(&device);
+        }
+
+        StatusCode write(uint8_t write){
             return I2C::write_bus(&device, write);
         }
 
-        StatusCode write_bus(std::vector<uint8_t>& write){
+        StatusCode write(std::vector<uint8_t>& write){
             return I2C::write_bus(&device, write);
+        }
+
+        StatusCode write(float data){
+            return I2C::write_bus(&device, data);
         }
 
     private:
