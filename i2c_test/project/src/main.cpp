@@ -8,7 +8,7 @@
 #include "i2c/i2c.hpp"
 #include "i2c/wire_device.hpp"
 
-#include "util.hpp"
+#include "util/util.hpp"
 #include "math/math_helper.hpp"
 #include "util/logger.hpp"
 

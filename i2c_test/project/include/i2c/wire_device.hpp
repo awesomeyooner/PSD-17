@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "i2c.hpp"
-#include "status.hpp"
+#include "util/status.hpp"
 
 class WireDevice{
 

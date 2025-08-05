@@ -13,6 +13,8 @@
 
 #include "util.hpp"
 #include "status.hpp"
+#include <unistd.h>
+#include <thread>
 
 // Accelerometer
 constexpr uint8_t REG_ACCEL_LSB_X = 0x08;
