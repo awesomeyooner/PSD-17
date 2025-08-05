@@ -31,15 +31,30 @@ class I2C{
                 return StatusCode::OK;
         }
 
-        static StatusCode init_name(std::string name){
+        static StatusCode init(int adapter_number){
+            std::string name = "/dev/i2c-" + std::to_string(adapter_number);
+
+            return init(name.c_str());
+        }
+
+        static StatusCode init_name(std::string name, bool verbose = false){
             const fs::path i2c_path = "/sys/bus/i2c/devices";
 
             for(auto entry : fs::directory_iterator(i2c_path)){
                 std::string directory_name = entry.path().filename().string();
 
+                if(verbose)
+                    std::cout << "Found Folder: " << directory_name << "...";
+
+
                 // If it's not an i2c device then skip
-                if(directory_name.compare(0, 4, "i2c-") != 0)
+                if(directory_name.compare(0, 4, "i2c-") != 0){
+
+                    if(verbose)
+                        std::cout << "Not an i2c Device! Skipping..." << std::endl;
+
                     continue;
+                }
 
                 int adapter_number;
                 
@@ -47,6 +62,10 @@ class I2C{
                     adapter_number = std::stoi(directory_name.substr(4));
                 }
                 catch(std::exception& e){
+
+                    if(verbose)
+                        std::cout << "Not a proper adapter! Skipping..." << std::endl;
+
                     continue;
                 }
 
@@ -68,7 +87,22 @@ class I2C{
                     continue;
 
                 // do something with name and number
+
+                // if the name is found
+                if(adapter_name.find(name) != std::string::npos){
+
+                    if(verbose)
+                        std::cout << "Found adapter " << adapter_name << " in: " << directory_name << std::endl;
+
+                    return init(adapter_number);
+                }
+                else{
+                    if(verbose)
+                        std::cout << "Not the right adapter! Skipping..." << std::endl;
+                }
             }
+
+            return StatusCode::FAILED;
         }
 
         static int get_bus(){

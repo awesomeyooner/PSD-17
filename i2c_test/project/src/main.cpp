@@ -10,13 +10,17 @@
 
 #include "util.hpp"
 #include "math/math_helper.hpp"
+#include "util/logger.hpp"
 
 // i2cdetect -l
 
 int main(int argc, char* argv[]) {
     // Code to be executed
 
-    if(I2C::init("/dev/i2c-4") == StatusCode::FAILED){
+    Logger::initialize();
+    Logger::info("hello world!");
+
+    if(I2C::init_name("MCP2221", true) == StatusCode::FAILED){
         std::cerr << "I2C Bus Failed to Initialize! Exiting..." << std::endl;
         return -1;
     }
