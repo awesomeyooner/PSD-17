@@ -65,17 +65,17 @@ struct StatusedValue{
 
 }; // struct StatusedValue
 
-template<typename T>
+// template<typename T>
 
-struct StatusedArray{
+// struct StatusedArray{
 
-    T array[0] = {};
-    StatusCode status;
+//     T array[0] = {};
+//     StatusCode status;
 
-    StatusedArray(T _array[], StatusCode _status) : status(_status){
-        array = _array;
-    }
+//     StatusedArray(T _array[], StatusCode _status) : status(_status){
+//         array = _array;
+//     }
 
-}; // struct StatusedArray
+// }; // struct StatusedArray
 
 #endif // STATUS_HPP

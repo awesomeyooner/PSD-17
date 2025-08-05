@@ -18,7 +18,7 @@ void on_recieve(int bytes){
 void setup() {
     Serial.begin(115200);
 
-    Wire.begin(4);
+    Wire.begin(I2C_ADDR);
     Wire.onReceive(on_recieve);
 
     led.initialize();
