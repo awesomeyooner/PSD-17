@@ -13,10 +13,10 @@
 | :---: | :---: | :---: |
 | Disable Motor Command | 0 | 0 |
 | Enable Motor Command | 1 | 0 |
-| Closed Loop Velocity Command | 1 | 4 (float) |  
-| Closed Loop Position Command | 2 | 4 (float) |
-| Closed Loop Torque Command | 3 | 4 (float) |
-| Open Loop Velocity Command | 4 | 4 (float) |
+| Closed Loop Velocity Command | 2 | 4 (float) |  
+| Closed Loop Position Command | 3 | 4 (float) |
+| Closed Loop Torque Command | 4 | 4 (float) |
+| Open Loop Velocity Command | 5 | 4 (float) |
 | ... | ... | ... |
 
 ### Requests
