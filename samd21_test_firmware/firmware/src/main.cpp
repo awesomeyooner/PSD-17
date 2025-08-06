@@ -4,10 +4,10 @@
 
 #include "devices/led/builtin_led.hpp"
 
-#define IN1_A 0
-#define IN1_B 1
-#define IN2_A 2
-#define IN2_B 3
+#define IN1_A 3
+#define IN1_B 4
+#define IN2_A 5
+#define IN2_B 6
 
 #define CS_PIN 7
 
@@ -58,12 +58,11 @@ void setup() {
 
   motor.controller = MotionControlType::torque;
   motor.torque_controller = TorqueControlType::voltage;
-  motor.phase_resistance = 1;
-  // motor.current_limit = 1;
-  motor.voltage_limit = 6;
-  motor.LPF_velocity.Tf = 0.01;
-  motor.velocity_limit = 50;
-  motor.P_angle.P = 20;
+  motor.phase_resistance = 3.6;
+  motor.current_limit = 1;
+  // motor.voltage_limit = 3.6;
+  motor.LPF_angle.Tf = 0.05;
+  motor.LPF_velocity.Tf = 0.05;
   motor.init();
   motor.initFOC();
 
