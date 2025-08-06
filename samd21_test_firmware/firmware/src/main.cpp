@@ -9,10 +9,14 @@
 #define IN2_A 2
 #define IN2_B 3
 
+#define CS_PIN 7
+
 BuiltinLED led;
 
 StepperMotor motor = StepperMotor(50);
 StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
+
+MagneticSensorSPI sensor = MagneticSensorSPI(CS_PIN, 14);
 
 Commander command = Commander(Serial);
 
@@ -20,28 +24,54 @@ void do_target(char* cmd){
   command.scalar(&motor.target, cmd);
 }
 
+void do_kP(char* cmd){
+  command.scalar(&motor.PID_velocity.P, cmd);
+}
+
+void do_kI(char* cmd){
+  command.scalar(&motor.PID_velocity.I, cmd);
+}
+
+void do_kD(char* cmd){
+  command.scalar(&motor.PID_velocity.D, cmd);
+}
+
+void do_kF(char* cmd){
+  command.scalar(&motor.feed_forward_velocity, cmd);
+}
+
 void setup() {
+  Serial.begin(115200);
+  delay(3000);
   led.initialize();
+
+  motor.useMonitoring(Serial);
+  SimpleFOCDebug::enable(&Serial);
+
+  sensor.init();
+  motor.linkSensor(&sensor);
 
   driver.voltage_limit = 12;
   driver.voltage_power_supply = 25;
   driver.init();
-
   motor.linkDriver(&driver);
 
-  motor.foc_modulation = FOCModulationType::SinePWM;
-  motor.controller = MotionControlType::velocity_openloop;
-  motor.phase_resistance = 3.6;
-  motor.current_limit = 1;
-  motor.voltage_limit = 12;
-
+  motor.controller = MotionControlType::torque;
+  motor.torque_controller = TorqueControlType::voltage;
+  motor.phase_resistance = 1;
+  // motor.current_limit = 1;
+  motor.voltage_limit = 6;
+  motor.LPF_velocity.Tf = 0.01;
+  motor.velocity_limit = 50;
+  motor.P_angle.P = 20;
   motor.init();
   motor.initFOC();
 
   command.add('T', do_target, "Target Velocity");
-  
-  Serial.begin(115200);
-  SimpleFOCDebug::enable(&Serial);
+  command.add('P', do_kP, "Controller kP");
+  command.add('I', do_kI, "Controller kI");
+  command.add('D', do_kD, "Controller kD");
+  command.add('F', do_kF, "Controller kF");
 
   Serial.println("Motor Ready!");
   Serial.println("Set target velocity [rad/s]");
@@ -53,4 +83,5 @@ void loop() {
   motor.loopFOC();
   motor.move();
   command.run();
+
 }
