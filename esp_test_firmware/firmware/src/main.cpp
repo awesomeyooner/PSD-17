@@ -1,77 +1,101 @@
 #include <Arduino.h>
-
+#include <Wire.h>
 #include <SimpleFOC.h>
+#include <SimpleFOCDrivers.h>
+#include "encoders/as5047/MagneticSensorAS5047.h"
 
 #include "devices/led/builtin_led.hpp"
 
-#define ENA 5
-#define IN1 17
-#define IN2 16 
+#define IN1_A 27
+#define IN1_B 14
+#define IN2_A 12
+#define IN2_B 13
 
-#define IN3 13
-#define IN4 12
-#define ENB 14
+#define CS_PIN 2
 
 BuiltinLED led;
 
 StepperMotor motor = StepperMotor(50);
-StepperDriver4PWM driver = StepperDriver4PWM(IN1, IN2, IN3, IN4, ENB, ENA);
+StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
+MagneticSensorAS5047 sensor = MagneticSensorAS5047(CS_PIN);
 
-// Commander command = Commander(Serial);
+Commander command = Commander(Serial);
 
-float vA = 0;
-float vB = 0;
+void do_target(char* cmd){
+  command.scalar(&motor.target, cmd);
+}
 
-// void do_target(char* cmd){
-//   command.scalar(&motor.target, cmd);
-// }
+void do_debug(char* cmd){
+  command.scalar(&motor.voltage_limit, cmd);
+}
 
-// void change_vA(char* cmd){
-//   command.scalar(&vA, cmd);
-// }
+void do_kP(char* cmd){
+  command.scalar(&motor.PID_velocity.P, cmd);
+  command.scalar(&motor.P_angle.P, cmd);
+}
 
-// void change_vB(char* cmd){
-//   command.scalar(&vB, cmd);
-// }
+void do_kI(char* cmd){
+  command.scalar(&motor.PID_velocity.I, cmd);
+  command.scalar(&motor.P_angle.I, cmd);
+}
+
+void do_kD(char* cmd){
+  command.scalar(&motor.PID_velocity.D, cmd);
+  command.scalar(&motor.P_angle.D, cmd);
+}
+
+void do_kF(char* cmd){
+  command.scalar(&motor.feed_forward_velocity, cmd);
+}
 
 void setup() {
-  // put your setup code here, to run once:
-
   Serial.begin(115200);
+  delay(3000);
+  led.initialize();
+
+  motor.useMonitoring(Serial);
   SimpleFOCDebug::enable(&Serial);
 
-  led.initialize();
-  led.turn_on();
+  sensor.init();
+  sensor.min_elapsed_time = 0.005;
+  motor.linkSensor(&sensor);
 
   driver.voltage_limit = 12;
   driver.voltage_power_supply = 25;
   driver.init();
-  driver.enable();
-  // motor.linkDriver(&driver);
+  motor.linkDriver(&driver);
 
-  // motor.controller = MotionControlType::velocity_openloop;
+  motor.controller = MotionControlType::torque;
+  motor.torque_controller = TorqueControlType::voltage;
   // motor.phase_resistance = 3.6;
   // motor.current_limit = 1;
-  // motor.voltage_limit = 3;
+  motor.voltage_limit = 12;
+  motor.LPF_angle.Tf = 0.01;
+  motor.LPF_velocity.Tf = 0.05;
+  motor.init();
+  motor.initFOC();
 
-  // motor.init();
-  // motor.initFOC();
+  command.add('T', do_target, "Target Velocity");
+  command.add('E', do_debug, "Debug");
+  command.add('P', do_kP, "Controller kP");
+  command.add('I', do_kI, "Controller kI");
+  command.add('D', do_kD, "Controller kD");
+  command.add('F', do_kF, "Controller kF");
 
-  // command.add('T', do_target, "Target Velocity");
-  // command.add('A', change_vA, "Voltage for Phase A");
-  // command.add('B', change_vB, "Voltage for Phase B");
+  Serial.println("Motor Ready!");
+  Serial.println("Set target velocity [rad/s]");
 
-  // Serial.begin(115200);
-  // Serial.println("Motor Ready!");
-  // Serial.println("Set target velocity [rad/s]");
   delay(1000);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  motor.loopFOC();
+  motor.move();
+  command.run();
 
-  // motor.loopFOC();
-  // motor.move();
-  // command.run();
-  driver.setPwm(0, 0);
+  // Serial.print(motor.shaft_angle, 7);
+  // Serial.print(",");
+  // Serial.print(motor.shaft_velocity, 7);
+  // Serial.print(",");
+  // Serial.println(sensor.readMagnitude(), 7);
 }

@@ -26,19 +26,22 @@ void do_target(char* cmd){
 }
 
 void do_debug(char* cmd){
-  command.scalar(&motor.LPF_velocity.Tf, cmd);
+  command.scalar(&motor.voltage_limit, cmd);
 }
 
 void do_kP(char* cmd){
   command.scalar(&motor.PID_velocity.P, cmd);
+  command.scalar(&motor.P_angle.P, cmd);
 }
 
 void do_kI(char* cmd){
   command.scalar(&motor.PID_velocity.I, cmd);
+  command.scalar(&motor.P_angle.I, cmd);
 }
 
 void do_kD(char* cmd){
   command.scalar(&motor.PID_velocity.D, cmd);
+  command.scalar(&motor.P_angle.D, cmd);
 }
 
 void do_kF(char* cmd){
@@ -64,20 +67,20 @@ void setup() {
 
   motor.controller = MotionControlType::torque;
   motor.torque_controller = TorqueControlType::voltage;
-  motor.phase_resistance = 3.6;
-  motor.current_limit = 1;
-  // motor.voltage_limit = 3.6;
+  // motor.phase_resistance = 3.6;
+  // motor.current_limit = 1;
+  motor.voltage_limit = 12;
   motor.LPF_angle.Tf = 0.01;
   motor.LPF_velocity.Tf = 0.05;
   motor.init();
   motor.initFOC();
 
   command.add('T', do_target, "Target Velocity");
-  command.add('D', do_debug, "Debug");
-  // command.add('P', do_kP, "Controller kP");
-  // command.add('I', do_kI, "Controller kI");
-  // command.add('D', do_kD, "Controller kD");
-  // command.add('F', do_kF, "Controller kF");
+  command.add('E', do_debug, "Debug");
+  command.add('P', do_kP, "Controller kP");
+  command.add('I', do_kI, "Controller kI");
+  command.add('D', do_kD, "Controller kD");
+  command.add('F', do_kF, "Controller kF");
 
   Serial.println("Motor Ready!");
   Serial.println("Set target velocity [rad/s]");
@@ -90,9 +93,9 @@ void loop() {
   motor.move();
   command.run();
 
-  Serial.print(motor.shaft_angle, 7);
-  Serial.print(",");
-  Serial.print(motor.shaft_velocity, 7);
-  Serial.print(",");
-  Serial.println(sensor.readMagnitude(), 7);
+  // Serial.print(motor.shaft_angle, 7);
+  // Serial.print(",");
+  // Serial.print(motor.shaft_velocity, 7);
+  // Serial.print(",");
+  // Serial.println(sensor.readMagnitude(), 7);
 }
