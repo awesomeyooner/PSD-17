@@ -13,11 +13,15 @@
 
 #define CS_PIN 2
 
+#define CURRENT_SENSE_A 25
+#define CURRENT_SENSE_B 26
+
 BuiltinLED led;
 
 StepperMotor motor = StepperMotor(50);
 StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
 MagneticSensorAS5047 sensor = MagneticSensorAS5047(CS_PIN);
+LowsideCurrentSense current_sensor = LowsideCurrentSense(1100, CURRENT_SENSE_A, CURRENT_SENSE_B);
 
 Commander command = Commander(Serial);
 
@@ -49,32 +53,48 @@ void do_kF(char* cmd){
 }
 
 void setup() {
+
+  // Init System
   Serial.begin(115200);
   delay(3000);
   led.initialize();
 
+  // Enable Serial Debugging
   motor.useMonitoring(Serial);
   SimpleFOCDebug::enable(&Serial);
 
+  // Init Magnetic Encoder
   sensor.init();
   sensor.min_elapsed_time = 0.005;
   motor.linkSensor(&sensor);
 
-  driver.voltage_limit = 12;
-  driver.voltage_power_supply = 25;
+  // Init Driver
+  driver.voltage_limit = 24;
+  driver.voltage_power_supply = 24;
   driver.init();
   motor.linkDriver(&driver);
 
-  motor.controller = MotionControlType::torque;
+  // Init Current Sensor
+  current_sensor.linkDriver(&driver);
+  current_sensor.init();
+  motor.linkCurrentSense(&current_sensor);
+
+  // Motor Settings
+  motor.controller = MotionControlType::angle;
   motor.torque_controller = TorqueControlType::voltage;
-  // motor.phase_resistance = 3.6;
-  // motor.current_limit = 1;
-  motor.voltage_limit = 12;
+  motor.voltage_sensor_align = 16;
+  motor.phase_resistance = 3.6;
+  motor.current_limit = 1;
+  motor.voltage_limit = 24;
+
   motor.LPF_angle.Tf = 0.01;
   motor.LPF_velocity.Tf = 0.05;
+
+  // Init Motor
   motor.init();
   motor.initFOC();
 
+  // Add Commands
   command.add('T', do_target, "Target Velocity");
   command.add('E', do_debug, "Debug");
   command.add('P', do_kP, "Controller kP");
@@ -98,4 +118,5 @@ void loop() {
   // Serial.print(motor.shaft_velocity, 7);
   // Serial.print(",");
   // Serial.println(sensor.readMagnitude(), 7);
+  // Serial.println(current_sensor.getDCCurrent(motor.electrical_angle), 7);
 }
