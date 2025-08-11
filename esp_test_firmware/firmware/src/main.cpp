@@ -1,3 +1,5 @@
+#define ESP32_DEVKIT_V1
+
 #include <Arduino.h>
 #include <Wire.h>
 #include <SimpleFOC.h>
@@ -16,7 +18,7 @@
 #define CURRENT_SENSE_A 25
 #define CURRENT_SENSE_B 26
 
-BuiltinLED led;
+// BuiltinLED led;
 
 StepperMotor motor = StepperMotor(50);
 StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
@@ -57,7 +59,8 @@ void setup() {
   // Init System
   Serial.begin(115200);
   delay(3000);
-  led.initialize();
+  // led.initialize();
+  BuiltinLED::initialize();
 
   // Enable Serial Debugging
   motor.useMonitoring(Serial);
@@ -80,7 +83,7 @@ void setup() {
   motor.linkCurrentSense(&current_sensor);
 
   // Motor Settings
-  motor.controller = MotionControlType::angle;
+  motor.controller = MotionControlType::torque;
   motor.torque_controller = TorqueControlType::voltage;
   motor.voltage_sensor_align = 16;
   motor.phase_resistance = 3.6;
@@ -118,5 +121,5 @@ void loop() {
   // Serial.print(motor.shaft_velocity, 7);
   // Serial.print(",");
   // Serial.println(sensor.readMagnitude(), 7);
-  // Serial.println(current_sensor.getDCCurrent(motor.electrical_angle), 7);
+  // Serial.println(current_sensor.getDCCurrent(motor.electrical_angle) * 1000, 7);
 }

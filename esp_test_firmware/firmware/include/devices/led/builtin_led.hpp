@@ -4,7 +4,13 @@
 #include <Arduino.h>
 #include "led.hpp"
 
-#define LED_PIN 2
+#ifdef ESP32_DEVKIT_V1
+    #define LED_PIN 2
+#endif
+
+#ifdef SAMD21_SEEED_XIAO
+    #define LED_PIN 13
+#endif
 
 class BuiltinLED : public LED{
 
@@ -13,6 +19,14 @@ class BuiltinLED : public LED{
     public:
 
         BuiltinLED() : LED(LED_PIN){}
+
+        static void initialize(){
+            initialize();
+        }
+
+        static void turn_on(){
+            turn_on();
+        }
 };
 
 
