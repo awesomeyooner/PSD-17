@@ -18,8 +18,6 @@
 #define CURRENT_SENSE_A 25
 #define CURRENT_SENSE_B 26
 
-// BuiltinLED led;
-
 StepperMotor motor = StepperMotor(50);
 StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
 MagneticSensorAS5047 sensor = MagneticSensorAS5047(CS_PIN);
@@ -59,7 +57,6 @@ void setup() {
   // Init System
   Serial.begin(115200);
   delay(3000);
-  // led.initialize();
   BuiltinLED::initialize();
 
   // Enable Serial Debugging
