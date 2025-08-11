@@ -12,20 +12,32 @@
     #define LED_PIN 13
 #endif
 
-class BuiltinLED : public LED{
-
-    private:
+class BuiltinLED{
 
     public:
 
-        BuiltinLED() : LED(LED_PIN){}
-
         static void initialize(){
-            initialize();
+            super().initialize();
         }
 
         static void turn_on(){
-            turn_on();
+            super().turn_on();
+        }
+
+        static void turn_off(){
+            super().turn_off();
+        }
+
+        static void toggle(bool turn_on){
+            super().toggle(turn_on);
+        }
+    
+    private:
+        
+        static LED& super(){
+            static LED instance(LED_PIN);
+
+            return instance;
         }
 };
 
