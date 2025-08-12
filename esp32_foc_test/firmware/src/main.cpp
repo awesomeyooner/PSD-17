@@ -86,9 +86,8 @@ void setup() {
   motor.phase_resistance = 3.6;
   motor.current_limit = 1;
   motor.voltage_limit = 24;
-
   motor.LPF_angle.Tf = 0.01;
-  motor.LPF_velocity.Tf = 0.05;
+  motor.LPF_velocity.Tf = 0.01;
 
   // Init Motor
   motor.init();
@@ -106,8 +105,13 @@ void setup() {
   Serial.println("Set target velocity [rad/s]");
 
   delay(1000);
+
+  Serial.print("Zero Electrical Angle: ");
+  Serial.println(motor.zero_electric_angle, 7);
 }
 
+// 0.5890546
+// 0.5890546
 void loop() {
   motor.loopFOC();
   motor.move();
