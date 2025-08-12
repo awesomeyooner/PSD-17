@@ -23,35 +23,6 @@ StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
 MagneticSensorAS5047 sensor = MagneticSensorAS5047(CS_PIN);
 LowsideCurrentSense current_sensor = LowsideCurrentSense(1100, CURRENT_SENSE_A, CURRENT_SENSE_B);
 
-Commander command = Commander(Serial);
-
-void do_target(char* cmd){
-  command.scalar(&motor.target, cmd);
-}
-
-void do_debug(char* cmd){
-  command.scalar(&motor.voltage_limit, cmd);
-}
-
-void do_kP(char* cmd){
-  command.scalar(&motor.PID_velocity.P, cmd);
-  command.scalar(&motor.P_angle.P, cmd);
-}
-
-void do_kI(char* cmd){
-  command.scalar(&motor.PID_velocity.I, cmd);
-  command.scalar(&motor.P_angle.I, cmd);
-}
-
-void do_kD(char* cmd){
-  command.scalar(&motor.PID_velocity.D, cmd);
-  command.scalar(&motor.P_angle.D, cmd);
-}
-
-void do_kF(char* cmd){
-  command.scalar(&motor.feed_forward_velocity, cmd);
-}
-
 void setup() {
 
   // Init System
@@ -93,14 +64,6 @@ void setup() {
   motor.init();
   motor.initFOC();
 
-  // Add Commands
-  command.add('T', do_target, "Target Velocity");
-  command.add('E', do_debug, "Debug");
-  command.add('P', do_kP, "Controller kP");
-  command.add('I', do_kI, "Controller kI");
-  command.add('D', do_kD, "Controller kD");
-  command.add('F', do_kF, "Controller kF");
-
   Serial.println("Motor Ready!");
   Serial.println("Set target velocity [rad/s]");
 
@@ -115,7 +78,6 @@ void setup() {
 void loop() {
   motor.loopFOC();
   motor.move();
-  command.run();
 
   // Serial.print(motor.shaft_angle, 7);
   // Serial.print(",");
