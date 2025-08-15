@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "led.hpp"
 
-#define LED_PIN 13
+#define LED_PIN 2
 
 class BuiltinLED : public LED{
 

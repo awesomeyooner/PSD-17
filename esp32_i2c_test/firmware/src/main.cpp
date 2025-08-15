@@ -1,11 +1,14 @@
 #include <Arduino.h>
 #include <Wire.h>
+#include "driver/i2c_slave.h"
 
 #include <string>
 #include <vector>
 
 #include "devices/led/builtin_led.hpp"
 
+#define PIN_SDA 21
+#define PIN_SCL 22
 #define I2C_ADDR 4
 
 BuiltinLED led;
@@ -13,6 +16,8 @@ BuiltinLED led;
 std::vector<uint8_t> buffer;
 
 void on_recieve(int num_bytes){
+
+    Serial.println("Recieve Called!");
 
     if(num_bytes == 0)
         return;
@@ -42,6 +47,8 @@ void on_recieve(int num_bytes){
 }
 
 void on_request(){
+    Serial.println("Request Called!");
+
     for(uint8_t c : buffer){
         Wire.write(c);
     }
@@ -50,7 +57,13 @@ void on_request(){
 void setup() {
     Serial.begin(115200);
 
-    Wire.begin(I2C_ADDR);
+    Wire.setPins(PIN_SDA, PIN_SCL);
+
+    if(Wire.begin(I2C_ADDR))
+        Serial.println("Starting I2C...");
+    else
+        Serial.println("I2C Failed to Initialize!");
+
     Wire.onReceive(on_recieve);
     Wire.onRequest(on_request);
 
