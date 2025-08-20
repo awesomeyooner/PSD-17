@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include "driver/i2c_slave.h"
+// #include "driver/i2c_slave.h"
 
 #include <string>
 #include <vector>
@@ -9,7 +9,8 @@
 
 #define PIN_SDA 21
 #define PIN_SCL 22
-#define I2C_ADDR 4
+#define I2C_ADDR 81
+#define I2C_FREQUENCY 100000L
 
 BuiltinLED led;
 
@@ -56,23 +57,22 @@ void on_request(){
 
 void setup() {
     Serial.begin(115200);
-
-    Wire.setPins(PIN_SDA, PIN_SCL);
-
-    if(Wire.begin(I2C_ADDR))
-        Serial.println("Starting I2C...");
-    else
-        Serial.println("I2C Failed to Initialize!");
+    // Wire.setPins(PIN_SDA, PIN_SCL);
 
     Wire.onReceive(on_recieve);
     Wire.onRequest(on_request);
+
+    if(Wire.begin(I2C_ADDR, PIN_SDA, PIN_SCL, I2C_FREQUENCY))
+        Serial.println("Starting I2C...");
+    else
+        Serial.println("I2C Failed to Initialize!");
 
     led.initialize();
     led.turn_on();
 }
 
 void loop() {
-    
+
 }
 
 

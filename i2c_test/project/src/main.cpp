@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    WireDevice device(I2C::get_bus(), 4);
+    WireDevice device(I2C::get_bus(), 81);
 
     while(true){
 
