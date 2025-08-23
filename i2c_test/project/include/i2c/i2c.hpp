@@ -12,6 +12,7 @@
 #include <fstream>
 #include <filesystem>
 #include <system_error>
+#include "util/logger.hpp"
 
 #include "util/status.hpp"
 
@@ -43,15 +44,11 @@ class I2C{
             for(auto entry : fs::directory_iterator(i2c_path)){
                 std::string directory_name = entry.path().filename().string();
 
-                if(verbose)
-                    std::cout << "Found Folder: " << directory_name << "...";
-
-
                 // If it's not an i2c device then skip
                 if(directory_name.compare(0, 4, "i2c-") != 0){
 
                     if(verbose)
-                        std::cout << "Not an i2c Device! Skipping..." << std::endl;
+                        Logger::info("Found Folder: " + directory_name + "... " + "Not an i2c Device! Skipping...");
 
                     continue;
                 }
@@ -64,7 +61,7 @@ class I2C{
                 catch(std::exception& e){
 
                     if(verbose)
-                        std::cout << "Not a proper adapter! Skipping..." << std::endl;
+                        Logger::info("Found Folder: " + directory_name + "... " + "Not a proper adapter! Skipping...");
 
                     continue;
                 }
@@ -92,13 +89,13 @@ class I2C{
                 if(adapter_name.find(name) != std::string::npos){
 
                     if(verbose)
-                        std::cout << "Found adapter " << adapter_name << " in: " << directory_name << std::endl;
+                        Logger::info("Found adapter " + adapter_name + " in: " + directory_name);
 
                     return init(adapter_number);
                 }
                 else{
                     if(verbose)
-                        std::cout << "Not the right adapter! Skipping..." << std::endl;
+                        Logger::info("Not the right adapter! Skipping...");
                 }
             }
 

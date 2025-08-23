@@ -25,6 +25,10 @@ class WireDevice{
             device.delay = 10;
         }
 
+        int get_address(){
+            return device.addr;
+        }
+
         i2c_device* get(){
             return &device;
         }
