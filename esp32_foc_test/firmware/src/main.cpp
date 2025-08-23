@@ -108,6 +108,9 @@ void setup() {
 
   Serial.print("Zero Electrical Angle: ");
   Serial.println(motor.zero_electric_angle, 7);
+
+  Serial.print("CPU Frequency: ");
+  Serial.println(getCpuFrequencyMhz());
 }
 
 // 0.5890546
