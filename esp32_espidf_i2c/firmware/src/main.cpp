@@ -9,7 +9,7 @@
 
 #define PIN_SDA 21
 #define PIN_SCL 22
-#define I2C_ADDR 10
+#define I2C_ADDR 4
 #define I2C_FREQUENCY 100000L
 
 std::vector<uint8_t> buffer;
@@ -53,8 +53,6 @@ void on_request(){
     }
 }
 
-uint32_t i = 0;
-
 void setup() {
 
   // Init System
@@ -64,45 +62,17 @@ void setup() {
     delay(3000);
     BuiltinLED::initialize();
 
-    // Wire.onReceive(on_recieve);
-    // Wire.onRequest(on_request);
+    Wire.onReceive(on_recieve);
+    Wire.onRequest(on_request);
 
-    Wire.begin();
-    // if(Wire.begin(I2C_ADDR, PIN_SDA, PIN_SCL, I2C_FREQUENCY))
-    //     Serial.println("Starting I2C...");
-    // else
-    //     Serial.println("I2C Failed to Initialize!");
-
-    // #if CONFIG_IDF_TARGET_ESP32
-    //     char message[64];
-    //     snprintf(message, 64, "%lu Packets.", i++);
-    //     Wire.slaveWrite((uint8_t *)message, strlen(message));
-    // #endif
-
+    if(Wire.begin(I2C_ADDR, PIN_SDA, PIN_SCL, I2C_FREQUENCY))
+        Serial.println("Starting I2C...");
+    else
+        Serial.println("I2C Failed to Initialize!");
 
   BuiltinLED::turn_on();
 }
 
 void loop() {
 
-    if(Serial.available()){
-        String input = Serial.readStringUntil('\n');
-
-        Serial.println("You said: " + input);
-
-        Wire.beginTransmission(4);
-        
-        for(char c : input){
-            Wire.write(c);
-        }
-
-        if(Wire.endTransmission() == 0){
-            Serial.println("Sent Successfully!");
-        }
-        else{
-            Serial.println("Sent Failed!");
-        }
-
-        
-    }
 }

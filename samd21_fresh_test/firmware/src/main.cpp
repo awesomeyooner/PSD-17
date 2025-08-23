@@ -50,16 +50,35 @@ void on_request(){
 void setup() {
     Serial.begin(115200);
 
-    Wire.begin(I2C_ADDR);
-    Wire.onReceive(on_recieve);
-    Wire.onRequest(on_request);
-
+    Wire.begin();
     led.initialize();
     led.turn_on();
 }
 
 void loop() {
-    
+    if(Serial.available()){
+        String input = Serial.readStringUntil('\n');
+
+        Serial.println("You said: " + input);
+
+        Wire.beginTransmission(4);
+        
+        for(char c : input){
+            Wire.write(c);
+        }
+
+        uint8_t status = Wire.endTransmission();
+
+        if(status == 0){
+            Serial.println("Sent Successfully!");
+        }
+        else{
+            Serial.print("Sent Failed! Error Code: ");
+            Serial.println((int)status);
+        }
+
+        
+    }
 }
 
 
