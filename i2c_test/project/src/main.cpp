@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    WireDevice device(I2C::get_bus(), 10);
+    WireDevice device(I2C::get_bus(), 0xa);
 
     Logger::info("Initializing device with address: " + std::to_string(device.get_address()));
 

@@ -6,10 +6,12 @@
 
 #include "devices/led/builtin_led.hpp"
 #include <esp_log.h>
+#include "driver/periph_ctrl.h"
+#include <driver/rtc_io.h>
 
 #define PIN_SDA 21
 #define PIN_SCL 22
-#define I2C_ADDR 4
+#define I2C_ADDR 10
 #define I2C_FREQUENCY 100000L
 
 std::vector<uint8_t> buffer;
@@ -55,6 +57,17 @@ void on_request(){
 
 void setup() {
 
+    // rtc_gpio_isolate(gpio_num_t(SDA));
+    // rtc_gpio_isolate(gpio_num_t(SCL));
+    // periph_module_disable(PERIPH_I2C0_MODULE);  
+    // pinMode(PIN_SDA, INPUT);
+    // pinMode(PIN_SCL, INPUT);
+    // digitalWrite(PIN_SDA, LOW);
+    // digitalWrite(PIN_SCL, LOW);
+    // gpio_pulldown_dis()
+    gpio_set_pull_mode((gpio_num_t)PIN_SDA, GPIO_FLOATING);
+    gpio_set_pull_mode((gpio_num_t)PIN_SCL, GPIO_FLOATING);
+
   // Init System
     Serial.begin(115200);
     Serial.setDebugOutput(true);
@@ -64,6 +77,9 @@ void setup() {
 
     Wire.onReceive(on_recieve);
     Wire.onRequest(on_request);
+
+    Wire.setBufferSize(256);
+    Wire.setTimeOut(1000);
 
     if(Wire.begin(I2C_ADDR, PIN_SDA, PIN_SCL, I2C_FREQUENCY))
         Serial.println("Starting I2C...");
