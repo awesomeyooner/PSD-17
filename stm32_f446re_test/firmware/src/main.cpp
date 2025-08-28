@@ -26,10 +26,10 @@ void on_recieve(int num_bytes){
         buffer.push_back(c);
     }
 
-    float f = I2C::bytes_to_float(buffer);
+    // float f = I2C::bytes_to_float(buffer);
 
-    Serial.print("Float Value: ");
-    Serial.println(f);
+    // Serial.print("Float Value: ");
+    // Serial.println(f);
 
     Serial.println("\nDecimal Values: ");
 

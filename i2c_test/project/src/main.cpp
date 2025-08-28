@@ -45,10 +45,10 @@ int main(int argc, char *argv[])
             break;
         }
 
-        float f = std::stof(buffer);
+        // float f = std::stof(buffer);
 
-        std::vector<uint8_t> data = I2C::float_to_bytes(f);
-        // std::vector<uint8_t> data(buffer.begin(), buffer.end());
+        // std::vector<uint8_t> data = I2C::float_to_bytes(f);
+        std::vector<uint8_t> data(buffer.begin(), buffer.end());
 
         if (data.size() == 0)
         {
