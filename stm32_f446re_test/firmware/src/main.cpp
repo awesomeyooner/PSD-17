@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+#include "util/i2c.hpp"
 #include "devices/led/builtin_led.hpp"
 
 #define I2C_ADDR 4
@@ -24,6 +25,11 @@ void on_recieve(int num_bytes){
 
         buffer.push_back(c);
     }
+
+    float f = I2C::bytes_to_float(buffer);
+
+    Serial.print("Float Value: ");
+    Serial.println(f);
 
     Serial.println("\nDecimal Values: ");
 

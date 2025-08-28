@@ -96,6 +96,14 @@ class Logger{
             return all;
         }
 
+        static tm* get_datetime(){
+            time_t time = std::time(NULL);
+
+            tm* datetime = std::localtime(&time);
+
+            return datetime;
+        }
+
     private:
        
 }; // class Logger
