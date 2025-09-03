@@ -1,6 +1,7 @@
-#include <cstdint>
 #ifndef WIRE_TYPES_HPP
 #define WIRE_TYPES_HPP
+
+#include <cstdint>
 
 enum class CommandType : uint8_t{
     
