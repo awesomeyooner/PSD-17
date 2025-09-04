@@ -21,12 +21,6 @@ WireManager* wire_manager = WireManager::get_instance();
 MotorManager* motor_manager = MotorManager::get_instance();
 RegisterManager* reg_manager = RegisterManager::get_instance();
 
-Commander command = Commander(Serial);
-
-void do_target(char* cmd){
-  command.scalar(&motor_manager->get_motor()->target, cmd);
-}
-
 void setup() {
   Serial.begin(115200);
 
@@ -36,16 +30,11 @@ void setup() {
   motor_manager->init();
   reg_manager->init();
   
-  // Add Commands
-  command.add('T', do_target, "Target Velocity");
-
   Serial.println("Motor Ready!");
-  Serial.println("Set target velocity [rad/s]");
 
   delay(1000);
 }
 
 void loop() {
   motor_manager->update();
-  command.run();
 }
