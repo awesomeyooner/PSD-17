@@ -28,11 +28,11 @@ void do_target(char* cmd){
 void setup() {
   Serial.begin(115200);
 
+  BuiltinLED::initialize();
+
   wire_manager->init(I2C_ADDR);
   motor_manager->init();
   
-  BuiltinLED::initialize();
-
   // Add Commands
   command.add('T', do_target, "Target Velocity");
 
@@ -45,7 +45,4 @@ void setup() {
 void loop() {
   motor_manager->update();
   command.run();
-
-  motor_manager->get_sensor()->update();
-  Serial.println(motor_manager->get_sensor()->getAngle(), 7);
 }
