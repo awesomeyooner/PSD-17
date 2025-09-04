@@ -66,6 +66,19 @@ struct Command{
     int length; // payload to recieve length
     std::function<StatusCode(std::vector<uint8_t>*)> runnable; // what to run when register is called
 
+    // makes a command that takes in the incoming bytes `(float)` and sets it to `val`
+    Command make_float(uint8_t reg, float* val){
+        return Command{
+            .reg = reg,
+            .length = sizeof(float),
+            .runnable = [val](std::vector<uint8_t>* data) -> StatusCode{
+                float f_data = I2C::bytes_to_float(*data);
+                *val = f_data;
+
+                return StatusCode::OK;
+            }
+        };
+    }
 }; // struct Command
 
 // packet gets sent to slave with only register
@@ -74,6 +87,20 @@ struct Request{
     uint8_t reg; // register byte
     int length; // payload to send length
     std::function<StatusCode()> runnable; // what to run when register is called
+
+    // makes a request that sends `val` to the master
+    Request make_float(uint8_t reg, float* val, std::vector<uint8_t>* w_buf){
+        return Request{
+            .reg = reg,
+            .length = sizeof(float),
+            .runnable = [val, w_buf]() -> StatusCode{
+                std::vector<uint8_t> bytes = I2C::float_to_bytes(*val);
+                w_buf->assign(bytes.begin(), bytes.end());
+                
+                return StatusCode::OK;
+            }
+        };
+    }
 }; // struct Request
 
 #endif // WIRE_TYPES_HPP

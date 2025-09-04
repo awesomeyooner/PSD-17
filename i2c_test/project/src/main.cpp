@@ -48,10 +48,8 @@ int main(int argc, char *argv[])
         // float f = std::stof(buffer);
 
         // std::vector<uint8_t> data = I2C::float_to_bytes(f);
-        // std::vector<uint8_t> data(buffer.begin(), buffer.end());
-        std::vector<uint8_t> data;
-
-        data.push_back(253);
+        std::vector<uint8_t> data(buffer.begin(), buffer.end());
+        // std::vector<uint8_t> data = I2C::float_to_bytes(2);
 
         if (data.size() == 0)
         {
@@ -72,7 +70,7 @@ int main(int argc, char *argv[])
 
         // Read Bus
         StatusedValue<std::vector<uint8_t>> read = device.read(sizeof(float));
-
+    
         if (read.is_OK())
             std::cout << "Read Successfully!" << std::endl;
         else
@@ -80,6 +78,10 @@ int main(int argc, char *argv[])
             std::cout << "Failed to Read!" << std::endl;
             continue;
         }
+
+        float pos = I2C::bytes_to_float(read.value);
+
+        std::cout << pos << std::endl;
 
         // Decimal Print (write)
         std::cout << "Decimal Value: ";

@@ -28,17 +28,19 @@ class WireManager{
             if(request_map.empty() && command_map.empty())
                 return StatusCode::FAILED;
 
-            try{
+            // if the register exists
+            if(request_map.find(reg) != request_map.end()){
+                // Serial.println("Request Map Called");
                 return request_map.at(reg).runnable();
             }
-            catch(std::out_of_range e){
-                try{
-                    return command_map.at(reg).runnable(data);
-                }
-                catch(std::out_of_range e){
-                    return StatusCode::FAILED;
-                }
+            
+            // if the register exists
+            if(command_map.find(reg) != command_map.end()){
+                // Serial.println("Command Map Called");
+                return command_map.at(reg).runnable(data);
             }
+
+            return StatusCode::FAILED;
         }
 
         std::vector<uint8_t>* get_read_buffer(){

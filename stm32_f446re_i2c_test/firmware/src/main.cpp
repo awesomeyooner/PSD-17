@@ -55,6 +55,8 @@ void setup() {
   Wire.onRequest(on_request);
 
   BuiltinLED::initialize();
+  
+  Serial.println("Starting!");
 }
 
 void loop() {
