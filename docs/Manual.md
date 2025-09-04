@@ -53,10 +53,11 @@
 
 | Data Types | Byte Value | Data Length (to recieve) |
 | :---: | :---: | :---: |
-| Velocity Request | 255 | 4 (float) |
-| Position Request | 254 |  4 (float) |
-| Current Request | 253 | 4 (float) |
-| Error Request | 252 | 1 (uint8_t) |
+| Target Request | 255 | 4 (float) |
+| Velocity Request | 254 | 4 (float) |
+| Position Request | 253 |  4 (float) |
+| Current Request | 252 | 4 (float) |
+| Error Request | 251 | 1 (uint8_t) |
 | ... | ... | ... |
 
 #### Error Codes

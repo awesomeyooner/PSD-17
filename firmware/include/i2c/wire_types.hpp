@@ -49,10 +49,11 @@ enum class CommandType : uint8_t{
 
 enum class RequestType : uint8_t{
 
-    VELOCITY = 255,
-    POSITION = 254,
-    CURRENT = 253,
-    ERROR = 252
+    TARGET = 255,
+    VELOCITY = 254,
+    POSITION = 253,
+    CURRENT = 252,
+    ERROR = 251
     // rest of bytes reserved
 
 }; // enum class RequestType
