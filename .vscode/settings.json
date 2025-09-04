@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/home/dev/Documents/GitHub/PSD-17/i2c test/project"
+    "cmake.sourceDirectory": "/home/dev/Documents/GitHub/PSD-17/i2c test/project",
+    "cmake.ignoreCMakeListsMissing": true
 }

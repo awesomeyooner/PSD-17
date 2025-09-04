@@ -9,7 +9,8 @@
 #include <string>
 #include <vector>
 
-#include "util/i2c.hpp"
+#include "i2c/i2c.hpp"
+#include "managers/wire_manager.hpp"
 #include "devices/led/builtin_led.hpp"
 
 #define I2C_ADDR 4
@@ -31,47 +32,33 @@ MagneticSensorAS5047 sensor = MagneticSensorAS5047(CS_PIN);
 
 Commander command = Commander(Serial);
 
-std::vector<uint8_t> buffer;
+// std::vector<uint8_t> buffer;
 
-void on_wire_recieve(int num_bytes){
+// void on_wire_recieve(int num_bytes){
 
-    if(num_bytes == 0)
-        return;
+//     if(num_bytes == 0)
+//         return;
 
-    buffer.clear();
+//     buffer.clear();
     
-    while(Wire.available()){
-        uint8_t c = Wire.read();
+//     while(Wire.available()){
+//         uint8_t c = Wire.read();
 
-        buffer.push_back(c);
-    }
+//         buffer.push_back(c);
+//     }
 
-    // float f = I2C::bytes_to_float(buffer);
+//     uint8_t reg = buffer.at(0);
 
-    // Serial.print("Float Value: ");
-    // Serial.println(f);
-
-    Serial.println("\nDecimal Values: ");
-
-    for(uint8_t c : buffer){
-        Serial.print(c);
-        Serial.print(" ");
-    }
-
-    Serial.println("\nASCII Values: ");
+//     WireManager::get_instance()->update(reg, &buffer);
     
-    for(uint8_t c : buffer){
-        Serial.print((char)c);
-    }
 
-    Serial.println();
-}
+// }
 
-void on_wire_request(){
-    for(uint8_t c : buffer){
-        Wire.write(c);
-    }
-}
+// void on_wire_request(){
+//     for(uint8_t c : buffer){
+//         Wire.write(c);
+//     }
+// }
 
 void do_target(char* cmd){
   command.scalar(&motor.target, cmd);
@@ -80,9 +67,11 @@ void do_target(char* cmd){
 void setup() {
   Serial.begin(115200);
 
-  Wire.begin(I2C_ADDR);
-  Wire.onReceive(on_wire_recieve);
-  Wire.onRequest(on_wire_request);
+  WireManager::get_instance()->init(I2C_ADDR);
+
+  // Wire.begin(I2C_ADDR);
+  // Wire.onReceive(on_wire_recieve);
+  // Wire.onRequest(on_wire_request);
 
   BuiltinLED::initialize();
 
