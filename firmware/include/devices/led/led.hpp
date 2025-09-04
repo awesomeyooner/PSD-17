@@ -11,9 +11,15 @@ class LED{
     public:
 
         LED(int _pin) : pin(_pin){}
+        LED(){}
 
         void initialize(){
             pinMode(pin, OUTPUT);
+        }
+
+        void initialize(int _pin){
+            pin = _pin;
+            initialize();
         }
 
         void toggle(bool turnOn){

@@ -1,4 +1,4 @@
-#define ESP32_DEVKIT_V1
+#define STM32_NUCLEO64_F446RE
 
 #include <Arduino.h>
 #include <Wire.h>
@@ -6,35 +6,90 @@
 #include <SimpleFOCDrivers.h>
 #include "encoders/as5047/MagneticSensorAS5047.h"
 
+#include <string>
+#include <vector>
+
+#include "util/i2c.hpp"
 #include "devices/led/builtin_led.hpp"
 
-#define IN1_A 27
-#define IN1_B 14
-#define IN2_A 12
-#define IN2_B 13
+#define I2C_ADDR 4
 
-#define CS_PIN 2
+#define IN1_A PA8
+#define IN1_B PB10
+#define IN2_A PB4
+#define IN2_B PB5
 
-#define CURRENT_SENSE_A 25
-#define CURRENT_SENSE_B 26
+#define CS_PIN PA15
+
+#define CURRENT_SENSE_A PC4
+#define CURRENT_SENSE_B PB1
 
 StepperMotor motor = StepperMotor(50);
 StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
 MagneticSensorAS5047 sensor = MagneticSensorAS5047(CS_PIN);
-LowsideCurrentSense current_sensor = LowsideCurrentSense(1100, CURRENT_SENSE_A, CURRENT_SENSE_B);
+// LowsideCurrentSense current_sensor = LowsideCurrentSense(1100, CURRENT_SENSE_A, CURRENT_SENSE_B);
+
+Commander command = Commander(Serial);
+
+std::vector<uint8_t> buffer;
+
+void on_wire_recieve(int num_bytes){
+
+    if(num_bytes == 0)
+        return;
+
+    buffer.clear();
+    
+    while(Wire.available()){
+        uint8_t c = Wire.read();
+
+        buffer.push_back(c);
+    }
+
+    // float f = I2C::bytes_to_float(buffer);
+
+    // Serial.print("Float Value: ");
+    // Serial.println(f);
+
+    Serial.println("\nDecimal Values: ");
+
+    for(uint8_t c : buffer){
+        Serial.print(c);
+        Serial.print(" ");
+    }
+
+    Serial.println("\nASCII Values: ");
+    
+    for(uint8_t c : buffer){
+        Serial.print((char)c);
+    }
+
+    Serial.println();
+}
+
+void on_wire_request(){
+    for(uint8_t c : buffer){
+        Wire.write(c);
+    }
+}
+
+void do_target(char* cmd){
+  command.scalar(&motor.target, cmd);
+}
 
 void setup() {
-
-  // Init System
   Serial.begin(115200);
-  delay(3000);
+
+  Wire.begin(I2C_ADDR);
+  Wire.onReceive(on_wire_recieve);
+  Wire.onRequest(on_wire_request);
+
   BuiltinLED::initialize();
 
-  // Enable Serial Debugging
   motor.useMonitoring(Serial);
   SimpleFOCDebug::enable(&Serial);
 
-  // Init Magnetic Encoder
+    // Init Magnetic Encoder
   sensor.init();
   sensor.min_elapsed_time = 0.005;
   motor.linkSensor(&sensor);
@@ -46,9 +101,9 @@ void setup() {
   motor.linkDriver(&driver);
 
   // Init Current Sensor
-  current_sensor.linkDriver(&driver);
-  current_sensor.init();
-  motor.linkCurrentSense(&current_sensor);
+//   current_sensor.linkDriver(&driver);
+//   current_sensor.init();
+//   motor.linkCurrentSense(&current_sensor);
 
   // Motor Settings
   motor.controller = MotionControlType::torque;
@@ -64,25 +119,17 @@ void setup() {
   motor.init();
   motor.initFOC();
 
+  // Add Commands
+  command.add('T', do_target, "Target Velocity");
+
   Serial.println("Motor Ready!");
   Serial.println("Set target velocity [rad/s]");
 
   delay(1000);
-
-  Serial.print("Zero Electrical Angle: ");
-  Serial.println(motor.zero_electric_angle, 7);
 }
 
-// 0.5890546
-// 0.5890546
 void loop() {
   motor.loopFOC();
   motor.move();
-
-  // Serial.print(motor.shaft_angle, 7);
-  // Serial.print(",");
-  // Serial.print(motor.shaft_velocity, 7);
-  // Serial.print(",");
-  // Serial.println(sensor.readMagnitude(), 7);
-  // Serial.println(current_sensor.getDCCurrent(motor.electrical_angle) * 1000, 7);
+  command.run();
 }
