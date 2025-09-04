@@ -12,12 +12,14 @@
 #include "i2c/i2c.hpp"
 #include "managers/wire_manager.hpp"
 #include "managers/motor_manager.hpp"
+#include "managers/register_manager.hpp"
 #include "devices/led/builtin_led.hpp"
 
 #define I2C_ADDR 4
 
 WireManager* wire_manager = WireManager::get_instance();
 MotorManager* motor_manager = MotorManager::get_instance();
+RegisterManager* reg_manager = RegisterManager::get_instance();
 
 Commander command = Commander(Serial);
 
@@ -32,6 +34,7 @@ void setup() {
 
   wire_manager->init(I2C_ADDR);
   motor_manager->init();
+  reg_manager->init();
   
   // Add Commands
   command.add('T', do_target, "Target Velocity");

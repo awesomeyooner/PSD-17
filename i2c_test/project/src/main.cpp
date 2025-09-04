@@ -48,7 +48,10 @@ int main(int argc, char *argv[])
         // float f = std::stof(buffer);
 
         // std::vector<uint8_t> data = I2C::float_to_bytes(f);
-        std::vector<uint8_t> data(buffer.begin(), buffer.end());
+        // std::vector<uint8_t> data(buffer.begin(), buffer.end());
+        std::vector<uint8_t> data;
+
+        data.push_back(253);
 
         if (data.size() == 0)
         {
@@ -68,7 +71,7 @@ int main(int argc, char *argv[])
         }
 
         // Read Bus
-        StatusedValue<std::vector<uint8_t>> read = device.read(data.size());
+        StatusedValue<std::vector<uint8_t>> read = device.read(sizeof(float));
 
         if (read.is_OK())
             std::cout << "Read Successfully!" << std::endl;

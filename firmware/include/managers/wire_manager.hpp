@@ -15,7 +15,8 @@ class WireManager{
 
         static WireManager* get_instance();
 
-        std::vector<uint8_t> buffer;
+        std::vector<uint8_t> read_buffer;
+        std::vector<uint8_t> write_buffer;
 
         void init(int address){
             Wire.begin(address);
@@ -40,26 +41,40 @@ class WireManager{
             }
         }
 
-         static void on_wire_recieve(int num_bytes){
+        std::vector<uint8_t>* get_read_buffer(){
+            return &read_buffer;
+        }
+        
+        std::vector<uint8_t>* get_write_buffer(){
+            return &write_buffer;
+        }
+
+        static void on_wire_recieve(int num_bytes){
 
             if(num_bytes == 0)
                 return;
 
-            WireManager::get_instance()->buffer.clear();
+            WireManager* wire_manager = WireManager::get_instance();
+
+            wire_manager->read_buffer.clear();
             
             while(Wire.available()){
                 uint8_t c = Wire.read();
 
-                WireManager::get_instance()->buffer.push_back(c);
+                wire_manager->read_buffer.push_back(c);
             }
 
-            uint8_t reg = WireManager::get_instance()->buffer.at(0);
+            uint8_t reg = wire_manager->read_buffer.at(0);
 
-            WireManager::get_instance()->update(reg, &WireManager::get_instance()->buffer);
+            // remove the register byte so that the vector is only the data
+            wire_manager->read_buffer.erase(wire_manager->read_buffer.begin());
+
+            // run the registers
+            WireManager::get_instance()->update(reg, &WireManager::get_instance()->read_buffer);
         }
 
         static void on_wire_request(){
-            for(uint8_t c : WireManager::get_instance()->buffer){
+            for(uint8_t c : WireManager::get_instance()->write_buffer){
                 Wire.write(c);
             }
         }

@@ -10,9 +10,25 @@ class RegisterManager{
 
         Command cmd_target = {
             .reg = (uint8_t)CommandType::TARGET,
-            .length = 4,
+            .length = sizeof(float),
             .runnable = [this](std::vector<uint8_t>* data) -> StatusCode{
-                return StatusCode::FAILED;
+                float value = I2C::bytes_to_float(*data);
+
+                motor_manager->get_motor()->target = value;
+
+                return StatusCode::OK;
+            }
+        };
+
+        Request req_position = {
+            .reg = (uint8_t)RequestType::POSITION,
+            .length = sizeof(float),
+            .runnable = [this]() -> StatusCode{
+                float position = motor_manager->get_motor()->shaft_angle;
+
+                std::vector<uint8_t> buf = I2C::float_to_bytes(position);
+
+                wire_manager->get_write_buffer()->assign(buf.begin(), buf.end());
             }
         };
 
@@ -20,7 +36,9 @@ class RegisterManager{
         static RegisterManager* get_instance();
 
         void init(){
+            wire_manager->add_command(cmd_target);
             
+            wire_manager->add_request(req_position);
         }
 
     private:
