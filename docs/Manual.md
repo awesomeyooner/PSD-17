@@ -14,10 +14,11 @@
 | Disable Motor Command | 0 | 0 |
 | Enable Motor Command | 1 | 0 |
 | Run FOC Init | 2 | 0 |
-| Closed Loop Velocity Command | 3 | 4 (float) |  
-| Closed Loop Position Command | 4 | 4 (float) |
-| Closed Loop Torque Command | 5 | 4 (float) |
-| Open Loop Velocity Command | 6 | 4 (float) |
+| Target Command | 3 | 4 (float) |
+| Closed Loop Velocity Command | 4 | 4 (float) |  
+| Closed Loop Position Command | 5 | 4 (float) |
+| Closed Loop Torque Command | 6 | 4 (float) |
+| Open Loop Velocity Command | 7 | 4 (float) |
 | ... | ... | ... |
 
 ### Settings 

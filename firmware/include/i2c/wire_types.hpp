@@ -11,10 +11,11 @@ enum class CommandType : uint8_t{
     DISABLE_MOTOR = 0,
     ENABLE_MOTOR = 1,
     RUN_FOC_INIT = 2,
-    CLOSED_LOOP_VELOCITY = 3,
-    CLOSED_LOOP_POSITION = 4,
-    CLOSED_LOOP_TORQUE = 5,
-    OPEN_LOOP_VELOCITY = 6,
+    TARGET = 3,
+    CLOSED_LOOP_VELOCITY = 4,
+    CLOSED_LOOP_POSITION = 5,
+    CLOSED_LOOP_TORQUE = 6,
+    OPEN_LOOP_VELOCITY = 7,
     // rest of bytes reserved...
 
     CHANGE_CURRENT_LIMIT = 121,
