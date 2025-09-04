@@ -7,6 +7,7 @@
 
 #include "i2c/i2c.hpp"
 #include "i2c/wire_device.hpp"
+#include "i2c/drivers/psd17.hpp"
 
 #include "util/util.hpp"
 #include "math/math_helper.hpp"
@@ -26,9 +27,9 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    WireDevice device(I2C::get_bus(), 0x4);
+    PSD17 motor(0x4);
 
-    Logger::info("Initializing device with address: " + std::to_string(device.get_address()));
+    Logger::info("Initializing device with address: " + std::to_string(motor.get_address()));
 
     while (true)
     {
@@ -45,75 +46,37 @@ int main(int argc, char *argv[])
             break;
         }
 
-        // float f = std::stof(buffer);
+        float target;
 
-        // std::vector<uint8_t> data = I2C::float_to_bytes(f);
-        std::vector<uint8_t> data(buffer.begin(), buffer.end());
-        // std::vector<uint8_t> data = I2C::float_to_bytes(2);
-
-        if (data.size() == 0)
-        {
-            std::cout << "Nothing to send! Skipping..." << std::endl;
+        try{
+            target = std::stof(buffer);
+        }
+        catch(std::exception e){
+            std::cout << "Not a proper number! Skipping..." << std::endl;
             continue;
         }
 
-        // Write Bus
-        StatusCode status = device.write(data);
+        StatusCode send_status = motor.send_target(target);
 
-        if (status == StatusCode::OK)
-            std::cout << "Sent Successfully!" << std::endl;
-        else if (status == StatusCode::FAILED)
-        {
-            std::cout << "Failed to Send!" << std::endl;
+        if(send_status == StatusCode::OK){
+            std::cout << "Target sent successfully!" << std::endl;
+        }
+        else{
+            std::cout << "Failed to send target! Skipping..." << std::endl;
             continue;
         }
 
-        // Read Bus
-        StatusedValue<std::vector<uint8_t>> read = device.read(sizeof(float));
-    
-        if (read.is_OK())
-            std::cout << "Read Successfully!" << std::endl;
-        else
-        {
-            std::cout << "Failed to Read!" << std::endl;
+        StatusedValue<float> position = motor.get_position();
+
+        if(position.status == StatusCode::OK){
+            std::cout << "Read Position Successfully!" << std::endl;
+        }
+        else{
+            std::cout << "Failed to read position! Skipping..." << std::endl;
             continue;
         }
 
-        float pos = I2C::bytes_to_float(read.value);
-
-        std::cout << pos << std::endl;
-
-        // Decimal Print (write)
-        std::cout << "Decimal Value: ";
-        for (uint8_t c : data)
-        {
-            std::cout << (int)c << " ";
-        }
-        std::cout << std::endl;
-
-        // Decimal Print (read)
-        std::cout << "Decimal Value: ";
-        for (uint8_t r : read.value)
-        {
-            std::cout << (int)r << " ";
-        }
-        std::cout << std::endl;
-
-        // ASCII print (write)
-        std::cout << "ASCII Value: ";
-        for (uint8_t c : data)
-        {
-            std::cout << (char)c;
-        }
-        std::cout << std::endl;
-
-        // ASCII Print (read)
-        std::cout << "ASCII Value: ";
-        for (uint8_t r : read.value)
-        {
-            std::cout << (char)r;
-        }
-        std::cout << std::endl;
+        std::cout << "Position: " << position.value << std::endl;
     }
 
     return 0;

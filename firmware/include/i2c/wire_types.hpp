@@ -67,7 +67,7 @@ struct Command{
     std::function<StatusCode(std::vector<uint8_t>*)> runnable; // what to run when register is called
 
     // makes a command that takes in the incoming bytes `(float)` and sets it to `val`
-    Command make_float(uint8_t reg, float* val){
+    static Command make_float(uint8_t reg, float* val){
         return Command{
             .reg = reg,
             .length = sizeof(float),
@@ -89,7 +89,7 @@ struct Request{
     std::function<StatusCode()> runnable; // what to run when register is called
 
     // makes a request that sends `val` to the master
-    Request make_float(uint8_t reg, float* val, std::vector<uint8_t>* w_buf){
+    static Request make_float(uint8_t reg, float* val, std::vector<uint8_t>* w_buf){
         return Request{
             .reg = reg,
             .length = sizeof(float),

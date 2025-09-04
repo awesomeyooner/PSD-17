@@ -9,56 +9,20 @@ class RegisterManager
 
 public:
 
-    Request req_position = {
-        .reg = (uint8_t)RequestType::POSITION,
-        .length = sizeof(float),
-        .runnable = [this]() -> StatusCode
-        {
-            float position = motor_manager->get_motor()->shaft_angle;
-
-            std::vector<uint8_t> buf = I2C::float_to_bytes(position);
-
-            wire_manager->get_write_buffer()->assign(buf.begin(), buf.end());
-
-            return StatusCode::OK;
-        }};
-
     static RegisterManager instance;
     static RegisterManager *get_instance();
 
     void init()
     {
-        wire_manager->add_command(
-            Command{
-                .reg = (uint8_t)CommandType::TARGET,
-                .length = sizeof(float),
-                .runnable = 
-                [this](std::vector<uint8_t> *data) -> StatusCode{
-                    float value = I2C::bytes_to_float(*data);
+        // shorthand variables
+        StepperMotor* motor = motor_manager->get_motor();
+        std::vector<uint8_t>* w_buf = wire_manager->get_write_buffer();
 
-                    motor_manager->get_motor()->target = value;
+        // Commands
+        wire_manager->add_command(Command::make_float((uint8_t)CommandType::TARGET, &motor->target));
 
-                    return StatusCode::OK;
-                }
-            }
-        );
-
-        wire_manager->add_request(
-            Request{
-                .reg = (uint8_t)RequestType::POSITION,
-                .length = sizeof(float),
-                .runnable = 
-                [this]() -> StatusCode{
-                    float position = motor_manager->get_motor()->shaft_angle;
-
-                    std::vector<uint8_t> buf = I2C::float_to_bytes(position);
-
-                    wire_manager->get_write_buffer()->assign(buf.begin(), buf.end());
-
-                    return StatusCode::OK;
-                }
-            }
-        );
+        // Requests
+        wire_manager->add_request(Request::make_float((uint8_t)RequestType::POSITION, &motor->shaft_angle, w_buf));
     }
 
 private:

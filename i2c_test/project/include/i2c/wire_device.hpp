@@ -15,7 +15,7 @@ class WireDevice{
 
     public:
 
-        WireDevice(int bus, int address, int page_bytes = 8){
+        WireDevice(int address, int bus = I2C::get_bus(), int page_bytes = 8){
             device.addr = address;
             device.bus = bus;
             device.page_bytes = page_bytes; // max for MCP2221A
