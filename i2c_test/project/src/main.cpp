@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        StatusCode send_status = motor.send_target(target);
+        StatusCode send_status = motor.send_command(target, CommandType::TARGET);
 
         if(send_status == StatusCode::OK){
             std::cout << "Target sent successfully!" << std::endl;
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        StatusedValue<float> position = motor.get_position();
+        StatusedValue<float> position = motor.request(RequestType::POSITION);
 
         if(position.status == StatusCode::OK){
             std::cout << "Read Position Successfully!" << std::endl;
