@@ -38,9 +38,9 @@ class MotorManager{
             motor.linkDriver(&driver);
 
             // Init Current Sensor
-            //   current_sensor.linkDriver(&driver);
-            //   current_sensor.init();
-            //   motor.linkCurrentSense(&current_sensor);
+            current_sensor.linkDriver(&driver);
+            current_sensor.init();
+            motor.linkCurrentSense(&current_sensor);
 
             // Motor Settings
             motor.controller = MotionControlType::torque;
@@ -74,11 +74,15 @@ class MotorManager{
             return &sensor;
         }
 
+        LowsideCurrentSense* get_current_sensor(){
+            return &current_sensor;
+        }
+
     private:
         StepperMotor motor = StepperMotor(50);
         StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
         MagneticSensorAS5047 sensor = MagneticSensorAS5047(CS_PIN);
-        // LowsideCurrentSense current_sensor = LowsideCurrentSense(1100, CURRENT_SENSE_A, CURRENT_SENSE_B);
+        LowsideCurrentSense current_sensor = LowsideCurrentSense(1100, CURRENT_SENSE_A, CURRENT_SENSE_B);
 
 }; // class MotorManager
 

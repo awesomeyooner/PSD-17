@@ -17,6 +17,7 @@ public:
         // shorthand variables
         StepperMotor* motor = motor_manager->get_motor();
         StepperDriver4PWM* driver = motor_manager->get_driver();
+        LowsideCurrentSense* current_sensor = motor_manager->get_current_sensor();
         std::vector<uint8_t>* w_buf = wire_manager->get_write_buffer();
 
         // Commands
@@ -84,8 +85,16 @@ public:
         wire_manager->add_request(Request::make_float((uint8_t)RequestType::POSITION, &motor->shaft_angle, w_buf));
         wire_manager->add_request(Request::make_float((uint8_t)RequestType::IS_ENABLED, &motor->enabled, w_buf));
         
-        // TODO: fix the current sensing and properly add this register
-        // wire_manager->add_request(Request::make_float((uint8_t)RequestType::CURRENT, &motor->, w_buf));
+        wire_manager->add_request(Request{
+            .reg = (uint8_t)RequestType::CURRENT,
+            .length = sizeof(float),
+            .runnable = [current_sensor, w_buf]() -> StatusCode{
+                std::vector<uint8_t> bytes = I2C::float_to_bytes(current_sensor->getDCCurrent());
+                w_buf->assign(bytes.begin(), bytes.end());
+                
+                return StatusCode::OK;
+            }
+        });
 
         // TODO: implement a detailed error system
         // wire_manager->add_request(Request::make_float((uint8_t)RequestType::ERROR, &motor->shaft_angle, w_buf));
