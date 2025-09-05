@@ -11,31 +11,36 @@ class PSD17 : public WireDevice{
 
         PSD17(int address) : WireDevice(address){}
 
-        StatusCode send_target(float target){
-            std::vector<uint8_t> data = I2C::float_to_bytes(target);
-
-            data.insert(data.begin(), (uint8_t)CommandType::TARGET);
-
-            return write(data);
+        StatusCode disable(){
+            return send_command(CommandType::DISABLE_MOTOR);
         }
 
-        StatusedValue<float> get_position(){
-            std::vector<uint8_t> data;
-
-            data.push_back((uint8_t)RequestType::POSITION);
-
-            if(write(data) != StatusCode::OK)
-                return StatusedValue<float>(0, StatusCode::FAILED);
-            
-            StatusedValue<std::vector<uint8_t>> read_value = read(sizeof(float));
-
-            if(read_value.status != StatusCode::OK)
-                return StatusedValue<float>(0, StatusCode::FAILED);
-
-            float value = I2C::bytes_to_float(read_value.value);
-
-            return StatusedValue<float>(value, StatusCode::OK);
+        StatusCode enable(){
+            return send_command(CommandType::ENABLE_MOTOR);
         }
+
+        StatusedValue<bool> is_enabled(){
+            StatusedValue<float> is_enabled = read_from_register((uint8_t)RequestType::IS_ENABLED);
+
+            if(is_enabled.status != StatusCode::OK)
+                return StatusedValue<bool>(false, StatusCode::FAILED);
+
+            return StatusedValue<bool>((int)is_enabled.value == 0 ? false : true, StatusCode::OK);
+        }
+
+        StatusCode send_command(CommandType type){
+            return write((uint8_t)type);
+        }
+
+        StatusCode send_command(float cmd, CommandType type){
+            return write_to_register((uint8_t)type, cmd);
+        }
+
+        StatusedValue<float> request(RequestType type){
+            return read_from_register((uint8_t)type);
+        }
+
+        
 
     private:
 

@@ -54,7 +54,8 @@ enum class RequestType : uint8_t{
     VELOCITY = 254,
     POSITION = 253,
     CURRENT = 252,
-    ERROR = 251
+    ERROR = 251,
+    IS_ENABLED = 250
     // rest of bytes reserved
 
 }; // enum class RequestType

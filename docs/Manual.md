@@ -33,7 +33,7 @@
 | Change Motor Voltage Limit | 124 | 4 (float) |
 | Change Driver Voltage Limit | 125 | 4 (float) |
 | Change Supply Voltage | 126 | 4 (float) |
-| Change Torque Mode | 127 | 1 (uint8_t) | 
+| Change Torque Mode | 127 | 4 (float) | 
 | Velocity kP | 128 | 4 (float) |
 | Velocity kI | 129 | 4 (float) |
 | Velocity kD | 130 | 4 (float) |
@@ -59,6 +59,7 @@
 | Position Request | 253 |  4 (float) |
 | Current Request | 252 | 4 (float) |
 | Error Request | 251 | 1 (uint8_t) |
+| Is Enabled | 250 | 4 (float) |
 | ... | ... | ... |
 
 #### Error Codes

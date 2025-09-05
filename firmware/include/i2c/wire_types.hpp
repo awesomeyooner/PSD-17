@@ -54,7 +54,8 @@ enum class RequestType : uint8_t{
     VELOCITY = 254,
     POSITION = 253,
     CURRENT = 252,
-    ERROR = 251
+    ERROR = 251,
+    IS_ENABLED = 250
     // rest of bytes reserved
 
 }; // enum class RequestType
@@ -67,14 +68,28 @@ struct Command{
     std::function<StatusCode(std::vector<uint8_t>*)> runnable; // what to run when register is called
 
     // makes a command that takes in the incoming bytes `(float)` and sets it to `val`
-    static Command make_float(uint8_t reg, float* val){
+    static Command make_float(uint8_t reg, float* val, std::function<void()> runnable = NULL){
         return Command{
             .reg = reg,
             .length = sizeof(float),
-            .runnable = [val](std::vector<uint8_t>* data) -> StatusCode{
+            .runnable = [val, runnable](std::vector<uint8_t>* data) -> StatusCode{
+                if(runnable)
+                    runnable();
+
                 float f_data = I2C::bytes_to_float(*data);
                 *val = f_data;
 
+                return StatusCode::OK;
+            }
+        };
+    }
+
+    static Command make_runnable(uint8_t reg, std::function<void()> runnable){
+        return Command{
+            .reg = reg,
+            .length = 0,
+            .runnable = [runnable](std::vector<uint8_t>* data) -> StatusCode{
+                runnable();
                 return StatusCode::OK;
             }
         };
@@ -101,6 +116,33 @@ struct Request{
             }
         };
     }
+
+    static Request make_float(uint8_t reg, int8_t* val, std::vector<uint8_t>* w_buf){
+        return Request{
+            .reg = reg,
+            .length = sizeof(float),
+            .runnable = [val, w_buf]() -> StatusCode{
+                std::vector<uint8_t> bytes = I2C::float_to_bytes((float)*val);
+                w_buf->assign(bytes.begin(), bytes.end());
+                
+                return StatusCode::OK;
+            }
+        };
+    }
+
+    static Request make_float(uint8_t reg, uint8_t* val, std::vector<uint8_t>* w_buf){
+        return Request{
+            .reg = reg,
+            .length = sizeof(float),
+            .runnable = [val, w_buf]() -> StatusCode{
+                std::vector<uint8_t> bytes = I2C::float_to_bytes((float)*val);
+                w_buf->assign(bytes.begin(), bytes.end());
+                
+                return StatusCode::OK;
+            }
+        };
+    }
+
 }; // struct Request
 
 #endif // WIRE_TYPES_HPP
