@@ -39,49 +39,49 @@ int main(int argc, char *argv[])
     while (true)
     {
 
-        // std::string buffer;
+        std::string buffer;
 
-        // std::cout << "\nSay something!" << std::endl;
+        std::cout << "\nSay something!" << std::endl;
 
-        // std::getline(std::cin, buffer);
+        std::getline(std::cin, buffer);
 
-        // if (buffer == "exit")
-        // {
-        //     std::cout << "Exiting..." << std::endl;
-        //     break;
-        // }
+        if (buffer == "exit")
+        {
+            std::cout << "Exiting..." << std::endl;
+            break;
+        }
 
-        // float target;
+        float target;
 
-        // try{
-        //     target = std::stof(buffer);
-        // }
-        // catch(std::exception e){
-        //     std::cout << "Not a proper number! Skipping..." << std::endl;
-        //     continue;
-        // }
+        try{
+            target = std::stof(buffer);
+        }
+        catch(std::exception e){
+            std::cout << "Not a proper number! Skipping..." << std::endl;
+            continue;
+        }
 
-        // StatusCode send_status = motor.send_command(target, CommandType::TARGET);
+        StatusCode send_status = motor.send_command(target, CommandType::TARGET);
 
-        // if(send_status == StatusCode::OK){
-        //     std::cout << "Target sent successfully!" << std::endl;
-        // }
-        // else{
-        //     std::cout << "Failed to send target! Skipping..." << std::endl;
-        //     continue;
-        // }
+        if(send_status == StatusCode::OK){
+            std::cout << "Target sent successfully!" << std::endl;
+        }
+        else{
+            std::cout << "Failed to send target! Skipping..." << std::endl;
+            continue;
+        }
 
-        StatusedValue<float> position = motor.request(RequestType::CURRENT);
+        // StatusedValue<float> position = motor.request(RequestType::CURRENT);
 
-        // if(position.status == StatusCode::OK){
-        //     std::cout << "Read Position Successfully!" << std::endl;
-        // }
-        // else{
-        //     std::cout << "Failed to read position! Skipping..." << std::endl;
-        //     continue;
-        // }
+        // // if(position.status == StatusCode::OK){
+        // //     std::cout << "Read Position Successfully!" << std::endl;
+        // // }
+        // // else{
+        // //     std::cout << "Failed to read position! Skipping..." << std::endl;
+        // //     continue;
+        // // }
 
-        Plotter::plot(position.value);
+        // Plotter::plot(position.value);
     }
 
     Plotter::close();
