@@ -77,11 +77,10 @@ class Plotter{
             double time = std::chrono::duration_cast<std::chrono::duration<double>>(now - start).count();
 
             std::ofstream file("data.txt", std::ios::app);
-            file << time << " " << data << " " << data << std::endl;
+            file << time << " " << data << std::endl;
             file.close();
 
-            fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Current', \
-                'data.txt' using 1:3 with lines title 'Other'\n");
+            fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Current'\n");
             fflush(gnuplot);
         }
 
