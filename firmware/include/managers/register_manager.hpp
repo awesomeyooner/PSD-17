@@ -88,8 +88,8 @@ public:
         wire_manager->add_request(Request{
             .reg = (uint8_t)RequestType::CURRENT,
             .length = sizeof(float),
-            .runnable = [current_sensor, w_buf]() -> StatusCode{
-                std::vector<uint8_t> bytes = I2C::float_to_bytes(current_sensor->getDCCurrent());
+            .runnable = [motor, current_sensor, w_buf]() -> StatusCode{
+                std::vector<uint8_t> bytes = I2C::float_to_bytes(current_sensor->getFOCCurrents(motor->electricalAngle()).q);
                 w_buf->assign(bytes.begin(), bytes.end());
                 
                 return StatusCode::OK;
