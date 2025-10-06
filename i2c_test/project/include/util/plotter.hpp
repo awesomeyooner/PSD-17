@@ -12,6 +12,7 @@
 #include <fstream>
 #include <chrono>
 
+#include "util.hpp"
 #include "status.hpp"
 
 class Plotter{
@@ -46,7 +47,7 @@ class Plotter{
          */
         static double get_time(){
             auto now = std::chrono::high_resolution_clock::now();
-            double time = std::chrono::duration_cast<std::chrono::seconds>(now - start).count();
+            double time = std::chrono::duration_cast<std::chrono::duration<double>>(now - start).count();
 
             return time;
         }
@@ -69,7 +70,7 @@ class Plotter{
          * @param data Y-Axis data
          */
         static void push_data(std::string data){
-            push_data(std::to_string(get_time()), data);
+            push_data(util::to_string(get_time()), data);
         }
 
         /**
@@ -78,7 +79,7 @@ class Plotter{
          * @param data Y-Axis data
          */
         static void push_data(double data){
-            push_data(std::to_string(get_time()), std::to_string(data));
+            push_data(util::to_string(get_time()), util::to_string(data));
         }
         
         /**
@@ -87,7 +88,7 @@ class Plotter{
          * @param data Y-Axis data
          */
         static void push_data(float data){
-            push_data(std::to_string(get_time()), std::to_string(data));
+            push_data(util::to_string(get_time()), util::to_string(data));
         }
 
         /**
@@ -96,7 +97,7 @@ class Plotter{
          * @param data Y-Axis data
          */
         static void push_data(int data){
-            push_data(std::to_string(get_time()), std::to_string(data));
+            push_data(util::to_string(get_time()), util::to_string(data));
         }
 
         /**
@@ -128,7 +129,7 @@ class Plotter{
          * @param data Y-Axis data
          */
         static void plot(std::string data){
-            plot(std::to_string(get_time()), data);
+            plot(util::to_string(get_time()), data);
         }
 
         /**
@@ -138,7 +139,7 @@ class Plotter{
          * @param data Y-Axis data
          */
         static void plot(double data){
-            plot(std::to_string(data));
+            plot(util::to_string(data));
         }
 
         /**
@@ -148,7 +149,7 @@ class Plotter{
          * @param data Y-Axis data
          */
         static void plot(float data){
-            plot(std::to_string(data));
+            plot(util::to_string(data));
         }
 
         /**
@@ -158,7 +159,7 @@ class Plotter{
          * @param data Y-Axis data
          */
         static void plot(int data){
-            plot(std::to_string(data));
+            plot(util::to_string(data));
         }
  
         /**
