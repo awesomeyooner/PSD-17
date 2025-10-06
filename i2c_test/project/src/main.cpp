@@ -19,6 +19,9 @@
 
 // i2cdetect -l
 
+bool keep_alive = true;
+float target = 0;
+
 int main(int argc, char *argv[])
 {
     // Code to be executed
@@ -36,55 +39,55 @@ int main(int argc, char *argv[])
 
     Logger::info("Initializing device with address: " + std::to_string(motor.get_address()));
 
-    while (true)
-    {
+    // Plotter Thread
+    std::thread plot_thread(
+        [](){
+            while(keep_alive){
+                Plotter::plot();
+            }
 
-        std::string buffer;
-
-        std::cout << "\nSay something!" << std::endl;
-
-        std::getline(std::cin, buffer);
-
-        if (buffer == "exit")
-        {
-            std::cout << "Exiting..." << std::endl;
-            break;
+            Logger::info("Shutting down Plotter...");
         }
+    );
+    plot_thread.detach();
 
-        float target;
+    // User Input Thread
+    std::thread input_thread(
+        [](){
+            while(keep_alive){
+                auto input = util::get_user_input_float();
 
-        try{
-            target = std::stof(buffer);
+                if(input.status == StatusCode::ERROR)
+                    keep_alive = false;
+                else if(input.status != StatusCode::OK)
+                    continue;
+
+                target = input.value;
+            }
+
+            Logger::info("Shutting down input...");
         }
-        catch(std::exception e){
-            std::cout << "Not a proper number! Skipping..." << std::endl;
-            continue;
-        }
+    );
+    input_thread.detach();
 
+    // I2C Communication Loop
+    while (keep_alive){   
         StatusCode send_status = motor.send_command(target, CommandType::TARGET);
 
-        if(send_status == StatusCode::OK){
-            std::cout << "Target sent successfully!" << std::endl;
-        }
-        else{
-            std::cout << "Failed to send target! Skipping..." << std::endl;
+        if(send_status != StatusCode::OK)
             continue;
-        }
 
-        // StatusedValue<float> position = motor.request(RequestType::CURRENT);
+        StatusedValue<float> request = motor.request(RequestType::CURRENT);
 
-        // // if(position.status == StatusCode::OK){
-        // //     std::cout << "Read Position Successfully!" << std::endl;
-        // // }
-        // // else{
-        // //     std::cout << "Failed to read position! Skipping..." << std::endl;
-        // //     continue;
-        // // }
-
-        // Plotter::plot(position.value);
+        if(request.is_OK())
+            Plotter::push_data(request.value);
     }
 
+    Logger::info("Shutting down i2c communication...");
+
     Plotter::close();
+
+    Logger::info("Exitting!");
 
     return 0;
 }
