@@ -8,7 +8,8 @@
 
 enum class StatusCode{
     OK,
-    FAILED
+    ERROR, // use ERROR specifically for times that aren't necessarily fails
+    FAILED // generally, use FAILED for times that don't call for OK
 };
 
 std::string status_to_string(StatusCode status){
@@ -17,6 +18,10 @@ std::string status_to_string(StatusCode status){
     switch(status){
         case StatusCode::OK:
             output = "OK";
+            break;
+
+        case StatusCode::ERROR:
+            output = "ERROR";
             break;
 
         case StatusCode::FAILED:
@@ -30,7 +35,7 @@ std::string status_to_string(StatusCode status){
 bool statuses_OK(std::vector<StatusCode> statuses){
     
     for(StatusCode status : statuses){
-        if(status == StatusCode::FAILED)
+        if(status != StatusCode::OK)
             return false;
     }
 
@@ -38,16 +43,9 @@ bool statuses_OK(std::vector<StatusCode> statuses){
 }
 
 void print_status(StatusCode status){
+    std::string text = status_to_string(status);
 
-    switch(status){
-        case StatusCode::OK: 
-            std::cout << "OK!" << std::endl;
-            break;
-        
-        case StatusCode::FAILED: 
-            std::cout << "FAILED!" << std::endl;
-            break;
-    }
+    std::cout << text << std::endl;
 }
 
 template<typename T>
