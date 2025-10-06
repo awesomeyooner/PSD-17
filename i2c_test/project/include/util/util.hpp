@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
+#include <iomanip>
+
 #include "status.hpp"
 
 namespace util{
@@ -10,6 +13,49 @@ namespace util{
     void print(std::string text){
         std::cout << text << std::endl;
     }
+
+    /**
+     * @brief `std::to_string` but keeps precision of primitive data types
+     * 
+     * @param data Number to convert
+     * @return std::string 
+     */
+    std::string to_string(double data){
+        std::stringstream stream;
+
+        stream << std::fixed << std::setprecision(std::numeric_limits<double>::max_digits10) << data;
+
+        return stream.str();   
+    }
+
+    /**
+     * @brief `std::to_string` but keeps precision of primitive data types
+     * 
+     * @param data Number to convert
+     * @return std::string 
+     */
+    std::string to_string(float data){
+        std::stringstream stream;
+
+        stream << std::fixed << std::setprecision(std::numeric_limits<float>::max_digits10) << data;
+
+        return stream.str();   
+    }
+
+    /**
+     * @brief `std::to_string` but keeps precision of primitive data types
+     * 
+     * @param data Number to convert
+     * @return std::string 
+     */
+    std::string to_string(int data){
+        std::stringstream stream;
+
+        stream << std::fixed << std::setprecision(std::numeric_limits<int>::max_digits10) << data;
+
+        return stream.str();   
+    }
+    
 
     /**
      * @brief Gets user input as a string
