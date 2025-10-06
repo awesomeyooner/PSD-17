@@ -13,8 +13,8 @@
 
 #define CS_PIN PA15
 
-#define CURRENT_SENSE_A PC4
-#define CURRENT_SENSE_B PB1
+#define CURRENT_SENSE_B PC4
+#define CURRENT_SENSE_A PB1
 
 class MotorManager{
 
@@ -52,9 +52,16 @@ class MotorManager{
             motor.LPF_angle.Tf = 0.01;
             motor.LPF_velocity.Tf = 0.01;
 
+            motor.sensor_direction = Direction::CW;
+            motor.zero_electric_angle = 0.532313823699951171875;
+
             // Init Motor
             motor.init();
             motor.initFOC();
+
+            // update the shaft offset
+            sensor.update();
+            motor.sensor_offset = motor.sensor_direction * sensor.getSensorAngle();
         }
 
         void update(){
