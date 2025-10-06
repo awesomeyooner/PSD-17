@@ -39,63 +39,132 @@ class Plotter{
             return StatusCode::OK;
         }
 
+        /**
+         * @brief Returns the current time since epoch
+         * 
+         * @return time since epoch in `seconds`
+         */
+        static double get_time(){
+            auto now = std::chrono::high_resolution_clock::now();
+            double time = std::chrono::duration_cast<std::chrono::seconds>(now - start).count();
+
+            return time;
+        }
+
+        /**
+         * @brief Pushes new data to `data.txt`
+         * 
+         * @param time X-Axis default (`time`)
+         * @param data Y-Axis data
+         */
+        static void push_data(std::string time, std::string data){
+            std::ofstream file("data.txt", std::ios::app);
+            file << time << " " << data << std::endl;
+            file.close();
+        }
+
+        /**
+         * @brief Pushes new data to `data.txt`
+         * 
+         * @param data Y-Axis data
+         */
+        static void push_data(std::string data){
+            push_data(std::to_string(get_time()), data);
+        }
+
+        /**
+         * @brief Pushes new data to `data.txt`
+         * 
+         * @param data Y-Axis data
+         */
+        static void push_data(double data){
+            push_data(std::to_string(get_time()), std::to_string(data));
+        }
+        
+        /**
+         * @brief Pushes new data to `data.txt`
+         * 
+         * @param data Y-Axis data
+         */
+        static void push_data(float data){
+            push_data(std::to_string(get_time()), std::to_string(data));
+        }
+
+        /**
+         * @brief Pushes new data to `data.txt`
+         * 
+         * @param data Y-Axis data
+         */
+        static void push_data(int data){
+            push_data(std::to_string(get_time()), std::to_string(data));
+        }
+
+        /**
+         * @brief Plots `data.txt`
+         * 
+         */
+        static void plot(){
+            fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Y Axis'\n");
+            fflush(gnuplot);
+        }
+
+        /**
+         * @brief Pushes new data and plots `data.txt`
+         * 
+         * @param time X-Axis default (`time`)
+         * @param data Y-Axis data
+         */
         static void plot(std::string time, std::string data){
-            std::ofstream file("data.txt", std::ios::app);
-            file << time << " " << data << std::endl;
-            file.close();
+            push_data(time, data);
 
             fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Current'\n");
             fflush(gnuplot);
         }
 
+        /**
+         * @brief Pushes new data and plots `data.txt`
+         * 
+         * @param time X-Axis default (`time`)
+         * @param data Y-Axis data
+         */
         static void plot(std::string data){
-            auto now = std::chrono::high_resolution_clock::now();
-            double time = std::chrono::duration_cast<std::chrono::seconds>(now - start).count();
-
-            std::ofstream file("data.txt", std::ios::app);
-            file << time << " " << data << std::endl;
-            file.close();
-
-            fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Current'\n");
-            fflush(gnuplot);
+            plot(std::to_string(get_time()), data);
         }
 
+        /**
+         * @brief Pushes new data and plots `data.txt`
+         * 
+         * @param time X-Axis default (`time`)
+         * @param data Y-Axis data
+         */
         static void plot(double data){
-            auto now = std::chrono::high_resolution_clock::now();
-            double time = std::chrono::duration_cast<std::chrono::duration<double>>(now - start).count();
-
-            std::ofstream file("data.txt", std::ios::app);
-            file << time << " " << data << std::endl;
-            file.close();
-
-            fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Current'\n");
-            fflush(gnuplot);
+            plot(std::to_string(data));
         }
 
+        /**
+         * @brief Pushes new data and plots `data.txt`
+         * 
+         * @param time X-Axis default (`time`)
+         * @param data Y-Axis data
+         */
         static void plot(float data){
-            auto now = std::chrono::high_resolution_clock::now();
-            double time = std::chrono::duration_cast<std::chrono::duration<double>>(now - start).count();
-
-            std::ofstream file("data.txt", std::ios::app);
-            file << time << " " << data << std::endl;
-            file.close();
-
-            fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Current'\n");
-            fflush(gnuplot);
+            plot(std::to_string(data));
         }
 
+        /**
+         * @brief Pushes new data and plots `data.txt`
+         * 
+         * @param time X-Axis default (`time`)
+         * @param data Y-Axis data
+         */
         static void plot(int data){
-            auto now = std::chrono::high_resolution_clock::now();
-            double time = std::chrono::duration_cast<std::chrono::seconds>(now - start).count();
-
-            std::ofstream file("data.txt", std::ios::app);
-            file << time << " " << data << std::endl;
-            file.close();
-
-            fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Current'\n");
-            fflush(gnuplot);
+            plot(std::to_string(data));
         }
  
+        /**
+         * @brief Closes the GNUPlot pipe
+         * 
+         */
         static void close(){
             pclose(gnuplot);
         }
