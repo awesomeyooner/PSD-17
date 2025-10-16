@@ -6,10 +6,10 @@
 #include <SimpleFOCDrivers.h>
 #include "encoders/as5047/MagneticSensorAS5047.h"
 
-#define IN1_A PC9
-#define IN1_B PC8
-#define IN2_A PB4
-#define IN2_B PB5
+#define IN1_A PA8
+#define IN1_B PA9
+#define IN2_A PA10
+#define IN2_B PA11
 
 #define CS_PIN PA15
 
