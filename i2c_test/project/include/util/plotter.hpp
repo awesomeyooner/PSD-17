@@ -32,7 +32,8 @@ class Plotter{
             fprintf(gnuplot, "set title '%s'\n", plot_name.c_str());
             fprintf(gnuplot, "set xlabel '%s'\n", x_label.c_str());
             fprintf(gnuplot, "set ylabel '%s'\n", y_label.c_str());
-            fprintf(gnuplot, "set autoscale xy\n");
+            // fprintf(gnuplot, "set autoscale xy\n");
+            fprintf(gnuplot, "set autoscale y\n");
             fprintf(gnuplot, "set grid\n");
 
             std::ofstream file("data.txt");
@@ -105,6 +106,9 @@ class Plotter{
          * 
          */
         static void plot(){
+            std::string range_cmd = "set xrange [";
+            range_cmd += std::to_string(get_time() - 10) + " : " + std::to_string(get_time()) + "]\n";
+            fprintf(gnuplot, range_cmd.c_str());
             fprintf(gnuplot, "plot 'data.txt' using 1:2 with lines title 'Y Axis'\n");
             fflush(gnuplot);
         }
