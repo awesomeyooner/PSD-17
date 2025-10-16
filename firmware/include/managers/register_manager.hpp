@@ -91,7 +91,7 @@ public:
             .runnable = [motor, current_sensor, w_buf]() -> StatusCode{
 
                 // std::vector<uint8_t> bytes = I2C::float_to_bytes(current_sensor->getFOCCurrents(motor->electricalAngle()).q);
-                std::vector<uint8_t> bytes = I2C::float_to_bytes(current_sensor->getDCCurrent());
+                std::vector<uint8_t> bytes = I2C::float_to_bytes(motor->LPF_current_q(current_sensor->getDCCurrent()));
 
                 w_buf->assign(bytes.begin(), bytes.end());
                 

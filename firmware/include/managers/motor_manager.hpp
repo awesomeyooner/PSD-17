@@ -52,9 +52,10 @@ class MotorManager{
             motor.voltage_limit = 24;
             motor.LPF_angle.Tf = 0.01;
             motor.LPF_velocity.Tf = 0.01;
+            motor.LPF_current_q.Tf = 0.01;
 
-            // motor.sensor_direction = Direction::CW;
-            // motor.zero_electric_angle = 0.532313823699951171875;
+            motor.sensor_direction = Direction::CW;
+            motor.zero_electric_angle = 0.532313823699951171875;
 
             // Init Motor
             motor.init();
