@@ -6,15 +6,15 @@
 #include <SimpleFOCDrivers.h>
 #include "encoders/as5047/MagneticSensorAS5047.h"
 
-#define IN1_A PA8
-#define IN1_B PB10
+#define IN1_A PC9
+#define IN1_B PC8
 #define IN2_A PB4
 #define IN2_B PB5
 
 #define CS_PIN PA15
 
-#define CURRENT_SENSE_B PC4
-#define CURRENT_SENSE_A PB1
+#define CURRENT_SENSE_B PC0
+#define CURRENT_SENSE_A PC1
 
 class MotorManager{
 
@@ -34,6 +34,7 @@ class MotorManager{
             // Init Driver
             driver.voltage_limit = 24;
             driver.voltage_power_supply = 24;
+            driver.pwm_frequency = 20000;
             driver.init();
             motor.linkDriver(&driver);
 
@@ -52,8 +53,8 @@ class MotorManager{
             motor.LPF_angle.Tf = 0.01;
             motor.LPF_velocity.Tf = 0.01;
 
-            motor.sensor_direction = Direction::CW;
-            motor.zero_electric_angle = 0.532313823699951171875;
+            // motor.sensor_direction = Direction::CW;
+            // motor.zero_electric_angle = 0.532313823699951171875;
 
             // Init Motor
             motor.init();
