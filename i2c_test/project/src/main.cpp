@@ -70,6 +70,13 @@ int main(int argc, char *argv[])
     );
     input_thread.detach();
 
+
+    Logger::info("Enabling Motor...");
+    if(motor.enable() == StatusCode::OK)
+        Logger::info("Enabled Motor!");
+    else
+        Logger::info("Failed to Enabled Motor!");
+    
     // I2C Communication Loop
     while (keep_alive){   
         StatusCode send_status = motor.send_command(target, CommandType::TARGET);
