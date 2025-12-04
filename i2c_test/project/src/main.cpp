@@ -40,16 +40,16 @@ int main(int argc, char *argv[])
     Logger::info("Initializing device with address: " + std::to_string(motor.get_address()));
 
     // Plotter Thread
-    std::thread plot_thread(
-        [](){
-            while(keep_alive){
-                Plotter::plot();
-            }
+    // std::thread plot_thread(
+    //     [](){
+    //         while(keep_alive){
+    //             Plotter::plot();
+    //         }
 
-            Logger::info("Shutting down Plotter...");
-        }
-    );
-    plot_thread.detach();
+    //         Logger::info("Shutting down Plotter...");
+    //     }
+    // );
+    // plot_thread.detach();
 
     // User Input Thread
     std::thread input_thread(

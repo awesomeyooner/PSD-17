@@ -34,7 +34,7 @@ class MotorManager{
             // Init Driver
             driver.voltage_limit = 24;
             driver.voltage_power_supply = 24;
-            // driver.pwm_frequency = 20000;
+            driver.pwm_frequency = 20000;
             driver.init();
             motor.linkDriver(&driver);
 
