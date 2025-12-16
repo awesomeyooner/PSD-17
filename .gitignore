@@ -1,2 +1,5 @@
 # Ignore all build folders
 /**/build/
+
+# Ignore all .log files
+*.log
