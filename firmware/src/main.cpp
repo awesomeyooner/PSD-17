@@ -25,16 +25,6 @@ WireManager* wire_manager = WireManager::get_instance();
 MotorManager* motor_manager = MotorManager::get_instance();
 RegisterManager* reg_manager = RegisterManager::get_instance();
 
-void config_adc_sampling_time(uint32_t cycles){
-  ADC_ChannelConfTypeDef config = {0};
-
-  config.Channel = ADC_CHANNEL_0;
-  config.Rank = 1;
-  config.SamplingTime = cycles;
-
-  HAL_ADC_ConfigChannel(&hadc1, &config);
-}
-
 void setup() {
   Serial.begin(115200);
 
