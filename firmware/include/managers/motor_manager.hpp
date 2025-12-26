@@ -11,7 +11,7 @@
 #define IN2_A PA10
 #define IN2_B PA11
 
-#define CS_PIN PA15
+#define SPI_CS PA15
 
 #define CURRENT_SENSE_B PC0
 #define CURRENT_SENSE_A PC1
@@ -90,7 +90,7 @@ class MotorManager{
     private:
         StepperMotor motor = StepperMotor(50);
         StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
-        MagneticSensorAS5047 sensor = MagneticSensorAS5047(CS_PIN);
+        MagneticSensorAS5047 sensor = MagneticSensorAS5047(SPI_CS);
         LowsideCurrentSense current_sensor = LowsideCurrentSense(1100, CURRENT_SENSE_A, CURRENT_SENSE_B);
 
 }; // class MotorManager

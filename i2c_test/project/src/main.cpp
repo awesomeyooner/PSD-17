@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         }
     );
     plot_thread.detach();
-
+    
     // User Input Thread
     std::thread input_thread(
         [](){
