@@ -11,7 +11,7 @@
 #define IN2_A PA10
 #define IN2_B PA11
 
-#define SPI_CS PA15
+#define SPI_CS PB6
 
 #define CURRENT_SENSE_B PC0
 #define CURRENT_SENSE_A PC1
