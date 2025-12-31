@@ -1,0 +1,3 @@
+[submodule "i2c_test/project/plib"]
+	path = i2c_test/project/lib/plib
+	url = https://github.com/awesomeyooner/plib.git
