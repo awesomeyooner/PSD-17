@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
             while(System::is_alive())
             {
-                auto input = util::get_user_input_float();
+                auto input = util::get_user_input_float("Please Enter a Number: ");
 
                 if(input.status == status_utils::StatusCode::FAILED)
                     System::shutdown();
