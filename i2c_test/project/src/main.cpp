@@ -8,28 +8,28 @@
 #include <fstream>
 #include <mutex>
 
-#include "i2c/i2c.hpp"
-#include "i2c/wire_device.hpp"
-#include "i2c/drivers/psd17.hpp"
+#include "plib/i2c/i2c.hpp"
+#include "plib/i2c/wire_device.hpp"
+#include "plib/i2c/drivers/psd17.hpp"
 
-#include "util/util.hpp"
-#include "math/math_helper.hpp"
-#include "util/logger.hpp"
-#include "util/plotter.hpp"
+#include "plib/math/math_helper.hpp"
+
+#include "plib/util/util.hpp"
+#include "plib/util/system.hpp"
+#include "plib/util/logger.hpp"
+#include "plib/util/implot_plotter.hpp"
 
 // i2cdetect -l
 
-bool keep_alive = true;
 float target = 0;
 
 int main(int argc, char *argv[])
 {
     // Code to be executed
-
     Logger::initialize();
-    Plotter::initialize();
+    ImPlotter::initialize();
 
-    if (I2C::init_name("MCP2221", true) == StatusCode::FAILED)
+    if (I2C::init_name("MCP2221", true) == status_utils::StatusCode::FAILED)
     {
         Logger::error("I2C Bus Failed to Initialize! Exiting...");
         return -1;
@@ -41,9 +41,12 @@ int main(int argc, char *argv[])
 
     // Plotter Thread
     std::thread plot_thread(
-        [](){
-            while(keep_alive){
-                Plotter::plot();
+        []()
+        {
+            while(System::is_alive())
+            {
+                if(ImPlotter::update() == status_utils::StatusCode::FAILED)
+                    System::shutdown();
             }
 
             Logger::info("Shutting down Plotter...");
@@ -53,13 +56,14 @@ int main(int argc, char *argv[])
     
     // User Input Thread
     std::thread input_thread(
-        [](){
-            while(keep_alive){
+        []()
+        {
+            while(System::is_alive()){
                 auto input = util::get_user_input_float();
 
-                if(input.status == StatusCode::ERROR)
-                    keep_alive = false;
-                else if(input.status != StatusCode::OK)
+                if(input.status == status_utils::StatusCode::FAILED)
+                    System::shutdown();
+                else if(input.status != status_utils::StatusCode::OK)
                     continue;
 
                 target = input.value;
@@ -72,27 +76,28 @@ int main(int argc, char *argv[])
 
 
     Logger::info("Enabling Motor...");
-    if(motor.enable() == StatusCode::OK)
+    if(motor.enable() == status_utils::StatusCode::OK)
         Logger::info("Enabled Motor!");
     else
         Logger::info("Failed to Enabled Motor!");
     
     // I2C Communication Loop
-    while (keep_alive){   
-        StatusCode send_status = motor.send_command(target, CommandType::TARGET);
+    while (System::is_alive())
+    {   
+        status_utils::StatusCode send_status = motor.send_command(target, CommandType::TARGET);
 
-        if(send_status != StatusCode::OK)
+        if(send_status != status_utils::StatusCode::OK)
             continue;
 
-        StatusedValue<float> request = motor.request(RequestType::CURRENT);
+        status_utils::StatusedValue<float> request = motor.request(RequestType::CURRENT);
 
         if(request.is_OK())
-            Plotter::push_data(request.value);
+            ImPlotter::push_data(request.value);
     }
 
     Logger::info("Shutting down i2c communication...");
 
-    Plotter::close();
+    ImPlotter::shutdown();
 
     Logger::info("Exitting!");
 
