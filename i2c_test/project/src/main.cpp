@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     // Code to be executed
     Logger::initialize();
     ImPlotter::initialize();
-    ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
+    // ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
 
     if (I2C::init_name("MCP2221", true) == status_utils::StatusCode::FAILED)
     {
@@ -84,10 +84,20 @@ int main(int argc, char *argv[])
                 if(send_status != status_utils::StatusCode::OK)
                     continue;
 
-                status_utils::StatusedValue<float> request = motor.request(RequestType::POSITION);
+                status_utils::StatusedValue<float> position = motor.request(RequestType::POSITION);
 
-                if(request.is_OK())
-                    ImPlotter::push_data(request.value);
+                if(position.is_OK())
+                    ImPlotter::push_data(position.value, "Position");
+
+                status_utils::StatusedValue<float> velocity = motor.request(RequestType::VELOCITY);
+
+                if(velocity.is_OK())
+                    ImPlotter::push_data(velocity.value, "Velocity");
+
+                status_utils::StatusedValue<float> current = motor.request(RequestType::CURRENT);
+
+                if(current.is_OK())
+                    ImPlotter::push_data(current.value, "Current");
             }
 
             Logger::info("Shutting down i2c communication...");
