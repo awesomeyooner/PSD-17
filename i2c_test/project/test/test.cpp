@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "i2c/i2c.hpp"
+#include "plib/i2c/i2c.hpp"
 
 TEST(Testing, BasicTest)
 {
