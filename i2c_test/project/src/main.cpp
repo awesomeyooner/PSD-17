@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     // Code to be executed
     Logger::initialize();
     ImPlotter::initialize();
-    // ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
+    ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
 
     if (I2C::init_name("MCP2221", true) == status_utils::StatusCode::FAILED)
     {
