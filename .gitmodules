@@ -7,3 +7,9 @@
 [submodule "firmware/lib/EmbeddedLib"]
 	path = firmware/lib/EmbeddedLib
 	url = https://github.com/awesomeyooner/EmbeddedLib.git
+[submodule "stm32f446re_testbench/lib/EmbeddedLib"]
+	path = stm32f446re_testbench/lib/EmbeddedLib
+	url = https://github.com/awesomeyooner/EmbeddedLib.git
+[submodule "stm32f446re_testbench/lib/WireLib"]
+	path = stm32f446re_testbench/lib/WireLib
+	url = https://github.com/awesomeyooner/WireLib.git

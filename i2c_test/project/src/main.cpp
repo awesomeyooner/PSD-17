@@ -67,37 +67,47 @@ int main(int argc, char *argv[])
         {
             Logger::info("Spinning up the i2c Thread...");
 
-            Logger::info("Enabling Motor...");
+            // Logger::info("Enabling Motor...");
 
-            if(motor.enable() == status_utils::StatusCode::OK)
-                Logger::info("Enabled Motor!");
-            else
-            {
-                Logger::info("Failed to Enabled Motor! Exiting...");
-                System::shutdown();
-            }
+            // if(motor.enable() == status_utils::StatusCode::OK)
+            //     Logger::info("Enabled Motor!");
+            // else
+            // {
+            //     Logger::info("Failed to Enabled Motor! Exiting...");
+            //     System::shutdown();
+            // }
 
             while(System::is_alive())
             {
-                status_utils::StatusCode send_status = motor.send_command(target, CommandType::TARGET);
+                // status_utils::StatusCode send_status = motor.send_command(target, CommandType::TARGET);
 
-                if(send_status != status_utils::StatusCode::OK)
-                    continue;
+                // if(send_status != status_utils::StatusCode::OK)
+                //     continue;
 
-                status_utils::StatusedValue<float> position = motor.request(RequestType::POSITION);
+                // status_utils::StatusedValue<float> position = motor.request(RequestType::POSITION);
 
-                if(position.is_OK())
-                    ImPlotter::push_data(position.value, "Position");
+                // if(position.is_OK())
+                //     ImPlotter::push_data(position.value, "Position");
 
-                status_utils::StatusedValue<float> velocity = motor.request(RequestType::VELOCITY);
+                // status_utils::StatusedValue<float> velocity = motor.request(RequestType::VELOCITY);
 
-                if(velocity.is_OK())
-                    ImPlotter::push_data(velocity.value, "Velocity");
+                // if(velocity.is_OK())
+                //     ImPlotter::push_data(velocity.value, "Velocity");
 
-                status_utils::StatusedValue<float> current = motor.request(RequestType::CURRENT);
+                // status_utils::StatusedValue<float> current = motor.request(RequestType::CURRENT);
 
-                if(current.is_OK())
-                    ImPlotter::push_data(current.value, "Current");
+                // if(current.is_OK())
+                //     ImPlotter::push_data(current.value, "Current");
+
+                status_utils::StatusedValue<float> angle = motor.read_from_register(25);
+
+                if(angle.is_OK())
+                    ImPlotter::push_data(angle.value, "Angle (Rad)");
+
+                status_utils::StatusedValue<float> mag = motor.read_from_register(26);
+
+                if(mag.is_OK())
+                    ImPlotter::push_data(mag.value, "Magnet Strength");
             }
 
             Logger::info("Shutting down i2c communication...");
