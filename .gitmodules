@@ -1,3 +1,9 @@
 [submodule "i2c_test/project/plib"]
 	path = i2c_test/project/lib/plib
 	url = https://github.com/awesomeyooner/plib.git
+[submodule "firmware/lib/WireLib"]
+	path = firmware/lib/WireLib
+	url = https://github.com/awesomeyooner/WireLib.git
+[submodule "firmware/lib/EmbeddedLib"]
+	path = firmware/lib/EmbeddedLib
+	url = https://github.com/awesomeyooner/EmbeddedLib.git
