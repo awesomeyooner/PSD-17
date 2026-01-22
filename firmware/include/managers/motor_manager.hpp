@@ -54,16 +54,16 @@ class MotorManager{
             motor.LPF_velocity.Tf = 0.01;
             motor.LPF_current_q.Tf = 0.01;
 
-            motor.sensor_direction = Direction::CW;
-            motor.zero_electric_angle = 0.532313823699951171875;
+            // motor.sensor_direction = Direction::CW;
+            // motor.zero_electric_angle = 0.532313823699951171875;
 
             // Init Motor
             motor.init();
             motor.initFOC();
 
             // update the shaft offset
-            sensor.update();
-            motor.sensor_offset = motor.sensor_direction * sensor.getSensorAngle();
+            // sensor.update();
+            // motor.sensor_offset = motor.sensor_direction * sensor.getSensorAngle();
         }
 
         void update(){
@@ -91,7 +91,7 @@ class MotorManager{
         StepperMotor motor = StepperMotor(50);
         StepperDriver4PWM driver = StepperDriver4PWM(IN1_A, IN1_B, IN2_A, IN2_B);
         MagneticSensorAS5047 sensor = MagneticSensorAS5047(SPI_CS);
-        LowsideCurrentSense current_sensor = LowsideCurrentSense(1100, CURRENT_SENSE_A, CURRENT_SENSE_B);
+        LowsideCurrentSense current_sensor = LowsideCurrentSense(1000, CURRENT_SENSE_A, CURRENT_SENSE_B);
 
 }; // class MotorManager
 

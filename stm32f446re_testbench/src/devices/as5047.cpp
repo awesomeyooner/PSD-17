@@ -45,6 +45,22 @@ int AS5047::get_compensated_counts()
 } // end of "get_compensated_counts"
 
 
+int AS5047::get_raw_counts(bool compensated)
+{
+    return compensated ? get_compensated_counts() : get_uncompensated_counts();
+
+} // end of "get_raw_counts"
+
+
+double AS5047::get_raw_rotations(bool compensated)
+{
+    double counts = compensated ? get_compensated_counts() : get_uncompensated_counts();
+
+    return counts / CPR;
+
+} // end of "get_raw_rotations"
+
+
 double AS5047::get_raw_angle(bool compensated)
 {
     // Get the raw counts

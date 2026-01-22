@@ -79,10 +79,10 @@ int main(int argc, char *argv[])
 
             while(System::is_alive())
             {
-                // status_utils::StatusCode send_status = motor.send_command(target, CommandType::TARGET);
+                status_utils::StatusCode send_status = motor.send_command(target, CommandType::TARGET);
 
-                // if(send_status != status_utils::StatusCode::OK)
-                //     continue;
+                if(send_status != status_utils::StatusCode::OK)
+                    continue;
 
                 // status_utils::StatusedValue<float> position = motor.request(RequestType::POSITION);
 
@@ -99,15 +99,15 @@ int main(int argc, char *argv[])
                 // if(current.is_OK())
                 //     ImPlotter::push_data(current.value, "Current");
 
-                status_utils::StatusedValue<float> angle = motor.read_from_register(25);
+                // status_utils::StatusedValue<float> angle = motor.read_from_register(25);
 
-                if(angle.is_OK())
-                    ImPlotter::push_data(angle.value, "Angle (Rad)");
+                // if(angle.is_OK())
+                //     ImPlotter::push_data(angle.value, "Angle (Rad)");
 
-                status_utils::StatusedValue<float> mag = motor.read_from_register(26);
+                // status_utils::StatusedValue<float> mag = motor.read_from_register(26);
 
-                if(mag.is_OK())
-                    ImPlotter::push_data(mag.value, "Magnet Strength");
+                // if(mag.is_OK())
+                //     ImPlotter::push_data(mag.value, "Magnet Strength");
             }
 
             Logger::info("Shutting down i2c communication...");

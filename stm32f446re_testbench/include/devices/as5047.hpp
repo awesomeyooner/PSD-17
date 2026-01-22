@@ -29,6 +29,10 @@ class AS5047
         
         int get_uncompensated_counts();
 
+        int get_raw_counts(bool compensated = false);
+
+        double get_raw_rotations(bool compensated = false);
+
         double get_raw_angle(bool compensated = false);
 
         double get_angle(bool compensated = false);
