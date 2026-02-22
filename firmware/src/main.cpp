@@ -16,10 +16,10 @@
 #include "devices/led/builtin_led.hpp"
 
 #include "stm32f4xx_hal.h"
+#include "current_sense/hardware_specific/stm32/stm32f4/stm32f4_hal.h"
 
 #define I2C_ADDR 4
 
-ADC_HandleTypeDef hadc1;
 
 WireManager* wire_manager = WireManager::get_instance();
 MotorManager* motor_manager = MotorManager::get_instance();

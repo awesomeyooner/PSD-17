@@ -8,58 +8,50 @@
 #include <fstream>
 #include <mutex>
 
-#include "i2c/i2c.hpp"
-#include "i2c/wire_device.hpp"
-#include "i2c/drivers/psd17.hpp"
+#include "plib/i2c/i2c.hpp"
+#include "plib/i2c/wire_device.hpp"
+#include "plib/i2c/drivers/psd17.hpp"
 
-#include "util/util.hpp"
-#include "math/math_helper.hpp"
-#include "util/logger.hpp"
-#include "util/plotter.hpp"
+#include "plib/math/math_helper.hpp"
+
+#include "plib/util/util.hpp"
+#include "plib/util/system.hpp"
+#include "plib/util/logger.hpp"
+#include "plib/util/implot_plotter.hpp"
 
 // i2cdetect -l
-
-bool keep_alive = true;
-float target = 0;
 
 int main(int argc, char *argv[])
 {
     // Code to be executed
-
     Logger::initialize();
-    Plotter::initialize();
+    ImPlotter::initialize();
+    ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
 
-    if (I2C::init_name("MCP2221", true) == StatusCode::FAILED)
+    if (I2C::init_name("MCP2221", true) == status_utils::StatusCode::FAILED)
     {
         Logger::error("I2C Bus Failed to Initialize! Exiting...");
         return -1;
     }
 
     PSD17 motor(0x4);
+    float target = 0;
 
     Logger::info("Initializing device with address: " + std::to_string(motor.get_address()));
 
-    // Plotter Thread
-    std::thread plot_thread(
-        [](){
-            while(keep_alive){
-                Plotter::plot();
-            }
-
-            Logger::info("Shutting down Plotter...");
-        }
-    );
-    plot_thread.detach();
-    
     // User Input Thread
     std::thread input_thread(
-        [](){
-            while(keep_alive){
-                auto input = util::get_user_input_float();
+        [&target]()
+        {
+            Logger::info("Spinning up the User Input Thread...");
 
-                if(input.status == StatusCode::ERROR)
-                    keep_alive = false;
-                else if(input.status != StatusCode::OK)
+            while(System::is_alive())
+            {
+                auto input = util::get_user_input_float("Please Enter a Number: ");
+
+                if(input.status == status_utils::StatusCode::FAILED)
+                    System::shutdown();
+                else if(input.status != status_utils::StatusCode::OK)
                     continue;
 
                 target = input.value;
@@ -70,29 +62,67 @@ int main(int argc, char *argv[])
     );
     input_thread.detach();
 
+    std::thread i2c_thread(
+        [&motor, &target]()
+        {
+            Logger::info("Spinning up the i2c Thread...");
 
-    Logger::info("Enabling Motor...");
-    if(motor.enable() == StatusCode::OK)
-        Logger::info("Enabled Motor!");
-    else
-        Logger::info("Failed to Enabled Motor!");
-    
-    // I2C Communication Loop
-    while (keep_alive){   
-        StatusCode send_status = motor.send_command(target, CommandType::TARGET);
+            // Logger::info("Enabling Motor...");
 
-        if(send_status != StatusCode::OK)
-            continue;
+            // if(motor.enable() == status_utils::StatusCode::OK)
+            //     Logger::info("Enabled Motor!");
+            // else
+            // {
+            //     Logger::info("Failed to Enabled Motor! Exiting...");
+            //     System::shutdown();
+            // }
 
-        StatusedValue<float> request = motor.request(RequestType::CURRENT);
+            while(System::is_alive())
+            {
+                status_utils::StatusCode send_status = motor.send_command(target, CommandType::TARGET);
 
-        if(request.is_OK())
-            Plotter::push_data(request.value);
+                if(send_status != status_utils::StatusCode::OK)
+                    continue;
+
+                // status_utils::StatusedValue<float> position = motor.request(RequestType::POSITION);
+
+                // if(position.is_OK())
+                //     ImPlotter::push_data(position.value, "Position");
+
+                // status_utils::StatusedValue<float> velocity = motor.request(RequestType::VELOCITY);
+
+                // if(velocity.is_OK())
+                //     ImPlotter::push_data(velocity.value, "Velocity");
+
+                // status_utils::StatusedValue<float> current = motor.request(RequestType::CURRENT);
+
+                // if(current.is_OK())
+                //     ImPlotter::push_data(current.value, "Current");
+
+                // status_utils::StatusedValue<float> angle = motor.read_from_register(25);
+
+                // if(angle.is_OK())
+                //     ImPlotter::push_data(angle.value, "Angle (Rad)");
+
+                // status_utils::StatusedValue<float> mag = motor.read_from_register(26);
+
+                // if(mag.is_OK())
+                //     ImPlotter::push_data(mag.value, "Magnet Strength");
+            }
+
+            Logger::info("Shutting down i2c communication...");
+        }
+    );
+    i2c_thread.detach();
+
+    // Plotter (has to be in main, not lambda function)
+    while(System::is_alive())
+    {
+        if(ImPlotter::update() == status_utils::StatusCode::FAILED)
+            System::shutdown();
     }
 
-    Logger::info("Shutting down i2c communication...");
-
-    Plotter::close();
+    ImPlotter::shutdown();
 
     Logger::info("Exitting!");
 
