@@ -1,5 +1,0 @@
-Comment,Designator,JLCPCB Part #,Footprint,Qty,DNP
-1uF,C1,C1592,Capacitor_SMD:C_0603_1608Metric,1,
-MountingHole,"H1,H2,H3,H4",,MountingHole:MountingHole_3.2mm_M3,4,
-SPI_CONN,J1,,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,1,DNP
-AS5047P,U1,C962063,Package_SO:TSSOP-14_4.4x5mm_P0.65mm,1,
