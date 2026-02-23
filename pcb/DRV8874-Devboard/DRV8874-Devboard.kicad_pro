@@ -479,9 +479,18 @@
       {
         "bus_width": 12,
         "line_style": 0,
+        "name": "CAN",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgb(86, 255, 0)",
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
         "name": "GND",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 4,
+        "priority": 5,
         "schematic_color": "rgb(72, 72, 72)",
         "wire_width": 6
       },
@@ -490,7 +499,7 @@
         "line_style": 0,
         "name": "PHASE_OUT_A",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 1,
+        "priority": 2,
         "schematic_color": "rgb(255, 0, 255)",
         "wire_width": 6
       },
@@ -499,7 +508,7 @@
         "line_style": 0,
         "name": "PHASE_OUT_B",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 0,
+        "priority": 1,
         "schematic_color": "rgb(0, 255, 255)",
         "wire_width": 6
       },
@@ -508,7 +517,7 @@
         "line_style": 0,
         "name": "PWR",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 3,
+        "priority": 4,
         "schematic_color": "rgb(255, 0, 0)",
         "wire_width": 6
       },
@@ -517,7 +526,7 @@
         "line_style": 0,
         "name": "SIG_INPUT",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2,
+        "priority": 3,
         "schematic_color": "rgb(0, 0, 255)",
         "wire_width": 6
       }
@@ -551,6 +560,10 @@
       {
         "netclass": "PHASE_OUT_B",
         "pattern": "/Phase_B*"
+      },
+      {
+        "netclass": "CAN",
+        "pattern": "/CAN*"
       }
     ]
   },
