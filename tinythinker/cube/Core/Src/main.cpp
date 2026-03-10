@@ -28,6 +28,8 @@
 
 #include "usbd_cdc_if.h"
 
+#include "core.hpp"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -55,7 +57,15 @@
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void SystemClock_Config(void);
+
+#ifdef __cplusplus
+}
+#endif
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -103,7 +113,7 @@ int main(void)
   MX_SPI2_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-
+  core_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -113,26 +123,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_1);
-    HAL_Delay(100);
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_1);
-    HAL_Delay(100);
-
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_1);
-    HAL_Delay(100);
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_1);
-    HAL_Delay(100);
-
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_1);
-    HAL_Delay(100);
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_1);
-    HAL_Delay(100);
-
-    HAL_Delay(500);
-
-    char* message = "Hello World!\r\n";
-
-    CDC_Transmit_FS((uint8_t*)message, strlen(message));
+    core_update();
   }
   /* USER CODE END 3 */
 }
