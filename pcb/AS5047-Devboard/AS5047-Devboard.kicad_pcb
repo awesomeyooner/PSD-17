@@ -1996,7 +1996,7 @@
 		)
 	)
 	(gr_text "CLK"
-		(at 147.5 110.25 0)
+		(at 147.5 105 0)
 		(layer "B.SilkS")
 		(uuid "00abcf19-d31e-4fcf-a1c0-b981c1d58042")
 		(effects
@@ -2034,7 +2034,7 @@
 		)
 	)
 	(gr_text "MOSI"
-		(at 148 105.25 0)
+		(at 147.7 110.3 0)
 		(layer "B.SilkS")
 		(uuid "39c45cb5-683b-43c1-91ec-1ede7fb4f01d")
 		(effects
