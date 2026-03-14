@@ -15,6 +15,7 @@
 
 #include <vector>
 #include <cmath>
+#include <stdint.h>
 
 // #define CPR 16384 // 14 bits
 // #define UNCOMPENSATED_ANGLE_REGISTER 0x3FFE
@@ -29,18 +30,7 @@ class AS5047
     
     public:
 
-        static constexpr int CPR = 16384; // 14 bits
-        static constexpr uint16_t UNCOMPENSATED_ANGLE_REGISTER = 0x3FFE;
-        static constexpr uint16_t COMPENSATED_ANGLE_REGISTER = 0x3FFF;
-        static constexpr uint16_t MAGNETIC_MAGNITUDE_REGISTER = 0x3FFD;
-        static constexpr uint16_t PARITY = 0x8000;
-        static constexpr uint16_t READ_WRITE = 0x4000;
-        static constexpr uint16_t RESULT_MASK = 0x3FFF;
-        static constexpr uint16_t NOP_REGISTER = 0x0000; 
-        static constexpr uint16_t NOP_COMMAND = 0xC000;
-
-        AS5047();
-        AS5047(SPI_HandleTypeDef* spi, GPIO_TypeDef* GPIO_family, int pin_num);
+        AS5047(SPI_HandleTypeDef* spi, GPIO_TypeDef* GPIO_family, int pin_num, int timeout = 100);
 
         void init();
 
@@ -58,19 +48,37 @@ class AS5047
 
         int get_magnetic_magnitude();
 
-        uint16_t NOP();
-        uint16_t spi_transfer16(uint16_t write_data);
+        void NOP();
 
-        uint16_t test();
+        void send_command(uint16_t address, uint8_t read_or_write);
+
+        uint16_t read_data(uint16_t address);
+
+        void transmit(uint16_t data);
+
+        uint16_t recieve();
 
     private:
 
+        static constexpr int CPR = 16384; // 14 bits
+        static constexpr uint16_t UNCOMPENSATED_ANGLE_REGISTER = 0x3FFE;
+        static constexpr uint16_t COMPENSATED_ANGLE_REGISTER = 0x3FFF;
+        static constexpr uint16_t MAGNETIC_MAGNITUDE_REGISTER = 0x3FFD;
+        static constexpr uint8_t WRITE = (uint8_t)0;
+        static constexpr uint8_t READ = (uint8_t)1;
+        static constexpr uint16_t RESULT_MASK = 0x3FFF;
+        static constexpr uint16_t NOP_REGISTER = 0x0000;
+
         SPI_HandleTypeDef* m_spi = nullptr;
         GPIO_TypeDef* m_cs_family = nullptr; 
-        int m_cs_pin = -1;
+        int m_cs_pin;
+        int m_timeout;
 
-        // uint16_t NOP();
-        // uint16_t spi_transfer16(uint16_t write_data);
+        void select();
+
+        void deselect();
+
+        uint8_t is_parity_even(uint16_t data);
 
 
 }; // class AS5047

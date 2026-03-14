@@ -2,11 +2,18 @@
 
 #include "helpers/usbfs.hpp"
 
-AS5047::AS5047(SPI_HandleTypeDef* spi, GPIO_TypeDef* GPIO_family, int pin_num)
+
+#define BIT_MODITY(src, i, val) ((src) ^= (-(val) ^ (src)) & (1UL << (i)))
+#define BIT_READ(src, i) (((src) >> (i)&1U))
+#define BIT_TOGGLE(src, i) ((src) ^= 1UL << (i))
+
+
+AS5047::AS5047(SPI_HandleTypeDef* spi, GPIO_TypeDef* GPIO_family, int pin_num, int timeout)
 {
     m_spi = spi;
     m_cs_family = GPIO_family;
     m_cs_pin = pin_num;
+    m_timeout = timeout;
 
 } // end of "AS5047"
 
@@ -19,18 +26,18 @@ void AS5047::init()
 
 int AS5047::get_uncompensated_counts()
 {
-    uint16_t command = UNCOMPENSATED_ANGLE_REGISTER | READ_WRITE;
+    uint16_t data = read_data(UNCOMPENSATED_ANGLE_REGISTER);
 
-    return spi_transfer16(command) & RESULT_MASK;
+    return data & RESULT_MASK;
 
 } // end of "get_uncompensated_counts"
 
 
 int AS5047::get_compensated_counts()
 {
-    uint16_t command = COMPENSATED_ANGLE_REGISTER | PARITY | READ_WRITE;
+    uint16_t data = read_data(COMPENSATED_ANGLE_REGISTER);
 
-    return spi_transfer16(command) & RESULT_MASK;
+    return data & RESULT_MASK;
 
 } // end of "get_compensated_counts"
 
@@ -73,75 +80,111 @@ double AS5047::get_angle(bool compensated)
 
 int AS5047::get_magnetic_magnitude()
 {
-    uint16_t command = MAGNETIC_MAGNITUDE_REGISTER | READ_WRITE;
+    uint16_t data = read_data(MAGNETIC_MAGNITUDE_REGISTER);
 
-    spi_transfer16(command);
-
-    return (int)NOP();
+    return data & RESULT_MASK;
 
 } // end of "get_magnetic_magnitude"
 
 
-uint16_t AS5047::NOP()
+void AS5047::NOP()
 {
-    uint16_t read_data = spi_transfer16(0xFFFF);
-
-    return read_data & RESULT_MASK;
+    send_command(NOP_REGISTER, READ);
 
 } // end of "NOP"
 
 
-uint16_t AS5047::spi_transfer16(uint16_t write_data)
+void AS5047::send_command(uint16_t address, uint8_t read_or_write)
 {
-    // // Convert 2 byte data to 2 individual bytes
-    // uint8_t msb_TX = (uint8_t)(write_data >> 8);
-    // uint8_t lsb_TX = (uint8_t)(write_data & 0x00FF);
+    uint16_t frame = address & RESULT_MASK;
 
-    // std::vector<uint8_t> TX_BUFF = {msb_TX, lsb_TX};
+    BIT_MODITY(frame, 14, read_or_write);
 
-    // Pull CS Pin LOW before sending data
-    HAL_GPIO_WritePin(m_cs_family, m_cs_pin, GPIO_PIN_RESET);
+    if(!is_parity_even(frame))
+        BIT_TOGGLE(frame, 15);
 
-    // Trasmit the data
-    HAL_SPI_Transmit(m_spi, (uint8_t*)&write_data, 1, 200);
-    // HAL_SPI_Transmit(m_spi, TX_BUFF.data(), TX_BUFF.size(), 200);
+    transmit(frame);
 
-    // uint8_t RX_BUFF[2];
-
-    // Read the data at the register
-    // HAL_SPI_Receive(m_spi, RX_BUFF, sizeof(RX_BUFF), 200);
-
-    uint16_t read_data = 0;
-
-    HAL_SPI_TransmitReceive(m_spi, (uint8_t*)NOP_REGISTER, (uint8_t*)read_data, 1, 200);
-    // uint8_t msb_RX = RX_BUFF[0];
-    // uint8_t lsb_RX = RX_BUFF[1];
-
-    // uint16_t read_data = static_cast<uint16_t>(msb_RX) << 8 | lsb_RX;
-
-    // USBFS::print_header("AS5047", read_data);
-
-    // Pull CS Pin HIGH since we're done
-    HAL_GPIO_WritePin(m_cs_family, m_cs_pin, GPIO_PIN_SET);
-
-    return read_data & RESULT_MASK;
-
-} // end of "spi_transfer16"
+} // end of "send_command(uint16_t, uint_t)"
 
 
-uint16_t AS5047::test()
+uint16_t AS5047::read_data(uint16_t address)
 {
-    uint16_t read_mag = 0x7FFE;
-    uint16_t nop_command = 0x0000;
-    uint16_t temp = 0;
+    send_command(address, READ);
 
+    return recieve();
+
+} // end of read_data(uint16_t)
+
+
+void AS5047::transmit(uint16_t data)
+{
+    uint8_t bytes[2];
+    uint8_t* pointer = bytes;
+
+    memcpy(bytes, &data, sizeof(data));
+
+    // Select CS
+    select();
+
+    // Send Data
+    // Size is 1 since data size was defined as 16 bit
+    HAL_SPI_Transmit(m_spi, pointer, 1, m_timeout);
+
+    // Deselect CS
+    deselect();
+
+} // end of "transmit"
+
+
+uint16_t AS5047::recieve()
+{
+    // Store the data in this varaible
+    uint16_t data;
+
+    uint8_t bytes[2];
+    uint8_t* pointer = bytes;
+
+    // Select CS
+    select();
+
+    // Recieve the data
+    HAL_SPI_Receive(m_spi, (uint8_t*)pointer, 1, m_timeout);
+
+    memcpy(&data, bytes, sizeof(data));
+
+    // Deselect CS
+    deselect();
+
+    return data;
+
+} // end of "recieve()"
+
+
+void AS5047::select()
+{
+    // Toggle pin LOW to activate CS
     HAL_GPIO_WritePin(m_cs_family, m_cs_pin, GPIO_PIN_RESET);
-    HAL_SPI_TransmitReceive(m_spi,(uint8_t*)&read_mag, (uint8_t*)&temp, 1, 200);
+
+} // end of "select()"
+
+
+void AS5047::deselect()
+{
+    // Toggle pin HIGH to activate CS
     HAL_GPIO_WritePin(m_cs_family, m_cs_pin, GPIO_PIN_SET);
 
-    HAL_GPIO_WritePin(m_cs_family, m_cs_pin, GPIO_PIN_RESET);
-    HAL_SPI_TransmitReceive(m_spi, (uint8_t*)&nop_command, (uint8_t*)&temp, 1, 200);
-    HAL_GPIO_WritePin(m_cs_family, m_cs_pin, GPIO_PIN_SET);
+} // end of "deselect()"
 
-    return temp & 0x3FFF;
-}
+
+uint8_t AS5047::is_parity_even(uint16_t data)
+{
+    data ^= data >> 8; // XOR upper 8 bits with lower 8 bits
+    data ^= data >> 4; // XOR 4 bits with the next 4 bits
+    data ^= data >> 2; // XOR 2 bits with the next 2 bits
+    data ^= data >> 1; // XOR adjacent bits
+
+    // The result (1 for even parity, 0 for odd parity) is in the least-significant bit
+    return !(data & 1);
+
+} // end of "is_parity_even(uint16_t)"
