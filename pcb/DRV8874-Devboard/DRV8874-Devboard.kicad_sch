@@ -2582,658 +2582,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "DRV8841PWP:DRV8841PWP"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at -12.7 36.56 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "DRV8841PWP"
-				(at -12.7 -39.56 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Footprint" "DRV8841PWP:IC_TPS61196PWPRQ1"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "MF" "Texas Instruments"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Description_1" "45-V, 2.5-A bipolar stepper or dual H-bridge motor driver IC with current regulation and PWM control"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Package" "HTSSOP-28 Texas Instruments"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Price" "None"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/DRV8841PWP/Texas+Instruments/view-part/?ref=snap"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MP" "DRV8841PWP"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Availability" "In Stock"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/DRV8841PWP/Texas+Instruments/view-part/?ref=eda"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "DRV8841PWP_0_0"
-				(rectangle
-					(start -12.7 -35.56)
-					(end 12.7 35.56)
-					(stroke
-						(width 0.41)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin input line
-					(at -17.78 25.4 0)
-					(length 5.08)
-					(name "AI0"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "24"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 22.86 0)
-					(length 5.08)
-					(name "AI1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "25"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 20.32 0)
-					(length 5.08)
-					(name "AIN1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "21"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 17.78 0)
-					(length 5.08)
-					(name "AIN2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "20"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 15.24 0)
-					(length 5.08)
-					(name "AVREF"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 12.7 0)
-					(length 5.08)
-					(name "BI0"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "26"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 10.16 0)
-					(length 5.08)
-					(name "BI1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "27"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 7.62 0)
-					(length 5.08)
-					(name "BIN1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "22"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 5.08 0)
-					(length 5.08)
-					(name "BIN2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "23"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 2.54 0)
-					(length 5.08)
-					(name "BVREF"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "13"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 0 0)
-					(length 5.08)
-					(name "DECAY"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "19"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 -2.54 0)
-					(length 5.08)
-					(name "ISENB"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 -5.08 0)
-					(length 5.08)
-					(name "NRESET"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "16"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 -7.62 0)
-					(length 5.08)
-					(name "NSLEEP"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "17"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -17.78 -12.7 0)
-					(length 5.08)
-					(name "CP1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -17.78 -15.24 0)
-					(length 5.08)
-					(name "CP2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -17.78 -20.32 0)
-					(length 5.08)
-					(name "ISENA"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -17.78 -25.4 0)
-					(length 5.08)
-					(name "VCP"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 17.78 33.02 180)
-					(length 5.08)
-					(name "VMA"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 17.78 30.48 180)
-					(length 5.08)
-					(name "VMB"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "11"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 17.78 25.4 180)
-					(length 5.08)
-					(name "AOUT1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 17.78 22.86 180)
-					(length 5.08)
-					(name "AOUT2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 17.78 20.32 180)
-					(length 5.08)
-					(name "BOUT1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "10"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 17.78 17.78 180)
-					(length 5.08)
-					(name "BOUT2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 17.78 15.24 180)
-					(length 5.08)
-					(name "NFAULT"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "18"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 17.78 12.7 180)
-					(length 5.08)
-					(name "V3P3OUT"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "15"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 17.78 -30.48 180)
-					(length 5.08)
-					(name "GND-1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "28"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 17.78 -33.02 180)
-					(length 5.08)
-					(name "GND"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "14"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:C"
 			(pin_numbers
 				(hide yes)
@@ -3496,156 +2844,6 @@
 					(at 0 -3.81 90)
 					(length 3.302)
 					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Device:D_Zener"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D_Zener"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Zener diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "D_Zener_0_1"
-				(polyline
-					(pts
-						(xy -1.27 -1.27) (xy -1.27 1.27) (xy -0.762 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "D_Zener_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4008,322 +3206,6 @@
 						)
 					)
 					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Simulation_SPICE:PMOS"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.27 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "PMOS"
-				(at 5.08 -1.27 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 5.08 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_MOSFETs"
-				(at 0 -12.7 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "P-MOSFET transistor, drain/source/gate"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Device" "PMOS"
-				(at 0 -17.145 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Type" "VDMOS"
-				(at 0 -19.05 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Pins" "1=D 2=G 3=S"
-				(at 0 -15.24 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "transistor PMOS P-MOS P-MOSFET simulation"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "PMOS_0_1"
-				(polyline
-					(pts
-						(xy 0.254 1.905) (xy 0.254 -1.905)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.254 0) (xy -2.54 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 2.286) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 1.778) (xy 3.302 1.778) (xy 3.302 -1.778) (xy 0.762 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 0.508) (xy 0.762 -0.508)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 -1.27) (xy 0.762 -2.286)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 1.651 0)
-					(radius 2.794)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.286 0) (xy 1.27 0.381) (xy 1.27 -0.381) (xy 2.286 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 2.54) (xy 2.54 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.54 1.778)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(circle
-					(center 2.54 -1.778)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.794 -0.508) (xy 2.921 -0.381) (xy 3.683 -0.381) (xy 3.81 -0.254)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.302 -0.381) (xy 2.921 0.254) (xy 3.683 0.254) (xy 3.302 -0.381)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "PMOS_1_1"
-				(pin input line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "G"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "D"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -5031,12 +3913,6 @@
 		(uuid "318a5f77-b558-4d02-8131-2387515f7692")
 	)
 	(junction
-		(at 73.66 144.78)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3448a771-2709-4411-9091-27a99cb10e26")
-	)
-	(junction
 		(at 46.99 82.55)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5101,12 +3977,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9b323059-6719-4d5a-8e9c-413dca61123c")
-	)
-	(junction
-		(at 59.69 157.48)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9b3b345c-9812-405b-b397-b07538656077")
 	)
 	(junction
 		(at 215.9 105.41)
@@ -5530,16 +4400,6 @@
 	)
 	(wire
 		(pts
-			(xy 39.37 144.78) (xy 54.61 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3379628e-eefb-4bbc-a6e4-c6b64a575a57")
-	)
-	(wire
-		(pts
 			(xy 87.63 44.45) (xy 95.25 44.45)
 		)
 		(stroke
@@ -5587,16 +4447,6 @@
 			(type default)
 		)
 		(uuid "3c93eb1f-21b1-47ff-93a4-6c2c31bbd57c")
-	)
-	(wire
-		(pts
-			(xy 73.66 157.48) (xy 59.69 157.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3e4ab7a6-a9e7-4f9d-b7b2-2b052ba990bd")
 	)
 	(wire
 		(pts
@@ -5650,16 +4500,6 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 152.4) (xy 59.69 157.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "48b2f5e9-aa4d-4a27-82c9-3729eef40c20")
-	)
-	(wire
-		(pts
 			(xy 215.9 120.65) (xy 246.38 120.65)
 		)
 		(stroke
@@ -5677,16 +4517,6 @@
 			(type default)
 		)
 		(uuid "4fadb2e7-8927-42fe-858b-49d587aec88d")
-	)
-	(wire
-		(pts
-			(xy 59.69 157.48) (xy 59.69 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50e8a14b-c8ec-499e-88f3-159925c43f7b")
 	)
 	(wire
 		(pts
@@ -5737,16 +4567,6 @@
 			(type default)
 		)
 		(uuid "5d7fc2b6-be83-4273-ad7e-8de6d8a9c651")
-	)
-	(wire
-		(pts
-			(xy 73.66 144.78) (xy 85.09 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5e638ffa-7386-4ebb-b558-84a8f7c92ad4")
 	)
 	(wire
 		(pts
@@ -5897,16 +4717,6 @@
 			(type default)
 		)
 		(uuid "87e08ffc-238e-4302-9c60-88ad74b5ab1f")
-	)
-	(wire
-		(pts
-			(xy 39.37 138.43) (xy 39.37 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8b905182-25a9-4206-9f87-49d008c65eb2")
 	)
 	(wire
 		(pts
@@ -6080,16 +4890,6 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 144.78) (xy 73.66 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a726786f-722e-4478-9566-a2f587b63e4d")
-	)
-	(wire
-		(pts
 			(xy 82.55 99.06) (xy 82.55 102.87)
 		)
 		(stroke
@@ -6120,16 +4920,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 144.78) (xy 73.66 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bf2a07cf-bcf4-4e05-9531-c96fed73d850")
-	)
-	(wire
-		(pts
 			(xy 207.01 115.57) (xy 246.38 115.57)
 		)
 		(stroke
@@ -6137,16 +4927,6 @@
 			(type default)
 		)
 		(uuid "c049274e-ac83-4a38-90a3-114d159788e3")
-	)
-	(wire
-		(pts
-			(xy 73.66 154.94) (xy 73.66 157.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c2676011-a77b-4a76-87ae-278a4b22bf33")
 	)
 	(wire
 		(pts
@@ -6277,16 +5057,6 @@
 			(type default)
 		)
 		(uuid "dcb71b39-7da5-402d-bc0d-02277b789baf")
-	)
-	(wire
-		(pts
-			(xy 59.69 167.64) (xy 59.69 171.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "df5fdbe8-6949-445b-8e6e-37ee4c2f4491")
 	)
 	(wire
 		(pts
@@ -6978,7 +5748,7 @@
 			(uuid "8e305bbe-0de4-4eff-8b7d-77f6e793264e")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "U1")
 					(unit 1)
@@ -7246,7 +6016,7 @@
 			(uuid "c00962da-89d5-42b8-8f0d-cc20faa9ba3b")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "#FLG01")
 					(unit 1)
@@ -7506,7 +6276,7 @@
 			(uuid "bb9e6f1a-e96b-4843-b1cc-89b045d35805")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "U3")
 					(unit 1)
@@ -7594,7 +6364,7 @@
 			(uuid "9ae89d26-7c4f-43c6-8cf2-9c959327401d")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "U4")
 					(unit 1)
@@ -7664,107 +6434,9 @@
 			(uuid "d12ca53e-e587-451c-ad09-2935e3ef51b9")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Simulation_SPICE:PMOS")
-		(at 59.69 147.32 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5abfcf34-b437-4582-b0ef-b3661379859f")
-		(property "Reference" "Q2"
-			(at 59.69 138.43 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PMOS"
-			(at 59.69 140.97 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 57.15 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_MOSFETs"
-			(at 72.39 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "P-MOSFET transistor, drain/source/gate"
-			(at 59.69 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "PMOS"
-			(at 76.835 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Type" "VDMOS"
-			(at 78.74 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=D 2=G 3=S"
-			(at 74.93 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "debce2ea-a629-451f-bca0-6c6aabad5622")
-		)
-		(pin "2"
-			(uuid "6bca0602-90d6-4e8f-944d-c0353c376515")
-		)
-		(pin "3"
-			(uuid "576521b2-67e6-40e3-aa22-3852bc0ccfe9")
-		)
-		(instances
-			(project ""
-				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
-					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -7916,76 +6588,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 59.69 163.83 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6517117f-05f4-40b1-b3cd-02822e2ff79d")
-		(property "Reference" "R1"
-			(at 62.23 162.5599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "R"
-			(at 62.23 165.0999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 57.912 163.83 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 59.69 163.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 59.69 163.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "97b53edb-2278-484a-bbff-fe40f92f9ffd")
-		)
-		(pin "1"
-			(uuid "ce007c58-466f-49f8-baae-41eff7e3c1c8")
-		)
-		(instances
-			(project ""
-				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
-					(reference "R1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_US")
 		(at 55.88 43.18 0)
 		(unit 1)
@@ -8056,79 +6658,9 @@
 			(uuid "e38cd1fd-abf8-4e13-865f-97b2337b2d1a")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "C4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Zener")
-		(at 73.66 151.13 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "72c268ed-5b75-436d-b3d5-e6da318d28d5")
-		(property "Reference" "D1"
-			(at 76.2 149.8599 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "D_Zener"
-			(at 76.2 152.3999 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 73.66 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 73.66 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Zener diode"
-			(at 73.66 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1f00295b-1df7-4ae7-970a-de51bbac4eb5")
-		)
-		(pin "2"
-			(uuid "743d4919-ac3d-4dc8-ae87-e66ff63b88c4")
-		)
-		(instances
-			(project ""
-				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
-					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -8196,7 +6728,7 @@
 			(uuid "29d31fcd-7379-4d23-a3fa-b4c8967b97d7")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "J2")
 					(unit 1)
@@ -8275,7 +6807,7 @@
 			(uuid "a1b14eee-ac79-4bc5-8cc1-a351228d8e7c")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "C1")
 					(unit 1)
@@ -8341,7 +6873,7 @@
 			(uuid "71b6b11e-e332-4005-855e-b6f71c0d7608")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "#PWR03")
 					(unit 1)
@@ -8482,72 +7014,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+BATT")
-		(at 39.37 138.43 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "854b6ed7-f165-42f7-870f-9ae0de10b58c")
-		(property "Reference" "#PWR013"
-			(at 39.37 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+BATT"
-			(at 39.37 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 39.37 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 39.37 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 39.37 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bfcb5e0a-012d-4179-8656-561615c7027b")
-		)
-		(instances
-			(project "DRV8874-Devboard"
-				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
-					(reference "#PWR013")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:Conn_01x03_Pin")
 		(at 321.31 165.1 180)
 		(unit 1)
@@ -8619,7 +7085,7 @@
 	)
 	(symbol
 		(lib_id "Custom_Library:TinyThinker_J1")
-		(at 118.11 201.93 0)
+		(at 146.05 177.8 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8628,7 +7094,7 @@
 		(fields_autoplaced yes)
 		(uuid "8e9e5d16-19ce-4f13-84ab-997514ae031e")
 		(property "Reference" "U2"
-			(at 118.11 170.18 0)
+			(at 146.05 146.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8636,7 +7102,7 @@
 			)
 		)
 		(property "Value" "TinyThinker_J1"
-			(at 118.11 172.72 0)
+			(at 146.05 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8644,7 +7110,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_2x20_P2.54mm_Vertical"
-			(at 118.11 201.93 0)
+			(at 146.05 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8653,7 +7119,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.11 201.93 0)
+			(at 146.05 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8662,7 +7128,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 118.11 201.93 0)
+			(at 146.05 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8791,7 +7257,7 @@
 			(uuid "b4ed74c4-5072-46a6-84fa-a485708d3201")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "U2")
 					(unit 1)
@@ -8935,236 +7401,9 @@
 			(uuid "2b33fe2a-ea9a-4d8d-a663-86a47ca88631")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "DRV8841PWP:DRV8841PWP")
-		(at 181.61 214.63 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "98c5c661-6cc9-4073-8a25-29f4353ab923")
-		(property "Reference" "U5"
-			(at 181.61 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "DRV8841PWP"
-			(at 181.61 176.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "DRV8841PWP:IC_TPS61196PWPRQ1"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Texas Instruments"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "45-V, 2.5-A bipolar stepper or dual H-bridge motor driver IC with current regulation and PWM control"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "HTSSOP-28 Texas Instruments"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/DRV8841PWP/Texas+Instruments/view-part/?ref=snap"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "DRV8841PWP"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/DRV8841PWP/Texas+Instruments/view-part/?ref=eda"
-			(at 181.61 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "4d46f666-8df8-4c3b-90d8-1ef05496d1eb")
-		)
-		(pin "1"
-			(uuid "14ff1d3b-efdb-4c49-837d-a982e8b94056")
-		)
-		(pin "17"
-			(uuid "c4fb89ce-c918-45ef-8178-dd8d8b5af7f6")
-		)
-		(pin "10"
-			(uuid "1b4ee5c0-6792-4f03-bf68-68bc891b6e21")
-		)
-		(pin "15"
-			(uuid "d1a7be22-9a6a-4225-bcb8-030f1eea5106")
-		)
-		(pin "19"
-			(uuid "23decaac-7878-4c84-8bd5-a623ed839f61")
-		)
-		(pin "28"
-			(uuid "649ee938-7f44-455e-bc96-dee5af6f6df4")
-		)
-		(pin "11"
-			(uuid "1bb4a2c2-46d6-4863-b7c2-ba05adf3d053")
-		)
-		(pin "27"
-			(uuid "6b096920-bffe-45e4-b80d-245749d5a1fd")
-		)
-		(pin "21"
-			(uuid "0e203613-2417-4321-96c6-375ac5165e10")
-		)
-		(pin "25"
-			(uuid "6c201e82-24b8-4bfd-884d-1a5728e93272")
-		)
-		(pin "12"
-			(uuid "d2745745-67e5-462a-8709-d43744881e04")
-		)
-		(pin "9"
-			(uuid "6c96a45a-e559-489e-9097-ed6bbe67adc4")
-		)
-		(pin "22"
-			(uuid "b233a315-86b3-4544-98a0-cc575503313d")
-		)
-		(pin "8"
-			(uuid "f27d52e0-b8a1-403c-9f93-02d6eb8df23b")
-		)
-		(pin "23"
-			(uuid "d0261312-6ca6-478a-a41c-49ee34b62af4")
-		)
-		(pin "5"
-			(uuid "e66e0dea-3233-40f9-8bdc-0086e4a775eb")
-		)
-		(pin "6"
-			(uuid "12c6a142-499c-49de-bc0d-006e82bf9a4e")
-		)
-		(pin "24"
-			(uuid "20c41000-8af3-46cf-8f0b-1930fdfd6fac")
-		)
-		(pin "20"
-			(uuid "9cf1bee1-ef54-4c28-9abc-c7f17f9151be")
-		)
-		(pin "7"
-			(uuid "aa2faefb-b5af-42f7-9a9e-cf5d9b79c4be")
-		)
-		(pin "16"
-			(uuid "dc3b6fc5-64c2-4878-8f3a-a676412ef893")
-		)
-		(pin "18"
-			(uuid "bb618d08-705f-48a4-a2ef-3e4ab956b804")
-		)
-		(pin "2"
-			(uuid "7b1a9b47-c22c-443e-a266-e836ea3c5765")
-		)
-		(pin "26"
-			(uuid "4b508c71-e486-499c-8582-9e662998877f")
-		)
-		(pin "14"
-			(uuid "beb32f80-968d-4da9-801e-6c641463009f")
-		)
-		(pin "3"
-			(uuid "cbdf291b-e45e-4976-956c-baa83f3f49e7")
-		)
-		(pin "13"
-			(uuid "dd4d6e5a-4311-4f37-b47e-01c6fd1d9658")
-		)
-		(instances
-			(project ""
-				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
-					(reference "U5")
 					(unit 1)
 				)
 			)
@@ -9360,7 +7599,7 @@
 			(uuid "791f27d7-6db0-416f-9acc-528fbd13d0e3")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "#PWR06")
 					(unit 1)
@@ -9430,7 +7669,7 @@
 			(uuid "e4327949-fee7-4cb6-9ec5-e00c9cf2a225")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "J3")
 					(unit 1)
@@ -9565,72 +7804,6 @@
 			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "#PWR011")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 59.69 171.45 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e2756de1-3c59-43b4-aa98-907ea924b08e")
-		(property "Reference" "#PWR012"
-			(at 59.69 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 59.69 176.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 59.69 171.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 59.69 171.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 59.69 171.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ffad8056-6438-4c5e-897f-77053b4b2187")
-		)
-		(instances
-			(project "DRV8874-Devboard"
-				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
-					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -9844,7 +8017,7 @@
 			(uuid "aa54eeb3-50f4-4ea1-bc92-d20193fbc922")
 		)
 		(instances
-			(project ""
+			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "J1")
 					(unit 1)
