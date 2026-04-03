@@ -1,4 +1,4 @@
-27565465868155083
+27567241063593408
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -60185,6 +60185,13 @@ CONN-TH_2P-P5.08_DB128L-5.08-2P-BK-S
 0
 2
 2
+Custom_Library
+HTSSOP20_PWP_TEX
+
+TPS16630PWPR 
+0
+21
+21
 Custom_Library
 IC_TPS61196PWPRQ1
 
