@@ -4338,7 +4338,7 @@
 		)
 		(uuid "857299d0-2f6c-4688-b644-e479a5b181ec")
 	)
-	(text "Rule of Thumb:\n1-4uF per watt\n6A for entire motor\n3A per phase\n~24V"
+	(text "https://www.ti.com/lit/an/slvaft0/slvaft0.pdf?ts=1775125462184\nPg 3 Section 2\n1-4uF per watt\n6A for entire motor\n3A per phase\n~24V"
 		(exclude_from_sim no)
 		(at 41.402 43.942 0)
 		(effects
