@@ -552,7 +552,7 @@
       },
       {
         "netclass": "PWR",
-        "pattern": "+BATT"
+        "pattern": "+BATT*"
       },
       {
         "netclass": "PWR",
