@@ -19,42 +19,53 @@
 #include "plib/util/logger.hpp"
 #include "plib/util/implot_plotter.hpp"
 
+#include <libserial/SerialPort.h>
+
 // i2cdetect -l
 
 int main(int argc, char *argv[])
 {
     // Code to be executed
     Logger::initialize();
-    ImPlotter::initialize();
-    ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
+    // ImPlotter::initialize();
+    // ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
 
-    if (I2C::init_name("MCP2221", true) == status_utils::StatusCode::FAILED)
-    {
-        Logger::error("I2C Bus Failed to Initialize! Exiting...");
-        return -1;
-    }
+    // if (I2C::init_name("MCP2221", true) == status_utils::StatusCode::FAILED)
+    // {
+    //     Logger::error("I2C Bus Failed to Initialize! Exiting...");
+    //     return -1;
+    // }
 
-    PSD17 motor(0x4);
-    float target = 0;
+    // PSD17 motor(0x4);
+    // float target = 0;
 
-    Logger::info("Initializing device with address: " + std::to_string(motor.get_address()));
+    // Logger::info("Initializing device with address: " + std::to_string(motor.get_address()));
+
+    LibSerial::SerialPort connection;
+
+    // ls -l /dev/serial/by-id/
+    connection.Open("/dev/ttyACM1");
+    connection.SetBaudRate(LibSerial::BaudRate::BAUD_115200);
+
 
     // User Input Thread
     std::thread input_thread(
-        [&target]()
+        [&connection]()
         {
             Logger::info("Spinning up the User Input Thread...");
 
             while(System::is_alive())
             {
-                auto input = util::get_user_input_float("Please Enter a Number: ");
+                auto input = util::get_user_input_string("Please Enter text: ");
 
                 if(input.status == status_utils::StatusCode::FAILED)
                     System::shutdown();
                 else if(input.status != status_utils::StatusCode::OK)
                     continue;
 
-                target = input.value;
+                std::cout << input.value << std::endl;
+
+                connection.Write(input.value);
             }
 
             Logger::info("Shutting down input...");
@@ -62,67 +73,84 @@ int main(int argc, char *argv[])
     );
     input_thread.detach();
 
-    std::thread i2c_thread(
-        [&motor, &target]()
-        {
-            Logger::info("Spinning up the i2c Thread...");
+    // std::thread i2c_thread(
+    //     []()
+    //     {
+    //         Logger::info("Spinning up the i2c Thread...");
 
-            // Logger::info("Enabling Motor...");
+    //         // Logger::info("Enabling Motor...");
 
-            // if(motor.enable() == status_utils::StatusCode::OK)
-            //     Logger::info("Enabled Motor!");
-            // else
-            // {
-            //     Logger::info("Failed to Enabled Motor! Exiting...");
-            //     System::shutdown();
-            // }
+    //         // if(motor.enable() == status_utils::StatusCode::OK)
+    //         //     Logger::info("Enabled Motor!");
+    //         // else
+    //         // {
+    //         //     Logger::info("Failed to Enabled Motor! Exiting...");
+    //         //     System::shutdown();
+    //         // }
 
-            while(System::is_alive())
-            {
-                status_utils::StatusCode send_status = motor.send_command(target, CommandType::TARGET);
+    //         while(System::is_alive())
+    //         {
+    //             status_utils::StatusCode send_status = motor.send_command(target, CommandType::TARGET);
 
-                if(send_status != status_utils::StatusCode::OK)
-                    continue;
+    //             if(send_status != status_utils::StatusCode::OK)
+    //                 continue;
 
-                // status_utils::StatusedValue<float> position = motor.request(RequestType::POSITION);
+    //             // status_utils::StatusedValue<float> position = motor.request(RequestType::POSITION);
 
-                // if(position.is_OK())
-                //     ImPlotter::push_data(position.value, "Position");
+    //             // if(position.is_OK())
+    //             //     ImPlotter::push_data(position.value, "Position");
 
-                // status_utils::StatusedValue<float> velocity = motor.request(RequestType::VELOCITY);
+    //             // status_utils::StatusedValue<float> velocity = motor.request(RequestType::VELOCITY);
 
-                // if(velocity.is_OK())
-                //     ImPlotter::push_data(velocity.value, "Velocity");
+    //             // if(velocity.is_OK())
+    //             //     ImPlotter::push_data(velocity.value, "Velocity");
 
-                // status_utils::StatusedValue<float> current = motor.request(RequestType::CURRENT);
+    //             // status_utils::StatusedValue<float> current = motor.request(RequestType::CURRENT);
 
-                // if(current.is_OK())
-                //     ImPlotter::push_data(current.value, "Current");
+    //             // if(current.is_OK())
+    //             //     ImPlotter::push_data(current.value, "Current");
 
-                // status_utils::StatusedValue<float> angle = motor.read_from_register(25);
+    //             // status_utils::StatusedValue<float> angle = motor.read_from_register(25);
 
-                // if(angle.is_OK())
-                //     ImPlotter::push_data(angle.value, "Angle (Rad)");
+    //             // if(angle.is_OK())
+    //             //     ImPlotter::push_data(angle.value, "Angle (Rad)");
 
-                // status_utils::StatusedValue<float> mag = motor.read_from_register(26);
+    //             // status_utils::StatusedValue<float> mag = motor.read_from_register(26);
 
-                // if(mag.is_OK())
-                //     ImPlotter::push_data(mag.value, "Magnet Strength");
-            }
+    //             // if(mag.is_OK())
+    //             //     ImPlotter::push_data(mag.value, "Magnet Strength");
+    //         }
 
-            Logger::info("Shutting down i2c communication...");
-        }
-    );
-    i2c_thread.detach();
+    //         Logger::info("Shutting down i2c communication...");
+    //     }
+    // );
+    // i2c_thread.detach();
 
     // Plotter (has to be in main, not lambda function)
     while(System::is_alive())
     {
-        if(ImPlotter::update() == status_utils::StatusCode::FAILED)
-            System::shutdown();
+
+        if(connection.IsDataAvailable())
+        {
+            std::string read_data;
+
+            try
+            {
+                connection.ReadLine(read_data, '\n', 500);
+            }
+            catch(...)
+            {
+                std::cout << "failed" << std::endl;
+                continue;
+            }
+
+            std::cout << "I heard: " + read_data << std::endl;
+        }
     }
 
-    ImPlotter::shutdown();
+    // ImPlotter::shutdown();
+
+    connection.Close();
 
     Logger::info("Exitting!");
 

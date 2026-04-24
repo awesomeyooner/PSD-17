@@ -13,11 +13,9 @@ add_subdirectory(lib/plib)
 
 # Create list of dependencies
 set(THIS_PACKAGE_INCLUDE_DEPENDS
-  
 )
 
 # Find each dependency
-find_package(ament_cmake REQUIRED)
 foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
 endforeach()
@@ -29,6 +27,7 @@ add_executable( ${MAIN_EXEC} src/main.cpp )
 target_link_libraries( ${MAIN_EXEC} 
   ${THIS_PACKAGE_INCLUDE_DEPENDS} 
   plib
+  serial
 )
 
 target_include_directories( ${MAIN_EXEC}
