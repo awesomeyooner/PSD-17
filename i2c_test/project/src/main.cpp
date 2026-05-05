@@ -8,9 +8,9 @@
 #include <fstream>
 #include <mutex>
 
-#include "plib/i2c/i2c.hpp"
-#include "plib/i2c/wire_device.hpp"
-#include "plib/i2c/drivers/psd17.hpp"
+// #include "plib/i2c/i2c.hpp"
+// #include "plib/i2c/wire_device.hpp"
+// #include "plib/i2c/drivers/psd17.hpp"
 
 #include "plib/math/math_helper.hpp"
 
@@ -18,6 +18,8 @@
 #include "plib/util/system.hpp"
 #include "plib/util/logger.hpp"
 #include "plib/util/implot_plotter.hpp"
+
+#include "plib/util/byte_converter.hpp"
 
 #include <libserial/SerialPort.h>
 
@@ -44,7 +46,7 @@ int main(int argc, char *argv[])
     LibSerial::SerialPort connection;
 
     // ls -l /dev/serial/by-id/
-    connection.Open("/dev/ttyACM1");
+    connection.Open("/dev/ttyACM0");
     connection.SetBaudRate(LibSerial::BaudRate::BAUD_115200);
 
 
@@ -56,16 +58,28 @@ int main(int argc, char *argv[])
 
             while(System::is_alive())
             {
+                auto reg = util::get_user_input_int("Please enter a register: ");
                 auto input = util::get_user_input_string("Please Enter text: ");
 
+                int length = input.value.length() + 2; // 1 for register, 1 for length
+
+                std::vector<uint8_t> bytes;
+
+                bytes.push_back((uint8_t)reg.value);
+                bytes.push_back((uint8_t)length);
+                bytes.insert(bytes.begin() + 2, input.value.begin(), input.value.end());
+
                 if(input.status == status_utils::StatusCode::FAILED)
+                {
                     System::shutdown();
+                    break;
+                }
                 else if(input.status != status_utils::StatusCode::OK)
                     continue;
 
-                std::cout << input.value << std::endl;
+                std::cout << input.value.length() << " : " << input.value << std::endl;
 
-                connection.Write(input.value);
+                connection.Write(bytes);
             }
 
             Logger::info("Shutting down input...");
@@ -136,7 +150,17 @@ int main(int argc, char *argv[])
 
             try
             {
+                std::cout << "Receieved data, reading..." << std::endl;
                 connection.ReadLine(read_data, '\n', 500);
+                // connection.Read(read_data, 8, 0);
+
+                std::cout << read_data << std::endl;
+                // std::vector<uint8_t> bytes(read_data.begin(), read_data.end());
+
+                // double data = ByteConverter::bytes_to_double(bytes);
+
+                // std::cout << "I heard: " << util::to_string(data) << std::endl;
+                
             }
             catch(...)
             {
@@ -144,7 +168,7 @@ int main(int argc, char *argv[])
                 continue;
             }
 
-            std::cout << "I heard: " + read_data << std::endl;
+            // std::cout << "I heard: " + read_data << std::endl;
         }
     }
 
