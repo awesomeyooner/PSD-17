@@ -650,6 +650,176 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Custom_Library:BL9342"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 0 10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "BL9342"
+				(at -0.254 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.alldatasheet.com/datasheet-pdf/view/1033628/BELLING/BL9342.html"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "DC-DC Power Regulator"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "BL9342_1_1"
+				(rectangle
+					(start -7.62 6.35)
+					(end 7.62 -6.35)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin power_out line
+					(at -10.16 3.81 0)
+					(length 2.54)
+					(name "BST"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 -3.81 0)
+					(length 2.54)
+					(name "VIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -8.89 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 3.81 180)
+					(length 2.54)
+					(name "SW"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 10.16 -3.81 180)
+					(length 2.54)
+					(name "FB"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Custom_Library:DRV8874"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -5833,6 +6003,16 @@
 			(type default)
 		)
 		(uuid "1ca11e9b-7221-41ad-95ee-6d1f58d593e5")
+	)
+	(wire
+		(pts
+			(xy 162.56 227.33) (xy 162.56 232.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1cd0b4c9-24c5-48cf-9980-4fc68c560035")
 	)
 	(wire
 		(pts
@@ -12333,6 +12513,86 @@
 		)
 	)
 	(symbol
+		(lib_id "Custom_Library:BL9342")
+		(at 162.56 218.44 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d71aa617-b594-4752-b298-6e0e6d9081d4")
+		(property "Reference" "U2"
+			(at 162.56 207.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BL9342"
+			(at 162.56 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
+			(at 162.56 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.alldatasheet.com/datasheet-pdf/view/1033628/BELLING/BL9342.html"
+			(at 162.56 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "DC-DC Power Regulator"
+			(at 162.56 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "feb1307b-588b-4932-8b69-1669b0cd878d")
+		)
+		(pin "6"
+			(uuid "82859262-1800-4208-8c85-eec336b1fb5b")
+		)
+		(pin "2"
+			(uuid "efcad439-844f-4a32-b780-ae34b3e28fa7")
+		)
+		(pin "5"
+			(uuid "7d681a79-ebfa-4e24-b39f-22d4de6872ba")
+		)
+		(pin "3"
+			(uuid "3d95e53c-34ff-48ee-8eb2-b651d093bf76")
+		)
+		(pin "4"
+			(uuid "ae3afc89-146b-48ec-a82c-ce6e6e44ba27")
+		)
+		(instances
+			(project "DRV8874-Devboard"
+				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
+					(reference "U2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+BATT")
 		(at 251.46 68.58 0)
 		(unit 1)
@@ -13128,6 +13388,72 @@
 			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 162.56 232.41 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fa05c3ba-fe3c-4004-8946-d9c329ccb783")
+		(property "Reference" "#PWR024"
+			(at 162.56 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 162.56 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 162.56 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 162.56 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 162.56 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ec0b36e8-2216-4948-adfd-c2feae9e0821")
+		)
+		(instances
+			(project "DRV8874-Devboard"
+				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
