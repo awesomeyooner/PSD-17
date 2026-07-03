@@ -577,6 +577,10 @@
       {
         "netclass": "I2C",
         "pattern": "/I2C*"
+      },
+      {
+        "netclass": "PWR",
+        "pattern": "+5V"
       }
     ]
   },
