@@ -4691,6 +4691,18 @@
 		(uuid 43455fcf-afac-4cb1-8f5f-933ea87c4192)
 	)
 	(rectangle
+		(start 154.94 185.42)
+		(end 285.75 265.43)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 510b68b6-6bfa-4a4a-943d-406b6f84e715)
+	)
+	(rectangle
 		(start 336.55 124.46)
 		(end 364.49 148.59)
 		(stroke
@@ -4808,6 +4820,18 @@
 			)
 		)
 		(uuid "30c590ac-7d90-4814-95ab-13809b89ca79")
+	)
+	(text "MCU Step Down Converter"
+		(exclude_from_sim no)
+		(at 180.086 183.388 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+				(thickness 0.508)
+				(bold yes)
+			)
+		)
+		(uuid "342af2a5-ef6e-46f2-97df-6afaca8ebbcc")
 	)
 	(text "Datasheet Pg 3\nValue Specified"
 		(exclude_from_sim no)
