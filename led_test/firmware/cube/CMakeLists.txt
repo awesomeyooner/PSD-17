@@ -75,3 +75,27 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin
     COMMENT "Generating binary (.bin) from ELF"
 )
+
+# Flash via DFU
+find_program(DFU_UTIL dfu-util REQUIRED)
+
+add_custom_target(flash_dfu
+    COMMAND ${DFU_UTIL}
+        -a 0
+        -s 0x08000000:leave
+        -D ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin
+    DEPENDS ${PROJECT_NAME}
+    COMMENT "Flashing firmware over DFU"
+)
+
+# Flash via ST-Link
+find_program(OPENOCD openocd REQUIRED)
+
+add_custom_target(flash_stlink
+    COMMAND ${OPENOCD}
+        -f interface/stlink.cfg
+        -f target/stm32f4x.cfg
+        -c "program $<TARGET_FILE:${PROJECT_NAME}> verify reset exit"
+    DEPENDS ${PROJECT_NAME}
+    COMMENT "Flashing STM32 via ST-Link/OpenOCD"
+)

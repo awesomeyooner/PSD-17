@@ -4,10 +4,6 @@ project(firmware)
 
 add_subdirectory(cube)
 
-# add_subdirectory(lib/EmbeddedLib)
-# add_subdirectory(lib/WireLib)
-# add_subdirectory(lib/ActionLib)
-
 add_library(shared_library INTERFACE)
 
 target_include_directories(shared_library INTERFACE
@@ -26,23 +22,29 @@ target_compile_definitions(shared_library INTERFACE
     STM32F446xx
 )
 
-# target_link_libraries(EmbeddedLib PRIVATE shared_library)
-# target_link_libraries(WireLib PRIVATE shared_library)
-# target_link_libraries(ActionLib PRIVATE shared_library)
+# Add User Libraries
+add_subdirectory(lib/EmbeddedLib)
+target_link_libraries(EmbeddedLib PRIVATE shared_library)
+
+add_subdirectory(lib/WireLib)
+target_link_libraries(WireLib PRIVATE shared_library)
+
+add_subdirectory(lib/ActionLib)
+target_link_libraries(ActionLib PRIVATE shared_library)
 
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     shared_library
 
-    # EmbeddedLib
-    # WireLib
-    # ActionLib
+    EmbeddedLib
+    WireLib
+    ActionLib
 )
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
-    # src/core.cpp
+    src/core.cpp
     
     # src/devices/l298n.cpp
     # src/devices/servo.cpp
