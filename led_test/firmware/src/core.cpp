@@ -1,5 +1,7 @@
 #include "core.hpp"
 
+#include "devices/as5047.hpp"
+
 #include "EmbeddedLib/system.hpp"
 #include "EmbeddedLib/devices/led.hpp"
 #include "EmbeddedLib/devices/gpio_device.hpp"
@@ -29,6 +31,7 @@ using namespace std;
 
 
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
+AS5047 sensor = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
 
 
 void init()
@@ -45,7 +48,9 @@ void init()
         {
             led.toggle();
 
-            Serial.info("Hello World!");
+            double data = sensor.get_angle();
+
+            Serial.info(data);
 
             return StatusedValue<bool>(false, StatusCode::OK);
         }
@@ -58,6 +63,17 @@ void init()
 
 void update()
 {
-    ActionManager::update();
+    // ActionManager::update();
+
+    double counts = sensor.get_raw_counts();
+
+    int CPR = 16384;
+
+    double data = (counts / CPR) * 2 * M_PI;
+
+    Serial.info(counts);
+
+    HAL_Delay(10);
+
 
 } // end of "update()"
