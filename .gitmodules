@@ -22,3 +22,12 @@
 [submodule "led_test/firmware/lib/ActionLib"]
 	path = led_test/firmware/lib/ActionLib
 	url = https://github.com/awesomeyooner/ActionLib.git
+[submodule "motor_test/firmware/lib/EmbeddedLib"]
+	path = motor_test/firmware/lib/EmbeddedLib
+	url = https://github.com/awesomeyooner/EmbeddedLib.git
+[submodule "motor_test/firmware/lib/WireLib"]
+	path = motor_test/firmware/lib/WireLib
+	url = https://github.com/awesomeyooner/WireLib.git
+[submodule "motor_test/firmware/lib/ActionLib"]
+	path = motor_test/firmware/lib/ActionLib
+	url = https://github.com/awesomeyooner/ActionLib.git
