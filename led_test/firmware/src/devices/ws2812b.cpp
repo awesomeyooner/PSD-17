@@ -48,14 +48,61 @@ void WS2812B::set_color(int index, uint8_t r, uint8_t g, uint8_t b)
     m_pixel_data.at(index).color.g = g;
     m_pixel_data.at(index).color.b = b;
 
-} // end of "set_color(int, uint8_t, uint8_t, uint8_T)"
+} // end of "set_color(int, uint8_t, uint8_t, uint8_t)"
+
+
+void WS2812B::set_color(int index, ColorData color_data)
+{
+    // Out-of-Bounds check
+    if(index > m_pixel_data.size() - 1 || index < 0)
+        return;
+
+    m_pixel_data.at(index).color.r = color_data.color.r;
+    m_pixel_data.at(index).color.g = color_data.color.g;
+    m_pixel_data.at(index).color.b = color_data.color.b;
+
+} // end of "set_color(int, ColorData)"
+
+
+void WS2812B::set_color(int start, int end, uint8_t r, uint8_t g, uint8_t b)
+{
+    for(int i = start; i < end; i++)
+    {
+        set_color(i, r, g, b);
+    }
+
+} // end of "set_color(int, int, uint8_t, uint8_t, uint8_t)"
+
+
+void WS2812B::set_color(int start, int end, ColorData color_data)
+{
+    for(int i = start; i < end; i++)
+    {
+        set_color(i, color_data);
+    }
+
+} // end of "set_color(int, int, uint8_t, uint8_t, uint8_t)"
+
+
+void WS2812B::set_color(uint8_t r, uint8_t g, uint8_t b)
+{
+    set_color(0, m_num_leds - 1, r, g, b);
+
+} // end of "set_color(uint8_t, uint8_t, uint8_t)"
+
+
+void WS2812B::set_color(ColorData color_data)
+{
+    set_color(0, m_num_leds - 1, color_data);
+
+} // end of "set_color(int, int, uint8_t, uint8_t, uint8_t)"
 
 
 StatusCode WS2812B::update()
 {
     // If DMA isn't ready then fail
-    // if(!m_is_dma_ready)
-    //     return StatusCode::FAILED;
+    if(!m_is_dma_ready)
+        return StatusCode::FAILED;
 
     int dma_buffer_index = 0;
 
@@ -63,9 +110,13 @@ StatusCode WS2812B::update()
     {
         for(uint8_t bit_index = 0; bit_index < BITS_PER_LED; bit_index++)
         {
+            uint8_t byte = (bit_index / 8) * 8;
+            uint8_t bit = 7 - (bit_index % 8);
+            uint8_t bitIndex = byte + bit;
+
             // If the bit has been set
             // Then set it HIGH in DMA
-            if(m_pixel_data.at(led_index).data >> bit_index & 0x01)
+            if((m_pixel_data.at(led_index).data >> bitIndex) & 0x01)
                 m_dma_buffer.at(dma_buffer_index) = CODE_1;
             // Else set it LOW
             else
@@ -76,8 +127,6 @@ StatusCode WS2812B::update()
     }
 
     auto dma_status = HAL_TIM_PWM_Start_DMA(m_timer, m_channel, m_dma_buffer.data(), m_dma_buffer.size());
-
-    Serial.info(m_dma_buffer.size());
 
     if(dma_status == HAL_OK)
     {    

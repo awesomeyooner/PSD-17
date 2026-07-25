@@ -35,7 +35,7 @@ using namespace std;
 
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 AS5047 sensor = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
-WS2812B leds = WS2812B(1, &htim2, TIM_CHANNEL_1);
+WS2812B leds = WS2812B(6, &htim2, TIM_CHANNEL_1);
 
 void init()
 {
@@ -83,12 +83,33 @@ void update()
 
     // HAL_Delay(10);
 
-    leds.set_color(0, 255, 0, 0);
-    StatusCode code = leds.update();
-
-    Serial.info(status_to_string(code));
+    leds.set_color(WS2812B::RED);
+    leds.update();
 
     HAL_Delay(500);
+
+    // leds.set_color(0, 0, 255, 0);
+    // leds.set_color(1, 0, 255, 0);
+    leds.set_color(WS2812B::GREEN);
+    leds.update();
+
+    HAL_Delay(500);
+
+    // leds.set_color(0, 0, 0, 255);
+    // leds.set_color(1, 0, 0, 255);
+    leds.set_color(WS2812B::BLUE);
+    leds.update();
+
+    HAL_Delay(500);
+
+    // leds.set_color(0, 255, 255, 255);
+    // leds.set_color(1, 255, 255, 255);
+    leds.set_color(WS2812B::WHITE);
+    leds.update();
+
+    HAL_Delay(500);
+
+    // Serial.info("Alive");
 
 } // end of "update()"
 
@@ -98,5 +119,4 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 {
     leds.dma_callback();
 
-    // Serial.info("Callback");
 }
