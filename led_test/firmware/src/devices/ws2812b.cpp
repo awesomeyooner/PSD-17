@@ -119,8 +119,6 @@ StatusCode WS2812B::set_color(ColorData color_data)
 
 StatusCode WS2812B::update()
 {
-    Serial.info(CODE_1);
-
     // If DMA isn't ready then fail
     if(!m_is_dma_ready)
         return StatusCode::FAILED;

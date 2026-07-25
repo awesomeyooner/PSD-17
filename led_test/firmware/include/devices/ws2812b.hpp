@@ -5,8 +5,6 @@
 #include "EmbeddedLib/status.hpp"
 #include "EmbeddedLib/devices/timer_device.hpp"
 
-#include "WireLib/communication/protocols/serial_interface.hpp"
-
 #include "stm32f4xx_hal.h"
 #include "tim.h"
 

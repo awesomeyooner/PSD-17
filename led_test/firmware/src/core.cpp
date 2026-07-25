@@ -1,10 +1,10 @@
 #include "core.hpp"
 
 #include "devices/as5047.hpp"
-#include "devices/ws2812b.hpp"
 
 #include "EmbeddedLib/system.hpp"
 #include "EmbeddedLib/devices/led.hpp"
+#include "EmbeddedLib/devices/ws2812b.hpp"
 #include "EmbeddedLib/devices/gpio_device.hpp"
 #include "EmbeddedLib/math/math_util.hpp"
 
