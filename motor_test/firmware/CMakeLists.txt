@@ -48,6 +48,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 
     src/devices/as5047.cpp
     src/devices/ws2812b.cpp
+    src/devices/l298n.cpp
     
     # src/devices/l298n.cpp
     # src/devices/servo.cpp
