@@ -58,7 +58,6 @@ void init()
 
     ActionManager::add(blink);
 
-    HAL_ADC_Start(&hadc1);
 } // end of "init()"
 
 
