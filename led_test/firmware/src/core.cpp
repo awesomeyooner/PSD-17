@@ -1,6 +1,7 @@
 #include "core.hpp"
 
 #include "devices/as5047.hpp"
+#include "devices/ws2812b.hpp"
 
 #include "EmbeddedLib/system.hpp"
 #include "EmbeddedLib/devices/led.hpp"
@@ -21,6 +22,8 @@
 #include "usb_device.h"
 #include "gpio.h"
 
+#include "stm32f4xx_hal_tim.h"
+
 #include <stdio.h>
 #include <functional>
 
@@ -32,7 +35,7 @@ using namespace std;
 
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 AS5047 sensor = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
-
+WS2812B leds = WS2812B(1, &htim2, TIM_CHANNEL_1);
 
 void init()
 {
@@ -58,6 +61,8 @@ void init()
 
     ActionManager::add(blink);
 
+    leds.init();
+
 } // end of "init()"
 
 
@@ -65,15 +70,30 @@ void update()
 {
     // ActionManager::update();
 
-    double counts = sensor.get_raw_counts();
+    // double counts = sensor.get_raw_counts();
 
-    int CPR = 16384;
+    // int CPR = 16384;
 
-    double data = (counts / CPR) * 2 * M_PI;
+    // double data = (counts / CPR) * 2 * M_PI;
 
-    Serial.info(counts);
+    // Serial.info(counts);
 
-    HAL_Delay(10);
+    // HAL_Delay(10);
 
+    leds.set_color(0, 255, 0, 0);
+    StatusCode code = leds.update();
+
+    Serial.info(status_to_string(code));
+
+    HAL_Delay(500);
 
 } // end of "update()"
+
+
+// Define DMA Callback
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
+{
+    leds.dma_callback();
+
+    Serial.info("Callback");
+}
