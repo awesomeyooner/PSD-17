@@ -61,3 +61,17 @@ void L298N::stop()
     set_percent(0);
 
 } // end of "stop()"
+
+
+TimerDevice& L298N::get_IN1()
+{
+    return m_in1;
+
+} // end of "get_IN1()"
+
+
+TimerDevice& L298N::get_IN2()
+{
+    return m_in2;
+
+} // end of "get_IN2()"

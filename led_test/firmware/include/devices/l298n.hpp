@@ -54,6 +54,10 @@ class L298N
          */
         void stop();
 
+        TimerDevice& get_IN1();
+
+        TimerDevice& get_IN2();
+
     private:
 
         // IN1 Channel
