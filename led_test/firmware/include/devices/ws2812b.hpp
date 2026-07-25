@@ -19,6 +19,12 @@
  * After creating the object with the constructor,
  * call `init()` and `set_color()`
  * 
+ * You can set colors using `set_color` with individual RGB values, or use
+ * 
+ * ```cpp
+ * set_color(WS2812B::<COLOR>)
+ * ```
+ * 
  * After creating the object, please put this so that DMA works correctly
  * 
  * ```cpp
