@@ -1,6 +1,7 @@
 #include "core.hpp"
 
 #include "devices/as5047.hpp"
+#include "devices/l298n.hpp"
 
 #include "EmbeddedLib/system.hpp"
 #include "EmbeddedLib/devices/led.hpp"
@@ -35,7 +36,8 @@ using namespace std;
 
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 AS5047 sensor = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
-WS2812B leds = WS2812B(6, &htim2, TIM_CHANNEL_1);
+L298N phase_a = L298N(&htim2, TIM_CHANNEL_1, TIM_CHANNEL_4);
+L298N phase_b = L298N(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
 
 void init()
 {
@@ -61,17 +63,15 @@ void init()
 
     ActionManager::add(blink);
 
-    if(leds.init() == StatusCode::OK)
-        led.set_high();
-    else
-        led.set_low();
+    phase_a.init();
+    phase_b.init();
 
 } // end of "init()"
 
 
 void update()
 {
-    // ActionManager::update();
+    ActionManager::update();
 
     // double counts = sensor.get_raw_counts();
 
@@ -83,24 +83,12 @@ void update()
 
     // HAL_Delay(10);
 
-    leds.set_color(WS2812B::RED);
-    HAL_Delay(500);
-
-    leds.set_color(WS2812B::GREEN);
-    HAL_Delay(500);
-
-    leds.set_color(WS2812B::BLUE);
-    HAL_Delay(500);
-
-    leds.set_color(WS2812B::WHITE);
-    HAL_Delay(500);
-
 } // end of "update()"
 
 
-// Define DMA Callback
-void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
-{
-    leds.dma_callback();
+// // Define DMA Callback
+// void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
+// {
+//     leds.dma_callback();
 
-}
+// }
