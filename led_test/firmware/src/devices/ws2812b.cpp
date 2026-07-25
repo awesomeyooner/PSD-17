@@ -6,10 +6,9 @@ using namespace status_utils;
 
 
 WS2812B::WS2812B(int num_leds, TIM_HandleTypeDef* timer, int channel)
+    : m_timer(timer, channel)
 {
     m_num_leds = num_leds;
-    m_timer = timer;
-    m_channel = channel;
 
     m_dma_buf_len = (m_num_leds * BITS_PER_LED) + RESET_PERIODS;
 
@@ -22,7 +21,7 @@ WS2812B::WS2812B(int num_leds, TIM_HandleTypeDef* timer, int channel)
 StatusCode WS2812B::init()
 {
     // Init PWM
-    StatusCode timer_init = HAL_TIM_PWM_Init(m_timer) == HAL_OK ? StatusCode::OK : StatusCode::FAILED;
+    StatusCode timer_init = HAL_TIM_PWM_Init(m_timer.get_timer()) == HAL_OK ? StatusCode::OK : StatusCode::FAILED;
 
     // Clear the DMA buffer
     for(int i = 0; i < m_dma_buf_len; i++)
@@ -126,7 +125,7 @@ StatusCode WS2812B::update()
         }
     }
 
-    auto dma_status = HAL_TIM_PWM_Start_DMA(m_timer, m_channel, m_dma_buffer.data(), m_dma_buffer.size());
+    auto dma_status = HAL_TIM_PWM_Start_DMA(m_timer.get_timer(), m_timer.get_channel(), m_dma_buffer.data(), m_dma_buffer.size());
 
     if(dma_status == HAL_OK)
     {    
@@ -141,7 +140,7 @@ StatusCode WS2812B::update()
 
 void WS2812B::dma_callback()
 {
-    HAL_TIM_PWM_Stop_DMA(m_timer, m_channel);
+    HAL_TIM_PWM_Stop_DMA(m_timer.get_timer(), m_timer.get_channel());
 
     m_is_dma_ready = true;
 

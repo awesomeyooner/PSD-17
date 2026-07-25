@@ -3,6 +3,7 @@
 
 
 #include "EmbeddedLib/status.hpp"
+#include "EmbeddedLib/devices/timer_device.hpp"
 
 #include "WireLib/communication/protocols/serial_interface.hpp"
 
@@ -185,11 +186,7 @@ class WS2812B
         // Number of LEDs to control
         int m_num_leds = 0;
         
-        // The timer that controls the PWM
-        TIM_HandleTypeDef* m_timer = nullptr;
-
-        // The channel to use
-        int m_channel = -1;
+        TimerDevice m_timer;
 
         // Length of the DMA buffer
         int m_dma_buf_len = 0;
