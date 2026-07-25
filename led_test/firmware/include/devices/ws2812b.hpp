@@ -171,17 +171,24 @@ class WS2812B
 
     private:
 
+        // The timer frequency needed to communicate to the LEDs
+        static constexpr int LED_FREQUENCY = 800000; // 800 kHz
+
         // The number of bits in a single data packet
         static constexpr int BITS_PER_LED = 24; // 8G, 8R, 8B in MSB
 
-        // Duty cycle for High Time to send 1
-        static constexpr int CODE_1 = 64; // 0.8 us
+        static constexpr double T1H = 0.0000008; // 0.8 us
+        static constexpr double T0H = 0.0000004; // 0.4 us
+        static constexpr double T_RESET = 0.000064; // 64 us
 
-        // Duty cycle for High Time to send 0
-        static constexpr int CODE_0 = 32; // 0.8
+        // Duty cycle for High Time to send 1, defaulted for `ARR = 100`
+        int CODE_1 = 64; // 0.8 us
 
-        // How many periods of low to send a reset signal
-        static constexpr int RESET_PERIODS = 64; // 80 us
+        // Duty cycle for High Time to send 0, defaulted for `ARR = 100`
+        int CODE_0 = 32; // 0.4 us
+
+        // How many periods of low to send a reset signal, defaulted for `ARR = 100`
+        int RESET_PERIODS = 64; // 80 us
 
         // Number of LEDs to control
         int m_num_leds = 0;

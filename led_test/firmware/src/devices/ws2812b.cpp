@@ -23,6 +23,14 @@ StatusCode WS2812B::init()
     // Init PWM
     StatusCode timer_init = HAL_TIM_PWM_Init(m_timer.get_timer()) == HAL_OK ? StatusCode::OK : StatusCode::FAILED;
 
+    // Calculate the CCRs for each 1 and 0 code as well as reset period
+    int ARR = m_timer.get_ARR() + 1;
+    
+    CODE_1 = LED_FREQUENCY * T1H * ARR;
+    CODE_0 = LED_FREQUENCY * T0H * ARR;
+
+    RESET_PERIODS = (int)(LED_FREQUENCY * T_RESET);
+
     // Clear the DMA buffer
     for(int i = 0; i < m_dma_buf_len; i++)
     {
@@ -99,6 +107,8 @@ void WS2812B::set_color(ColorData color_data)
 
 StatusCode WS2812B::update()
 {
+    Serial.info(CODE_1);
+
     // If DMA isn't ready then fail
     if(!m_is_dma_ready)
         return StatusCode::FAILED;
