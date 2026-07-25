@@ -84,32 +84,16 @@ void update()
     // HAL_Delay(10);
 
     leds.set_color(WS2812B::RED);
-    leds.update();
-
     HAL_Delay(500);
 
-    // leds.set_color(0, 0, 255, 0);
-    // leds.set_color(1, 0, 255, 0);
     leds.set_color(WS2812B::GREEN);
-    leds.update();
-
     HAL_Delay(500);
 
-    // leds.set_color(0, 0, 0, 255);
-    // leds.set_color(1, 0, 0, 255);
     leds.set_color(WS2812B::BLUE);
-    leds.update();
-
     HAL_Delay(500);
 
-    // leds.set_color(0, 255, 255, 255);
-    // leds.set_color(1, 255, 255, 255);
     leds.set_color(WS2812B::WHITE);
-    leds.update();
-
     HAL_Delay(500);
-
-    // Serial.info("Alive");
 
 } // end of "update()"
 

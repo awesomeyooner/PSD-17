@@ -45,62 +45,74 @@ StatusCode WS2812B::init()
 } // end of "init()"
 
 
-void WS2812B::set_color(int index, uint8_t r, uint8_t g, uint8_t b)
+StatusCode WS2812B::set_color(int index, uint8_t r, uint8_t g, uint8_t b)
 {
     // Out-of-Bounds check
     if(index > m_pixel_data.size() - 1 || index < 0)
-        return;
+        return StatusCode::FAILED;
 
     m_pixel_data.at(index).color.r = r;
     m_pixel_data.at(index).color.g = g;
     m_pixel_data.at(index).color.b = b;
 
+    return update();
+
 } // end of "set_color(int, uint8_t, uint8_t, uint8_t)"
 
 
-void WS2812B::set_color(int index, ColorData color_data)
+StatusCode WS2812B::set_color(int index, ColorData color_data)
 {
     // Out-of-Bounds check
     if(index > m_pixel_data.size() - 1 || index < 0)
-        return;
+        return StatusCode::FAILED;
 
     m_pixel_data.at(index).color.r = color_data.color.r;
     m_pixel_data.at(index).color.g = color_data.color.g;
     m_pixel_data.at(index).color.b = color_data.color.b;
 
+    return update();
+
 } // end of "set_color(int, ColorData)"
 
 
-void WS2812B::set_color(int start, int end, uint8_t r, uint8_t g, uint8_t b)
+StatusCode WS2812B::set_color(int start, int end, uint8_t r, uint8_t g, uint8_t b)
 {
     for(int i = start; i < end; i++)
     {
         set_color(i, r, g, b);
     }
 
+    return update();
+
 } // end of "set_color(int, int, uint8_t, uint8_t, uint8_t)"
 
 
-void WS2812B::set_color(int start, int end, ColorData color_data)
+StatusCode WS2812B::set_color(int start, int end, ColorData color_data)
 {
     for(int i = start; i < end; i++)
     {
         set_color(i, color_data);
     }
 
+    return update();
+
 } // end of "set_color(int, int, uint8_t, uint8_t, uint8_t)"
 
 
-void WS2812B::set_color(uint8_t r, uint8_t g, uint8_t b)
+StatusCode WS2812B::set_color(uint8_t r, uint8_t g, uint8_t b)
 {
     set_color(0, m_num_leds - 1, r, g, b);
+
+    return update();
 
 } // end of "set_color(uint8_t, uint8_t, uint8_t)"
 
 
-void WS2812B::set_color(ColorData color_data)
+StatusCode WS2812B::set_color(ColorData color_data)
 {
     set_color(0, m_num_leds - 1, color_data);
+
+    return update();
 
 } // end of "set_color(int, int, uint8_t, uint8_t, uint8_t)"
 
