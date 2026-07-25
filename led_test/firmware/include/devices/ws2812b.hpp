@@ -18,6 +18,29 @@
  * After creating the object with the constructor,
  * call `init()` and `set_color()`, followed by `update()`
  * 
+ * To set this up in CubeMX, ensure the following:
+ * 
+ * - Timer frequency is 800kHz
+ * 
+ * In `DMA Settings`
+ * 
+ * Add a new request in `Normal` mode
+ * 
+ * - Direction = `Memory to Peripheral`
+ * 
+ * - Use Fifo = `checked`
+ * 
+ * - Increment Address (Peripheral) = `Disabled`
+ * 
+ * - Increment Address (Memory) = `Enabled`
+ * 
+ * - Data Width (both) = `Word`
+ * 
+ * - Burst Size (both) = `Single`
+ * 
+ * In `NVIC Settings`
+ * 
+ * - `TIMx global interrupt` = `Enabled`
  */
 class WS2812B
 {
