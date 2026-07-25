@@ -27,7 +27,7 @@ StatusCode WS2812B::init()
     // Clear the DMA buffer
     for(int i = 0; i < m_dma_buf_len; i++)
     {
-        m_dma_buffer[i] = 0;
+        m_dma_buffer.at(i) = 0;
     }
 
     // Set the DMA transfer flag ready
@@ -54,8 +54,8 @@ void WS2812B::set_color(int index, uint8_t r, uint8_t g, uint8_t b)
 StatusCode WS2812B::update()
 {
     // If DMA isn't ready then fail
-    if(!m_is_dma_ready)
-        return StatusCode::FAILED;
+    // if(!m_is_dma_ready)
+    //     return StatusCode::FAILED;
 
     int dma_buffer_index = 0;
 
@@ -75,13 +75,17 @@ StatusCode WS2812B::update()
         }
     }
 
-    StatusCode dma_status = HAL_TIM_PWM_Start_DMA(m_timer, m_channel, m_dma_buffer.data(), m_dma_buffer.size()) == HAL_OK ? 
-        StatusCode::OK : StatusCode::FAILED;
+    auto dma_status = HAL_TIM_PWM_Start_DMA(m_timer, m_channel, m_dma_buffer.data(), m_dma_buffer.size());
 
-    if(dma_status == StatusCode::OK)
+    Serial.info(m_dma_buffer.size());
+
+    if(dma_status == HAL_OK)
+    {    
         m_is_dma_ready = false;
+        return StatusCode::OK;
+    }
 
-    return dma_status;
+    return StatusCode::FAILED;
 
 } // end of "update()"
 

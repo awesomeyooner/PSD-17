@@ -61,7 +61,10 @@ void init()
 
     ActionManager::add(blink);
 
-    leds.init();
+    if(leds.init() == StatusCode::OK)
+        led.set_high();
+    else
+        led.set_low();
 
 } // end of "init()"
 
@@ -95,5 +98,5 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 {
     leds.dma_callback();
 
-    Serial.info("Callback");
+    // Serial.info("Callback");
 }

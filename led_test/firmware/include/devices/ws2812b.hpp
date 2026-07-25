@@ -4,6 +4,8 @@
 
 #include "EmbeddedLib/status.hpp"
 
+#include "WireLib/communication/protocols/serial_interface.hpp"
+
 #include "stm32f4xx_hal.h"
 #include "tim.h"
 
