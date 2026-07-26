@@ -63,15 +63,21 @@ void init()
 
     ActionManager::add(blink);
 
-    phase_a.init();
-    phase_b.init();
+    auto a = phase_a.init();
+    auto b = phase_b.init();
+
+    if(a != StatusCode::OK || b != StatusCode::OK)
+        led.set_high();
+
+    __HAL_RCC_TIM2_CLK_ENABLE(); 
+    TIM2->CCR1 = 4000;
 
 } // end of "init()"
 
 
 void update()
 {
-    ActionManager::update();
+    // ActionManager::update();
 
     // double counts = sensor.get_raw_counts();
 
@@ -82,6 +88,15 @@ void update()
     // Serial.info(counts);
 
     // HAL_Delay(10);
+
+    phase_a.set_percent(1);
+    phase_b.set_percent(0.5);
+
+    HAL_TIM_GenerateEvent(&htim2, TIM_EVENTSOURCE_UPDATE); 
+
+
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 4000);
+    Serial.info(__HAL_TIM_GET_COMPARE(&htim2, TIM_CHANNEL_1));
 
 } // end of "update()"
 
