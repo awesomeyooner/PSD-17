@@ -36,8 +36,8 @@ using namespace std;
 
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 AS5047 sensor = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
-L298N phase_a = L298N(&htim2, TIM_CHANNEL_1, TIM_CHANNEL_4);
-L298N phase_b = L298N(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+// L298N phase_a = L298N(&htim2, TIM_CHANNEL_1, TIM_CHANNEL_4);
+// L298N phase_b = L298N(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
 
 void init()
 {
@@ -63,20 +63,28 @@ void init()
 
     ActionManager::add(blink);
 
-    auto a = phase_a.init();
-    auto b = phase_b.init();
+    // phase_a.init();
+    // phase_b.init();
 
-    if(a != StatusCode::OK || b != StatusCode::OK)
-        led.set_high();
+    led.set_high();
 
+    HAL_TIM_Base_Init(&htim2);
+    HAL_TIM_Base_Start(&htim2);
+
+    HAL_TIM_PWM_Init(&htim2);
+    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+
+    // HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
     __HAL_RCC_TIM2_CLK_ENABLE(); 
-    TIM2->CCR1 = 4000;
+    // TIM2->CCR1 = 4000;
 
 } // end of "init()"
 
 
 void update()
 {
+    led.set_high();
+
     // ActionManager::update();
 
     // double counts = sensor.get_raw_counts();
@@ -89,13 +97,10 @@ void update()
 
     // HAL_Delay(10);
 
-    phase_a.set_percent(1);
-    phase_b.set_percent(0.5);
+    // phase_a.set_percent(1);
+    // phase_b.set_percent(0.5);
 
-    HAL_TIM_GenerateEvent(&htim2, TIM_EVENTSOURCE_UPDATE); 
-
-
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 4000);
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 49999);
     Serial.info(__HAL_TIM_GET_COMPARE(&htim2, TIM_CHANNEL_1));
 
 } // end of "update()"

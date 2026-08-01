@@ -509,9 +509,18 @@
       {
         "bus_width": 12,
         "line_style": 0,
+        "name": "BL9342",
+        "pcb_color": "rgb(255, 145, 0)",
+        "priority": 0,
+        "schematic_color": "rgb(255, 145, 0)",
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
         "name": "CAN",
         "pcb_color": "rgb(86, 255, 0)",
-        "priority": 1,
+        "priority": 4,
         "schematic_color": "rgb(86, 255, 0)",
         "wire_width": 6
       },
@@ -520,7 +529,7 @@
         "line_style": 0,
         "name": "GND",
         "pcb_color": "rgb(72, 72, 72)",
-        "priority": 6,
+        "priority": 9,
         "schematic_color": "rgb(72, 72, 72)",
         "wire_width": 6
       },
@@ -528,26 +537,26 @@
         "bus_width": 12,
         "line_style": 0,
         "name": "I2C",
-        "pcb_color": "rgb(0, 29, 255)",
-        "priority": 0,
-        "schematic_color": "rgb(0, 29, 255)",
+        "pcb_color": "rgb(147, 169, 255)",
+        "priority": 3,
+        "schematic_color": "rgb(147, 169, 255)",
         "wire_width": 6
       },
       {
         "bus_width": 12,
         "line_style": 0,
-        "name": "PHASE_OUT_A",
+        "name": "PHASE_A",
         "pcb_color": "rgb(255, 0, 255)",
-        "priority": 3,
+        "priority": 6,
         "schematic_color": "rgb(255, 0, 255)",
         "wire_width": 6
       },
       {
         "bus_width": 12,
         "line_style": 0,
-        "name": "PHASE_OUT_B",
+        "name": "PHASE_B",
         "pcb_color": "rgb(0, 255, 255)",
-        "priority": 2,
+        "priority": 5,
         "schematic_color": "rgb(0, 255, 255)",
         "wire_width": 6
       },
@@ -556,7 +565,7 @@
         "line_style": 0,
         "name": "PWR",
         "pcb_color": "rgb(255, 0, 0)",
-        "priority": 5,
+        "priority": 8,
         "schematic_color": "rgb(255, 0, 0)",
         "wire_width": 6
       },
@@ -565,8 +574,26 @@
         "line_style": 0,
         "name": "SIG_INPUT",
         "pcb_color": "rgb(0, 0, 255)",
-        "priority": 4,
+        "priority": 7,
         "schematic_color": "rgb(0, 0, 255)",
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "name": "SPI",
+        "pcb_color": "rgb(25, 161, 38)",
+        "priority": 2,
+        "schematic_color": "rgb(25, 161, 38)",
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "name": "TPS",
+        "pcb_color": "rgb(255, 238, 10)",
+        "priority": 1,
+        "schematic_color": "rgb(255, 238, 10)",
         "wire_width": 6
       }
     ],
@@ -589,18 +616,6 @@
         "pattern": "+3.3V"
       },
       {
-        "netclass": "SIG_INPUT",
-        "pattern": "/PMODE*"
-      },
-      {
-        "netclass": "PHASE_OUT_A",
-        "pattern": "/Phase_A*"
-      },
-      {
-        "netclass": "PHASE_OUT_B",
-        "pattern": "/Phase_B*"
-      },
-      {
         "netclass": "CAN",
         "pattern": "/CAN*"
       },
@@ -611,6 +626,26 @@
       {
         "netclass": "PWR",
         "pattern": "+5V"
+      },
+      {
+        "netclass": "SPI",
+        "pattern": "/SPI*"
+      },
+      {
+        "netclass": "PHASE_A",
+        "pattern": "/A_*"
+      },
+      {
+        "netclass": "PHASE_B",
+        "pattern": "/B_*"
+      },
+      {
+        "netclass": "TPS",
+        "pattern": "/TPS*"
+      },
+      {
+        "netclass": "BL9342",
+        "pattern": "/BL*"
       }
     ]
   },

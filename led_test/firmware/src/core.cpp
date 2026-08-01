@@ -35,9 +35,7 @@ using namespace std;
 
 
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
-AS5047 sensor = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
-L298N phase_a = L298N(&htim2, TIM_CHANNEL_1, TIM_CHANNEL_4);
-L298N phase_b = L298N(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+WS2812B rgb_leds = WS2812B(5, &htim2, TIM_CHANNEL_1);
 
 void init()
 {
@@ -53,18 +51,11 @@ void init()
         {
             led.toggle();
 
-            double data = sensor.get_angle();
-
-            Serial.info(data);
-
             return StatusedValue<bool>(false, StatusCode::OK);
         }
     );
 
     ActionManager::add(blink);
-
-    phase_a.init();
-    phase_b.init();
 
 } // end of "init()"
 
@@ -73,22 +64,5 @@ void update()
 {
     ActionManager::update();
 
-    // double counts = sensor.get_raw_counts();
-
-    // int CPR = 16384;
-
-    // double data = (counts / CPR) * 2 * M_PI;
-
-    // Serial.info(counts);
-
-    // HAL_Delay(10);
 
 } // end of "update()"
-
-
-// // Define DMA Callback
-// void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
-// {
-//     leds.dma_callback();
-
-// }
