@@ -10429,7 +10429,7 @@
 		)
 		(uuid "6ec3914c-ed52-4d2f-9d49-ef8d8700e13a")
 	)
-	(label "Phase_B+"
+	(label "B_OUT+"
 		(at 313.69 143.51 180)
 		(effects
 			(font
@@ -10529,7 +10529,7 @@
 		)
 		(uuid "91a12591-0468-4c75-82bd-d2c590e9d71a")
 	)
-	(label "Phase_A-"
+	(label "A_OUT-"
 		(at 313.69 146.05 180)
 		(effects
 			(font
@@ -10559,7 +10559,7 @@
 		)
 		(uuid "a25e62e4-5a47-4a04-a309-fa1e89775e4f")
 	)
-	(label "Phase_A+"
+	(label "A_OUT+"
 		(at 313.69 140.97 180)
 		(effects
 			(font
@@ -10759,7 +10759,7 @@
 		)
 		(uuid "eab166ae-c990-4884-b8e6-43418d9c31a5")
 	)
-	(label "Phase_B-"
+	(label "B_OUT-"
 		(at 313.69 148.59 180)
 		(effects
 			(font
