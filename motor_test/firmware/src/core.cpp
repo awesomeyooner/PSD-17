@@ -36,6 +36,7 @@ using namespace std;
 
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 AS5047 sensor = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
+TimerDevice timer_device = TimerDevice(&htim3, TIM_CHANNEL_4);
 // L298N phase_a = L298N(&htim2, TIM_CHANNEL_1, TIM_CHANNEL_4);
 // L298N phase_b = L298N(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
 
@@ -68,14 +69,14 @@ void init()
 
     led.set_high();
 
-    HAL_TIM_Base_Init(&htim2);
-    HAL_TIM_Base_Start(&htim2);
+    // HAL_TIM_Base_Init(&htim2);
+    // HAL_TIM_Base_Start(&htim2);
 
-    HAL_TIM_PWM_Init(&htim2);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+    // HAL_TIM_PWM_Init(&htim2);
+    // timer_device.init();
 
-    // HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-    __HAL_RCC_TIM2_CLK_ENABLE(); 
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
+    __HAL_RCC_TIM3_CLK_ENABLE(); 
     // TIM2->CCR1 = 4000;
 
 } // end of "init()"
@@ -100,8 +101,10 @@ void update()
     // phase_a.set_percent(1);
     // phase_b.set_percent(0.5);
 
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 49999);
-    Serial.info(__HAL_TIM_GET_COMPARE(&htim2, TIM_CHANNEL_1));
+    // timer_device.set_duty(0);
+    // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, 0);
+    // Serial.info(__HAL_TIM_GET_COMPARE(&htim2, TIM_CHANNEL_1));
 
 } // end of "update()"
 

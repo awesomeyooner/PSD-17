@@ -20,7 +20,6 @@
 #include "main.h"
 #include "adc.h"
 #include "can.h"
-#include "dma.h"
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
@@ -96,12 +95,11 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+    init();
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_ADC1_Init();
   MX_CAN1_Init();
   MX_I2C1_Init();
@@ -113,7 +111,7 @@ int main(void)
   MX_TIM8_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-    init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
