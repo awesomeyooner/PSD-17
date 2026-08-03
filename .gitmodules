@@ -31,3 +31,12 @@
 [submodule "motor_test/firmware/lib/ActionLib"]
 	path = motor_test/firmware/lib/ActionLib
 	url = https://github.com/awesomeyooner/ActionLib.git
+[submodule "barebones_test/firmware/lib/EmbeddedLib"]
+	path = barebones_test/firmware/lib/EmbeddedLib
+	url = https://github.com/awesomeyooner/EmbeddedLib.git
+[submodule "barebones_test/firmware/lib/ActionLib"]
+	path = barebones_test/firmware/lib/ActionLib
+	url = https://github.com/awesomeyooner/ActionLib.git
+[submodule "barebones_test/firmware/lib/WireLib"]
+	path = barebones_test/firmware/lib/WireLib
+	url = https://github.com/awesomeyooner/WireLib.git
