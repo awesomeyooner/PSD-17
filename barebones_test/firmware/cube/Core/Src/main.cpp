@@ -49,7 +49,15 @@
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void SystemClock_Config(void);
+
+#ifdef __cplusplus
+}
+#endif
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -93,7 +101,12 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
+
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+    htim8.Instance->ARR = 7999;
+
     HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
+    htim3.Instance->ARR = 7999;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -101,8 +114,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, 1000);
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, 0);
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, 4000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
