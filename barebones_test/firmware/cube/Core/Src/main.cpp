@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "EmbeddedLib/devices/timer_device.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,11 +102,11 @@ int main(void)
   MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
 
-    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
-    htim8.Instance->ARR = 7999;
+    TimerDevice t3c4 = TimerDevice(&htim3, TIM_CHANNEL_4);
+    TimerDevice t3c3 = TimerDevice(&htim3, TIM_CHANNEL_3);
 
-    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
-    htim3.Instance->ARR = 7999;
+    t3c4.init();
+    t3c3.init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -114,8 +114,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, 0);
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, 4000);
+    t3c4.set_duty(1);
+    t3c3.set_duty(0);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
