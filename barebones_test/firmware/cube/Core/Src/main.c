@@ -18,13 +18,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "spi.h"
 #include "tim.h"
 #include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "EmbeddedLib/devices/timer_device.hpp"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,15 +50,7 @@
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 void SystemClock_Config(void);
-
-#ifdef __cplusplus
-}
-#endif
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -100,13 +93,9 @@ int main(void)
   MX_TIM3_Init();
   MX_USB_DEVICE_Init();
   MX_TIM8_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
-    TimerDevice t3c4 = TimerDevice(&htim3, TIM_CHANNEL_4);
-    TimerDevice t3c3 = TimerDevice(&htim3, TIM_CHANNEL_3);
-
-    t3c4.init();
-    t3c3.init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -114,8 +103,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    t3c4.set_duty(1);
-    t3c3.set_duty(0);
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
