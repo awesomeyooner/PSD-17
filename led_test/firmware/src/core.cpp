@@ -39,6 +39,8 @@ WS2812B rgb_leds = WS2812B(5, &htim2, TIM_CHANNEL_1);
 
 void init()
 {
+    rgb_leds.init();
+    
     ActionManager::init();
 
     Serial.set_parse_type(ParseType::RAW);
@@ -64,5 +66,14 @@ void update()
 {
     ActionManager::update();
 
+    rgb_leds.set_color(WS2812B::BLUE);
+
 
 } // end of "update()"
+
+
+// Define DMA Callback
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
+{
+    rgb_leds.dma_callback();
+}
