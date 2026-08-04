@@ -40,3 +40,6 @@
 [submodule "barebones_test/firmware/lib/WireLib"]
 	path = barebones_test/firmware/lib/WireLib
 	url = https://github.com/awesomeyooner/WireLib.git
+[submodule "barebones_test/firmware/lib/PolarFOC"]
+	path = barebones_test/firmware/lib/PolarFOC
+	url = https://github.com/awesomeyooner/PolarFOC.git
