@@ -50,6 +50,34 @@ double get_electrical_angle();
 double get_angle_offset(double voltage = 12);
 
 
+double pole_pairs = 0;
+
+
+void get_pole_pairs()
+{
+    HAL_Delay(500);
+
+    as5047.refresh();
+    double starting = as5047.get_angle();
+
+    int steps = 50;
+
+    for(int i = 0; i < steps; i++)
+    {
+        as5047.refresh();
+        step();
+        HAL_Delay(100);
+    }
+
+    as5047.refresh();
+    double ending = as5047.get_angle();
+
+    double diff = fabs(starting - ending);
+
+    pole_pairs = ending;
+}
+
+
 void init()
 {
     Serial.set_parse_type(ParseType::RAW);
@@ -64,6 +92,8 @@ void init()
 
     offset = get_angle_offset();
 
+    get_pole_pairs();
+
 } // end of "init()"
 
 
@@ -71,15 +101,29 @@ void update()
 {   
     led.set_high();
 
-    double electrical_angle = get_electrical_angle();
+    // step(12, 3);
 
-    inverse_park(
-        get_electrical_angle(),
-        0,
-        5
-    );
+    // HAL_Delay(5);
 
-    Serial.println(electrical_angle, 9);
+    // double electrical_angle = get_electrical_angle();
+
+    // inverse_park(
+    //     get_electrical_angle(),
+    //     0,
+    //     5
+    // );
+
+    // Serial.println(pole_pairs);
+
+    phase_A.stop();
+    phase_B.stop();
+
+    as5047.refresh();
+    Serial.println(as5047.get_angle());
+
+    // Serial.println(pole_pairs);
+
+    // Serial.println(electrical_angle, 9);
 
 } // end of "update()"
 
@@ -96,31 +140,46 @@ void inverse_park(double el_angle, double vd, double vq)
 
 void step(double voltage, double delay_ms)
 {
+    // 0 Degrees
     phase_A.set_voltage(voltage);
     phase_B.set_voltage(0);
-
     HAL_Delay(delay_ms);
 
+    // 45 Degrees
+    phase_A.set_voltage(voltage);
+    phase_B.set_voltage(voltage);
+    HAL_Delay(delay_ms);
+
+    // 90 Degrees
     phase_A.set_voltage(0);
     phase_B.set_voltage(voltage);
-
     HAL_Delay(delay_ms);
 
+    // 135 Degrees
+    phase_A.set_voltage(-voltage);
+    phase_B.set_voltage(voltage);
+    HAL_Delay(delay_ms);
+
+    // 180 Degrees
     phase_A.set_voltage(-voltage);
     phase_B.set_voltage(0);
-
     HAL_Delay(delay_ms);
 
+    // 235 Degrees
+    phase_A.set_voltage(-voltage);
+    phase_B.set_voltage(-voltage);
+    HAL_Delay(delay_ms);
+
+    // 270 Degrees
     phase_A.set_voltage(0);
     phase_B.set_voltage(-voltage);
-
     HAL_Delay(delay_ms);
 }
 
 
 double get_electrical_angle()
 {
-    return (as5047.get_angle() -offset) * 50;
+    return (as5047.get_angle() - offset) * 50;
 }
 
 
