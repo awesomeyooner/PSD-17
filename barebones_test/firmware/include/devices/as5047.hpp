@@ -43,6 +43,8 @@ class AS5047
          * This function is not yet implemented, so no need to call it. Just make sure you
          * correctly setup SPI to be SPI1 mode.
          * 
+         * The max baudrate is 10 MHz, or 10 MBits/s
+         * 
          * `Frame Format = Motorola`
          * 
          * `Data Size = 16 Bits`

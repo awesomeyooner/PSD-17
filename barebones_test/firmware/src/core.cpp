@@ -13,6 +13,7 @@
 #include "ActionLib/ActionManager.hpp"
 
 #include "devices/as5047.hpp"
+#include "devices/l298n.hpp"
 
 #include "spi.h"
 #include "tim.h"
@@ -31,10 +32,8 @@ using namespace std;
 
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 
-TimerDevice t3c4 = TimerDevice(&htim3, TIM_CHANNEL_4);
-TimerDevice t3c3 = TimerDevice(&htim3, TIM_CHANNEL_3);
-TimerDevice t3c2 = TimerDevice(&htim3, TIM_CHANNEL_2);
-TimerDevice t3c1 = TimerDevice(&htim3, TIM_CHANNEL_1);
+L298N phase_A = L298N(&htim3, TIM_CHANNEL_3, TIM_CHANNEL_4);
+L298N phase_B = L298N(&htim3, TIM_CHANNEL_1, TIM_CHANNEL_2);
 
 AS5047 as5047 = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
 
@@ -42,10 +41,8 @@ void init()
 {
     Serial.set_parse_type(ParseType::RAW);
 
-    t3c4.init();
-    t3c3.init();
-    t3c2.init();
-    t3c1.init();
+    phase_A.init();
+    phase_B.init();
 
     as5047.init();
 
@@ -56,9 +53,11 @@ void update()
 {   
     led.set_high();
 
-    t3c4.set_duty(0.8);
-    t3c3.set_duty(0.6);
-    t3c2.set_duty(0.4);
-    t3c1.set_duty(0.2);
+    phase_A.set_percent(0.5);
+    phase_B.set_percent(0.25);
+
+    double data = as5047.get_angle();
+
+    Serial.println(data, 9);
 
 } // end of "update()"
