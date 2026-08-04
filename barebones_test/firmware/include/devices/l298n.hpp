@@ -31,6 +31,21 @@ class L298N
         status_utils::StatusCode init();
 
         /**
+         * @brief Set the input voltage
+         * 
+         * @param input_voltage `double`
+         */
+        void set_input_voltage(double input_voltage);
+
+        /**
+         * @brief Gets the input voltage. Note this does not READ voltage but rather
+         * returns the input voltage set in code
+         * 
+         * @return `double` -1 if not set 
+         */
+        double get_input_voltage();
+
+        /**
          * @brief Sets the percent output of the motor, from `[-1, 1]`. 
          * 
          * Example: `0.5` is 50% output in the forward direction. `-0.5` will be reverse
@@ -40,6 +55,13 @@ class L298N
          * @param percent `double` The percent speed from `[-1, 1]`
          */
         void set_percent(double percent);
+
+        /**
+         * @brief Set the output voltage. This only works if `set_input_voltage()` is called.
+         * 
+         * @param voltage `double`
+         */
+        void set_voltage(double voltage);
 
         /**
          * @brief Gets the percent output command sent to the motor, from `[-1, 1]
@@ -54,8 +76,18 @@ class L298N
          */
         void stop();
 
+        /**
+         * @brief Get the underlying `TimerDevice` for the IN1 channel
+         * 
+         * @return `TimerDevice&` 
+         */
         TimerDevice& get_IN1();
 
+        /**
+         * @brief Get the underlying `TimerDevice` for the IN2 channel
+         * 
+         * @return `TimerDevice&` 
+         */
         TimerDevice& get_IN2();
 
     private:
@@ -68,6 +100,8 @@ class L298N
 
         // Bookkeeping for the percent output applied [-1, 1]
         double m_percent = 0;
+
+        double m_input_voltage = -1;
 
 }; // class L298N 
 

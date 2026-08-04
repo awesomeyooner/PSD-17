@@ -20,6 +20,24 @@ StatusCode L298N::init()
 } // end of "init()"
 
 
+void L298N::set_input_voltage(double input_voltage)
+{
+    // Make sure it's positive
+    if(input_voltage < 0)
+        input_voltage *= -1;
+
+    m_input_voltage = input_voltage;
+
+} // end of "set_input_voltage(double)"
+
+
+double L298N::get_input_voltage()
+{
+    return m_input_voltage;
+
+} // end of "get_input_voltage"
+
+
 void L298N::set_percent(double percent)
 {
     if(percent > 1)
@@ -47,6 +65,21 @@ void L298N::set_percent(double percent)
     }
 
 } // end of "set_percent(double)"
+
+
+void L298N::set_voltage(double voltage)
+{
+    if(m_input_voltage == -1)
+        return;
+
+    // This is just a linear scale, ie
+    // 24V input voltage, 12V requested out
+    // Percent is then 50%
+    double percent_out = voltage / m_input_voltage;
+
+    set_percent(percent_out);
+
+} // end of "set_voltage(double)"
 
 
 double L298N::get_percent()
