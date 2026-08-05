@@ -90,7 +90,7 @@ void init()
 
     as5047.init();
 
-    offset = get_angle_offset();
+    // offset = get_angle_offset();
 
     get_pole_pairs();
 
@@ -99,7 +99,7 @@ void init()
 
 void update()
 {   
-    led.set_high();
+    // led.set_high();
 
     // step(12, 3);
 
@@ -118,8 +118,15 @@ void update()
     phase_A.stop();
     phase_B.stop();
 
-    as5047.refresh();
-    Serial.println(as5047.get_angle());
+    // as5047.refresh();
+    double angle = as5047.get_magnetic_magnitude();
+    
+    auto status = Serial.println(angle);
+
+    if(status == StatusCode::OK)
+        led.set_high();
+    else
+        led.set_low();
 
     // Serial.println(pole_pairs);
 

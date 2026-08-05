@@ -173,6 +173,15 @@ class AS5047
          */
         uint16_t recieve();
 
+        /**
+         * @brief Get what mathematical quadrant the angle `radians` is in
+         * 
+         * @param radians `double
+         * @return `int` 
+         */
+        int get_quadrant(double radians);
+
+
     private:
 
         // Counts per revolution
@@ -233,13 +242,13 @@ class AS5047
         bool is_parity_even(uint16_t data);
 
 
-        /**
-         * @brief Get what mathematical quadrant the angle `radians` is in
-         * 
-         * @param radians `double
-         * @return `int` 
-         */
-        int get_quadrant(double radians);
+        // /**
+        //  * @brief Get what mathematical quadrant the angle `radians` is in
+        //  * 
+        //  * @param radians `double
+        //  * @return `int` 
+        //  */
+        // int get_quadrant(double radians);
 
 
 }; // class AS5047
