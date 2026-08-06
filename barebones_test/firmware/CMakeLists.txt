@@ -22,6 +22,12 @@ target_compile_definitions(shared_library INTERFACE
     STM32F446xx
 )
 
+# target_compile_options(shared_library INTERFACE
+#     -O0
+#     -g3
+#     -Wextra
+# )
+
 # Add any libraries using these lines
 # add_subdirectory(lib/MyLib)
 
@@ -34,8 +40,8 @@ target_link_libraries(WireLib PRIVATE shared_library)
 add_subdirectory(lib/ActionLib)
 target_link_libraries(ActionLib PRIVATE shared_library)
 
-add_subdirectory(lib/PolarFOC)
-target_link_libraries(PolarFOC PRIVATE shared_library)
+# add_subdirectory(lib/PolarFOC)
+# target_link_libraries(PolarFOC PRIVATE shared_library)
 
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
@@ -45,7 +51,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     EmbeddedLib
     ActionLib
     WireLib
-    PolarFOC
+    # PolarFOC
 )
 
 # Add sources to executable

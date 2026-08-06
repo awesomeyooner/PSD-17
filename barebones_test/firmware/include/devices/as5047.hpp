@@ -185,7 +185,7 @@ class AS5047
     private:
 
         // Counts per revolution
-        static constexpr int CPR = 16384; // 14 bits
+        static constexpr double CPR = 16384.0; // 14 bits
 
         static constexpr uint16_t UNCOMPENSATED_ANGLE_REGISTER = 0x3FFE;
         static constexpr uint16_t COMPENSATED_ANGLE_REGISTER = 0x3FFF;
@@ -210,13 +210,13 @@ class AS5047
         int m_timeout = 100; //ms
 
         // The angle offset to apply in `get_angle` in radians
-        int m_angle_offset = 0;
+        double m_angle_offset = 0;
 
         // The current angle in radians
         double m_angle = 0;
 
         // The previous angle of the last update iteration in radians
-        int m_prev_angle = 0;
+        double m_prev_angle = 0;
 
         // The number of whole rotations the sensor has done
         int m_num_rotations = 0;

@@ -62,7 +62,7 @@ double AS5047::get_raw_rotations(bool compensated)
 double AS5047::get_raw_angle(bool compensated)
 {
     // Get the raw counts
-    double counts = compensated ? get_compensated_counts() : get_uncompensated_counts();
+    double counts = (double)get_raw_counts(compensated);
 
     // Rotations = counts / CPR
     // Radians = Rotations * 2PI
@@ -94,7 +94,12 @@ void AS5047::refresh(bool compensated)
 {
     m_prev_angle = m_angle;
 
+    // double counts = as5047.get_raw_counts();
+    // int CPR = 16384;
+    // double angle = (counts / CPR) * 2 * M_PI;
+
     m_angle = get_raw_angle(compensated);
+    // m_angle = (get_raw_counts(compensated) / CPR) * 2 * M_PI;
 
     int prev_quadrant = get_quadrant(m_prev_angle);
     int current_quadrant = get_quadrant(m_angle);

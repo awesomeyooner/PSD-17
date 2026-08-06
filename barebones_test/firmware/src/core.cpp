@@ -92,7 +92,7 @@ void init()
 
     // offset = get_angle_offset();
 
-    get_pole_pairs();
+    // get_pole_pairs();
 
 } // end of "init()"
 
@@ -118,15 +118,32 @@ void update()
     phase_A.stop();
     phase_B.stop();
 
-    // as5047.refresh();
-    double angle = as5047.get_magnetic_magnitude();
+    as5047.refresh();
     
-    auto status = Serial.println(angle);
+    double angle = as5047.get_angle();
+    // double angle = as5047.get_raw_angle();
 
-    if(status == StatusCode::OK)
+    auto bytes = ByteConverter::double_to_bytes(angle);
+
+    // HAL_Delay(50);
+    // Serial.transmit_bytes(bytes);
+
+    // auto status = Serial.println(angle);
+
+    if(angle == 0.0)
+    {
         led.set_high();
-    else
-        led.set_low();
+        HAL_Delay(500);
+    }
+    // else
+        // led.set_low();
+
+    Serial.println(angle);
+    // Serial.transmit_bytes(bytes);
+
+    // HAL_Delay(5);
+
+    // HAL_Delay(100);
 
     // Serial.println(pole_pairs);
 
