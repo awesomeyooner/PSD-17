@@ -50,7 +50,7 @@ double get_electrical_angle();
 double get_angle_offset(double voltage = 12);
 
 
-double pole_pairs = 0;
+int pole_pairs = 0;
 
 
 void get_pole_pairs()
@@ -60,7 +60,7 @@ void get_pole_pairs()
     as5047.refresh();
     double starting = as5047.get_angle();
 
-    int steps = 10;
+    int steps = 20;
 
     for(int i = 0; i < steps; i++)
     {
@@ -76,6 +76,7 @@ void get_pole_pairs()
 
     double rotations = diff / (2 * M_PI);
 
+    // pole_pairs = (double)steps / rotations;
     pole_pairs = std::round((double)steps / rotations);
 }
 
@@ -199,6 +200,11 @@ void step(double voltage, double delay_ms)
 
     // 270 Degrees
     phase_A.set_voltage(0);
+    phase_B.set_voltage(-voltage);
+    HAL_Delay(delay_ms);
+
+    // 315 Degrees
+    phase_A.set_voltage(voltage);
     phase_B.set_voltage(-voltage);
     HAL_Delay(delay_ms);
 }
