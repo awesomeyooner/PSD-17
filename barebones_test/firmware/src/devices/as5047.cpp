@@ -94,12 +94,14 @@ void AS5047::refresh(bool compensated)
 {
     m_prev_angle = m_angle;
 
-    // double counts = as5047.get_raw_counts();
+    // double counts = get_raw_counts(compensated);
     // int CPR = 16384;
     // double angle = (counts / CPR) * 2 * M_PI;
 
+    // m_angle = get_raw_counts(compensated) / CPR;
     m_angle = get_raw_angle(compensated);
-    // m_angle = (get_raw_counts(compensated) / CPR) * 2 * M_PI;
+    // m_angle = ((double)get_raw_counts(compensated) / CPR) * 2 * M_PI;
+    // m_angle = (counts / CPR) * 2 * M_PI;
 
     int prev_quadrant = get_quadrant(m_prev_angle);
     int current_quadrant = get_quadrant(m_angle);

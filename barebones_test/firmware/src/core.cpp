@@ -60,13 +60,13 @@ void get_pole_pairs()
     as5047.refresh();
     double starting = as5047.get_angle();
 
-    int steps = 50;
+    int steps = 10;
 
     for(int i = 0; i < steps; i++)
     {
         as5047.refresh();
         step();
-        HAL_Delay(100);
+        HAL_Delay(20);
     }
 
     as5047.refresh();
@@ -74,7 +74,9 @@ void get_pole_pairs()
 
     double diff = fabs(starting - ending);
 
-    pole_pairs = ending;
+    double rotations = diff / (2 * M_PI);
+
+    pole_pairs = std::round((double)steps / rotations);
 }
 
 
@@ -92,7 +94,7 @@ void init()
 
     // offset = get_angle_offset();
 
-    // get_pole_pairs();
+    get_pole_pairs();
 
 } // end of "init()"
 
@@ -133,19 +135,20 @@ void update()
     if(angle == 0.0)
     {
         led.set_high();
-        HAL_Delay(500);
+        // HAL_Delay(500);
     }
-    // else
-        // led.set_low();
+    else
+        led.set_low();
 
-    Serial.println(angle);
+    // Serial.println(angle, 9);
     // Serial.transmit_bytes(bytes);
 
     // HAL_Delay(5);
 
     // HAL_Delay(100);
 
-    // Serial.println(pole_pairs);
+    Serial.println(pole_pairs);
+    // Serial.println(angle);
 
     // Serial.println(electrical_angle, 9);
 
