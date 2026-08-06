@@ -176,7 +176,7 @@ class AS5047
         /**
          * @brief Get what mathematical quadrant the angle `radians` is in
          * 
-         * @param radians `double
+         * @param radians `double`
          * @return `int` 
          */
         int get_quadrant(double radians);
