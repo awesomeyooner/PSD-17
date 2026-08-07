@@ -25,3 +25,6 @@
 [submodule "barebones_test/firmware/lib/PolarFOC"]
 	path = barebones_test/firmware/lib/PolarFOC
 	url = https://github.com/awesomeyooner/PolarFOC.git
+[submodule "serial_test/project/lib/CommiFaceLib"]
+	path = serial_test/project/lib/CommiFaceLib
+	url = https://github.com/awesomeyooner/CommiFaceLib.git
