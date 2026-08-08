@@ -36,6 +36,9 @@ target_include_directories(${MAIN_EXEC}
         $<INSTALL_INTERFACE:lib>
 )
 
+add_subdirectory(lib/plib)
+target_link_libraries( ${MAIN_EXEC} plib )
+
 add_subdirectory(lib/CommiFaceLib)
 target_link_libraries( ${MAIN_EXEC} CommiFaceLib )
 
