@@ -42,6 +42,9 @@ target_link_libraries( ${MAIN_EXEC} plib )
 add_subdirectory(lib/CommiFaceLib)
 target_link_libraries( ${MAIN_EXEC} CommiFaceLib )
 
+add_subdirectory(lib/PlotLib)
+target_link_libraries( ${MAIN_EXEC} PlotLib )
+
 target_link_libraries( ${MAIN_EXEC} ${THIS_PACKAGE_INCLUDE_DEPENDS})
 
 # === TESTING ===
@@ -56,7 +59,7 @@ enable_testing()
 add_executable( ${TEST_EXEC} test/test.cpp)
 
 # Link the gtest library
-target_link_libraries(${TEST_EXEC} GTest::gtest_main)
+# target_link_libraries(${TEST_EXEC} GTest::gtest_main)
 
 # Add the include dirs
 target_include_directories(${TEST_EXEC}
@@ -64,12 +67,17 @@ target_include_directories(${TEST_EXEC}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
         # If you have a /lib folder then uncomment these
-        # $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib>
-        # $<INSTALL_INTERFACE:lib>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib>
+        $<INSTALL_INTERFACE:lib>
 )
 
 # For tests to be discovered automatically
-gtest_discover_tests(${TEST_EXEC})
+# gtest_discover_tests(${TEST_EXEC})
 
 # For tests to be manually created
 # add_test(NAME my_test_case COMMAND my_test)
+
+target_link_libraries( ${TEST_EXEC} plib )
+target_link_libraries( ${TEST_EXEC} CommiFaceLib )
+target_link_libraries( ${TEST_EXEC} PlotLib )
+target_link_libraries( ${TEST_EXEC} ${THIS_PACKAGE_INCLUDE_DEPENDS} )
