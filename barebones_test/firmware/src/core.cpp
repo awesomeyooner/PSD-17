@@ -43,7 +43,7 @@ AS5047 as5047 = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
 
 double offset = 0;
 
-
+void stop();
 void inverse_park(double el_angle, double vd, double vq = 0);
 void step(double voltage = 12, double delay_ms = 20);
 double get_electrical_angle();
@@ -51,6 +51,15 @@ double get_angle_offset(double voltage = 12);
 
 
 int pole_pairs = 0;
+
+double voltage = 0;
+
+
+void stop()
+{
+    phase_A.stop();
+    phase_B.stop();
+}
 
 
 void get_pole_pairs()
@@ -83,7 +92,9 @@ void get_pole_pairs()
 
 void init()
 {
-    Serial.set_parse_type(ParseType::RAW);
+    Serial.set_parse_type(ParseType::PACKET);
+
+    WireManager::attach(Serial);
 
     phase_A.init();
     phase_B.init();
@@ -93,15 +104,49 @@ void init()
 
     as5047.init();
 
-    // offset = get_angle_offset();
+    offset = get_angle_offset();
 
-    get_pole_pairs();
+    // get_pole_pairs();
+
+    RegisterManager::add_command(
+        100,
+        sizeof(double),
+        [](const vector<uint8_t>& bytes) -> StatusCode
+        {
+            double data = ByteConverter::bytes_to_double(bytes);
+
+            System::feed();
+            
+            voltage = data;
+
+            return StatusCode::OK;
+        }
+    );
+
+    RegisterManager::add_request(
+        101,
+        sizeof(double),
+        [](vector<uint8_t>& write_buffer) -> StatusCode
+        {
+            double data = as5047.get_angle(); 
+
+            auto bytes = ByteConverter::double_to_bytes(data);
+
+            Serial.transmit_bytes(bytes);
+            
+            return StatusCode::OK;
+        }
+    );
 
 } // end of "init()"
 
 
 void update()
 {   
+    System::update();
+    ActionManager::update();
+
+    as5047.refresh();
     // led.set_high();
 
     // step(12, 3);
@@ -110,36 +155,50 @@ void update()
 
     // double electrical_angle = get_electrical_angle();
 
+    if(!System::is_OK())
+    {
+        led.set_high();
+        stop();
+
+        return;
+    }
+
+    led.set_low();
+
+    inverse_park(
+        get_electrical_angle(),
+        0,
+        voltage
+    );
+
     // inverse_park(
     //     get_electrical_angle(),
     //     0,
     //     5
     // );
 
-    // Serial.println(pole_pairs);
+    // Serial.println(as5047.get_angle());
 
-    phase_A.stop();
-    phase_B.stop();
-
-    as5047.refresh();
+    // phase_A.stop();
+    // phase_B.stop();
     
-    double angle = as5047.get_angle();
+    // double angle = as5047.get_angle();
     // double angle = as5047.get_raw_angle();
 
-    auto bytes = ByteConverter::double_to_bytes(angle);
+    // auto bytes = ByteConverter::double_to_bytes(angle);
 
     // HAL_Delay(50);
     // Serial.transmit_bytes(bytes);
 
     // auto status = Serial.println(angle);
 
-    if(angle == 0.0)
-    {
-        led.set_high();
-        // HAL_Delay(500);
-    }
-    else
-        led.set_low();
+    // if(angle == 0.0)
+    // {
+    //     led.set_high();
+    //     // HAL_Delay(500);
+    // }
+    // else
+    //     led.set_low();
 
     // Serial.println(angle, 9);
     // Serial.transmit_bytes(bytes);
@@ -148,7 +207,7 @@ void update()
 
     // HAL_Delay(100);
 
-    Serial.println(pole_pairs);
+    // Serial.println(pole_pairs);
     // Serial.println(angle);
 
     // Serial.println(electrical_angle, 9);
