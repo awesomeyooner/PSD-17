@@ -16,7 +16,7 @@
 
 int main(int argc, char* argv[])
 {
-    ImPlotter::initialize();
+    ImPlotter::init();
 
     SerialInterface serial;
 
