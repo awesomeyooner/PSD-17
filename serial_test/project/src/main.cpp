@@ -60,8 +60,6 @@ int main(int argc, char* argv[])
 
         if(ImPlotter::update(add_inputs) == StatusCode::FAILED)
             System::shutdown();
-
-        // Logger::info(angle_read.value);
     }
 
     serial.close();

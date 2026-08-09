@@ -12,6 +12,7 @@
 
 #include "ActionLib/ActionManager.hpp"
 
+#include "PolarFOC/foc_math.hpp"
 #include "PolarFOC/devices/encoders/as5047.hpp"
 #include "PolarFOC/devices/drivers/l298n.hpp"
 // #include "devices/as5047.hpp"
