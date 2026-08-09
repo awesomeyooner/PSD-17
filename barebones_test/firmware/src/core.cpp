@@ -12,8 +12,10 @@
 
 #include "ActionLib/ActionManager.hpp"
 
-#include "devices/as5047.hpp"
-#include "devices/l298n.hpp"
+#include "PolarFOC/devices/encoders/as5047.hpp"
+#include "PolarFOC/devices/drivers/l298n.hpp"
+// #include "devices/as5047.hpp"
+// #include "devices/l298n.hpp"
 
 #include "spi.h"
 #include "tim.h"
@@ -129,6 +131,21 @@ void init()
         [](vector<uint8_t>& write_buffer) -> StatusCode
         {
             double data = as5047.get_angle(); 
+
+            auto bytes = ByteConverter::double_to_bytes(data);
+
+            Serial.transmit_bytes(bytes);
+            
+            return StatusCode::OK;
+        }
+    );
+
+    RegisterManager::add_request(
+        102,
+        sizeof(double),
+        [](vector<uint8_t>& write_buffer) -> StatusCode
+        {
+            double data = as5047.get_velocity(); 
 
             auto bytes = ByteConverter::double_to_bytes(data);
 
