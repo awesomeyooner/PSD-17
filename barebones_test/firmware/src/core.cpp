@@ -20,6 +20,7 @@
 
 #include "spi.h"
 #include "tim.h"
+#include "adc.h"
 #include "usb_device.h"
 #include "gpio.h"
 
@@ -51,6 +52,7 @@ void inverse_park(double el_angle, double vd, double vq = 0);
 void step(double voltage = 12, double delay_ms = 20);
 double get_electrical_angle();
 double get_angle_offset(double voltage = 12);
+double get_input_voltage();
 
 
 int pole_pairs = 0;
@@ -92,6 +94,24 @@ void get_pole_pairs()
     pole_pairs = std::round((double)steps / rotations);
 }
 
+
+double get_input_voltage()
+{
+    uint32_t adc_reading = 0;
+
+    HAL_ADC_Start(&hadc1);
+
+    if(HAL_ADC_PollForConversion(&hadc1, 100) == HAL_OK)
+        adc_reading = HAL_ADC_GetValue(&hadc1);
+
+    HAL_ADC_Stop(&hadc1);
+
+    return adc_reading;
+
+} // end of "get_input_voltage()"
+
+
+double input_voltage = 0;
 
 void init()
 {
@@ -156,6 +176,8 @@ void init()
         }
     );
 
+    input_voltage = get_input_voltage();
+
 } // end of "init()"
 
 
@@ -173,6 +195,8 @@ void update()
 
     // double electrical_angle = get_electrical_angle();
 
+    Serial.println(input_voltage);
+    
     if(!System::is_OK())
     {
         led.set_high();
