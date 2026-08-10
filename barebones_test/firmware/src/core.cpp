@@ -17,6 +17,7 @@
 #include "PolarFOC/devices/drivers/l298n.hpp"
 // #include "devices/as5047.hpp"
 // #include "devices/l298n.hpp"
+#include "devices/adc_device.hpp"
 
 #include "spi.h"
 #include "tim.h"
@@ -44,6 +45,8 @@ L298N phase_A = L298N(&htim3, TIM_CHANNEL_3, TIM_CHANNEL_4);
 L298N phase_B = L298N(&htim3, TIM_CHANNEL_1, TIM_CHANNEL_2);
 
 AS5047 as5047 = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
+
+ADCDevice adc = ADCDevice(&hadc1);
 
 double offset = 0;
 
@@ -97,16 +100,18 @@ void get_pole_pairs()
 
 double get_input_voltage()
 {
-    uint32_t adc_reading = 0;
+    // uint32_t adc_reading = 0;
 
-    HAL_ADC_Start(&hadc1);
+    // HAL_ADC_Start(&hadc1);
 
-    if(HAL_ADC_PollForConversion(&hadc1, 100) == HAL_OK)
-        adc_reading = HAL_ADC_GetValue(&hadc1);
+    // if(HAL_ADC_PollForConversion(&hadc1, 100) == HAL_OK)
+    //     adc_reading = HAL_ADC_GetValue(&hadc1);
 
-    HAL_ADC_Stop(&hadc1);
+    // HAL_ADC_Stop(&hadc1);
 
-    double V_adc = 3.3 * ((double)adc_reading / 4096);
+    // double V_adc = 3.3 * ((double)adc_reading / 4096);
+    adc.poll();
+    double V_adc = adc.get_voltage();
 
     double R_1 = 100000;
     double R_2 = 10000;

@@ -60,6 +60,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # src/my_code.cpp
     src/core.cpp
 
+    src/devices/adc_device.cpp
     # src/devices/as5047.cpp
     # src/devices/l298n.cpp
 )
