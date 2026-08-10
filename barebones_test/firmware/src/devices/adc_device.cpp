@@ -15,12 +15,13 @@ ADCDevice::ADCDevice(ADC_HandleTypeDef* adc, int num_channels)
 } // end of "ADCDevice(ADC_HandleTypeDef*, int)"
 
 
-StatusCode ADCDevice::init()
+StatusCode ADCDevice::start_DMA()
 {
     // Start DMA
-    HAL_ADC_Start_DMA(m_adc, m_read_buffer.data(), m_num_channels);
+    return HAL_ADC_Start_DMA(m_adc, m_read_buffer.data(), m_num_channels) == HAL_OK ?
+        StatusCode::OK : StatusCode::FAILED;
 
-} // end of "init()"
+} // end of "start_DMA()"
 
 
 double ADCDevice::poll(int timeout_ms)
