@@ -106,7 +106,12 @@ double get_input_voltage()
 
     HAL_ADC_Stop(&hadc1);
 
-    return adc_reading;
+    double V_adc = 3.3 * ((double)adc_reading / 4096);
+
+    double R_1 = 100000;
+    double R_2 = 10000;
+
+    return V_adc * (R_1 + R_2) / R_2;
 
 } // end of "get_input_voltage()"
 
@@ -196,7 +201,7 @@ void update()
     // double electrical_angle = get_electrical_angle();
 
     Serial.println(input_voltage);
-    
+
     if(!System::is_OK())
     {
         led.set_high();
