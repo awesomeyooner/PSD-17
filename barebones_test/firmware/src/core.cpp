@@ -4,6 +4,7 @@
 #include "EmbeddedLib/devices/led.hpp"
 #include "EmbeddedLib/devices/ws2812b.hpp"
 #include "EmbeddedLib/devices/gpio_device.hpp"
+#include "EmbeddedLib/devices/adc_device.hpp"
 #include "EmbeddedLib/math/math_util.hpp"
 
 #include "WireLib/communication/wire_manager.hpp"
@@ -17,7 +18,7 @@
 #include "PolarFOC/devices/drivers/l298n.hpp"
 // #include "devices/as5047.hpp"
 // #include "devices/l298n.hpp"
-#include "devices/adc_device.hpp"
+// #include "devices/adc_device.hpp"
 
 #include "spi.h"
 #include "tim.h"
@@ -125,6 +126,8 @@ double input_voltage = 0;
 
 void init()
 {
+    System::init();
+
     Serial.set_parse_type(ParseType::PACKET);
 
     WireManager::attach(Serial);
@@ -205,7 +208,9 @@ void update()
 
     // double electrical_angle = get_electrical_angle();
 
-    Serial.println(input_voltage);
+    // Serial.print(System::get_seconds(true), 9);
+    // Serial.print("     ");
+    // Serial.println(System::get_seconds(false));
 
     if(!System::is_OK())
     {
