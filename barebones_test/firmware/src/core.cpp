@@ -145,48 +145,37 @@ void init()
     // get_pole_pairs();
 
     RegisterManager::add_command(
-        100,
-        sizeof(double),
-        [](const vector<uint8_t>& bytes) -> StatusCode
-        {
-            double data = ByteConverter::bytes_to_double(bytes);
+        Command<double>(
+            100,
+            [](double data) -> StatusCode
+            {
+                System::feed();
 
-            System::feed();
-            
-            voltage = data;
-
-            return StatusCode::OK;
-        }
+                voltage = data;
+                
+                return StatusCode::OK;
+            }
+        )
     );
 
     RegisterManager::add_request(
-        101,
-        sizeof(double),
-        [](vector<uint8_t>& write_buffer) -> StatusCode
-        {
-            double data = as5047.get_angle(); 
-
-            auto bytes = ByteConverter::double_to_bytes(data);
-
-            Serial.transmit_bytes(bytes);
-            
-            return StatusCode::OK;
-        }
+        Request<double>(
+            101,
+            []() -> double
+            {
+                return as5047.get_angle();
+            }
+        )
     );
 
     RegisterManager::add_request(
-        102,
-        sizeof(double),
-        [](vector<uint8_t>& write_buffer) -> StatusCode
-        {
-            double data = as5047.get_velocity(); 
-
-            auto bytes = ByteConverter::double_to_bytes(data);
-
-            Serial.transmit_bytes(bytes);
-            
-            return StatusCode::OK;
-        }
+        Request<double>(
+            102,
+            []() -> double
+            {
+                return as5047.get_velocity();
+            }
+        )
     );
 
     input_voltage = get_input_voltage();

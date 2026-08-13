@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 
         function<void()> add_inputs = []()
         {
-            ImGui::SliderFloat("Voltage", &target_voltage, -12, 12, "%.3f V");
+            ImGui::SliderFloat("Voltage", &target_voltage, -24, 24, "%.3f V");
         };
 
         if(ImPlotter::update(add_inputs) == StatusCode::FAILED)
