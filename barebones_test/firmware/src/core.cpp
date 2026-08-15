@@ -6,6 +6,7 @@
 #include "EmbeddedLib/devices/gpio_device.hpp"
 #include "EmbeddedLib/devices/adc_device.hpp"
 #include "EmbeddedLib/math/math_util.hpp"
+#include "EmbeddedLib/math/vector2d.hpp"
 
 #include "WireLib/communication/wire_manager.hpp"
 #include "WireLib/communication/protocols/serial_interface.hpp"
@@ -48,6 +49,8 @@ L298N phase_B = L298N(&htim3, TIM_CHANNEL_1, TIM_CHANNEL_2);
 AS5047 as5047 = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
 
 ADCDevice adc = ADCDevice(&hadc1);
+
+Vector2d phase_voltages;
 
 double offset = 0;
 
@@ -141,6 +144,8 @@ void init()
     as5047.init();
 
     offset = get_angle_offset();
+
+    as5047.set_offset(offset);
 
     // get_pole_pairs();
 
@@ -273,11 +278,14 @@ void update()
 
 void inverse_park(double el_angle, double vd, double vq)
 {
-    double vA = vd * cos(el_angle) - vq * sin(el_angle);
-    double vB = vd * sin(el_angle) + vq * cos(el_angle);
+    phase_voltages = {vd, vq};
 
-    phase_A.set_voltage(vA);
-    phase_B.set_voltage(vB);
+    phase_voltages = phase_voltages.rotate(el_angle);
+    // double vA = vd * cos(el_angle) - vq * sin(el_angle);
+    // double vB = vd * sin(el_angle) + vq * cos(el_angle);
+
+    phase_A.set_voltage(phase_voltages.at(0));
+    phase_B.set_voltage(phase_voltages.at(1));
 }
 
 
@@ -333,12 +341,25 @@ double get_electrical_angle()
 
 double get_angle_offset(double voltage)
 {
+    // for(int i = 0; i < 4; i++)
+    // {
+    //     step(12, 100);
+    //     HAL_Delay(500);
+    // }
+
     HAL_Delay(500);
 
     phase_A.set_voltage(voltage);
     phase_B.set_voltage(0);
 
     HAL_Delay(1000);
+
+    as5047.refresh();
+
+    HAL_Delay(500);
+
+    phase_A.stop();
+    phase_B.stop();
 
     return as5047.get_angle();
 }
