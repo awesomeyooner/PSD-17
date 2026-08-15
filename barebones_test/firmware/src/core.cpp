@@ -178,6 +178,16 @@ void init()
         )
     );
 
+    RegisterManager::add_request(
+        Request<string>(
+            103,
+            []() -> string
+            {
+                return "Hello World!\n";
+            }
+        )
+    );
+
     input_voltage = get_input_voltage();
 
 } // end of "init()"

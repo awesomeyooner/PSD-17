@@ -32,6 +32,15 @@ int main(int argc, char* argv[])
     
     while(System::is_alive())
     {
+        auto test_read = serial.request(103, '\n');
+
+        if(test_read.is_OK())
+        {
+            string read = ByteConverter::from_bytes<string>(test_read.value);
+
+            std::cout << read << std::endl;
+        }
+
         auto angle_read = serial.request_data<double>(101, 500);
         auto vel_read = serial.request_data<double>(102, 500);
 
