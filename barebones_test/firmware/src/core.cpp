@@ -179,11 +179,11 @@ void init()
     );
 
     RegisterManager::add_request(
-        Request<string>(
+        Request<double>(
             103,
-            []() -> string
+            []() -> double
             {
-                return "Hello World!\n";
+                return input_voltage;
             }
         )
     );

@@ -25,21 +25,19 @@ float target_voltage = 0;
 int main(int argc, char* argv[])
 {
     ImPlotter::init();
+    ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
 
     SerialInterface serial;
 
     serial.init_field("product", "STM32 Virtual ComPort");
+
+    auto input_voltage = serial.request_data<double>(103, 500);
+
+    if(input_voltage.is_OK())
+        cout << "Input Voltage: " << input_voltage.value << " V" << endl;
     
     while(System::is_alive())
     {
-        auto test_read = serial.request(103, '\n');
-
-        if(test_read.is_OK())
-        {
-            string read = ByteConverter::from_bytes<string>(test_read.value);
-
-            std::cout << read << std::endl;
-        }
 
         auto angle_read = serial.request_data<double>(101, 500);
         auto vel_read = serial.request_data<double>(102, 500);
