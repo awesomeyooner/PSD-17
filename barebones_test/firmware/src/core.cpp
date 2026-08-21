@@ -17,6 +17,8 @@
 #include "PolarFOC/foc_math.hpp"
 #include "PolarFOC/devices/encoders/as5047.hpp"
 #include "PolarFOC/devices/drivers/l298n.hpp"
+#include "PolarFOC/filters/low_pass_filter.hpp"
+
 // #include "devices/as5047.hpp"
 // #include "devices/l298n.hpp"
 // #include "devices/adc_device.hpp"
@@ -47,12 +49,11 @@ L298N phase_A = L298N(&htim3, TIM_CHANNEL_3, TIM_CHANNEL_4);
 L298N phase_B = L298N(&htim3, TIM_CHANNEL_1, TIM_CHANNEL_2);
 
 AS5047 as5047 = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
+LowPassFilter angle_filter = LowPassFilter(0.9);
 
 ADCDevice adc = ADCDevice(&hadc1);
 
 Vector2d phase_voltages;
-
-double offset = 0;
 
 void stop();
 void inverse_park(double el_angle, double vd, double vq = 0);
@@ -65,6 +66,8 @@ double get_input_voltage();
 int pole_pairs = 0;
 
 double voltage = 0;
+
+double input_voltage = 0;
 
 
 void stop()
@@ -104,17 +107,8 @@ void get_pole_pairs()
 
 double get_input_voltage()
 {
-    // uint32_t adc_reading = 0;
-
-    // HAL_ADC_Start(&hadc1);
-
-    // if(HAL_ADC_PollForConversion(&hadc1, 100) == HAL_OK)
-    //     adc_reading = HAL_ADC_GetValue(&hadc1);
-
-    // HAL_ADC_Stop(&hadc1);
-
-    // double V_adc = 3.3 * ((double)adc_reading / 4096);
     adc.poll();
+    
     double V_adc = adc.get_voltage();
 
     double R_1 = 100000;
@@ -124,8 +118,6 @@ double get_input_voltage()
 
 } // end of "get_input_voltage()"
 
-
-double input_voltage = 0;
 
 void init()
 {
@@ -143,9 +135,9 @@ void init()
 
     as5047.init();
 
-    offset = get_angle_offset();
-
-    as5047.set_offset(offset);
+    as5047.set_offset(
+        get_angle_offset()
+    );
 
     // get_pole_pairs();
 
@@ -168,7 +160,8 @@ void init()
             101,
             []() -> double
             {
-                return as5047.get_angle();
+                return angle_filter.get();
+                // return as5047.get_angle();
             }
         )
     );
@@ -204,17 +197,7 @@ void update()
     ActionManager::update();
 
     as5047.refresh();
-    // led.set_high();
-
-    // step(12, 3);
-
-    // HAL_Delay(5);
-
-    // double electrical_angle = get_electrical_angle();
-
-    // Serial.print(System::get_seconds(true), 9);
-    // Serial.print("     ");
-    // Serial.println(System::get_seconds(false));
+    angle_filter.update(as5047.get_angle());
 
     if(!System::is_OK())
     {
@@ -231,18 +214,7 @@ void update()
         0,
         voltage
     );
-
-    // inverse_park(
-    //     get_electrical_angle(),
-    //     0,
-    //     5
-    // );
-
-    // Serial.println(as5047.get_angle());
-
-    // phase_A.stop();
-    // phase_B.stop();
-    
+  
     // double angle = as5047.get_angle();
     // double angle = as5047.get_raw_angle();
 

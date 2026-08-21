@@ -25,7 +25,7 @@ float target_voltage = 0;
 int main(int argc, char* argv[])
 {
     ImPlotter::init();
-    ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
+    // ImPlotter::m_axis_flags = ImPlotAxisFlags_AutoFit;
 
     SerialInterface serial;
 
