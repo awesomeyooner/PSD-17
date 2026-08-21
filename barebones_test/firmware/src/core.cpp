@@ -50,6 +50,7 @@ L298N phase_B = L298N(&htim3, TIM_CHANNEL_1, TIM_CHANNEL_2);
 
 AS5047 as5047 = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
 LowPassFilter angle_filter = LowPassFilter(0.9);
+LowPassFilter velocity_filter = LowPassFilter(0.9);
 
 ADCDevice adc = ADCDevice(&hadc1);
 
@@ -68,6 +69,10 @@ int pole_pairs = 0;
 double voltage = 0;
 
 double input_voltage = 0;
+
+double prev_angle = 0;
+double prev_timestamp = 0;
+double velocity = 0;
 
 
 void stop()
@@ -108,7 +113,7 @@ void get_pole_pairs()
 double get_input_voltage()
 {
     adc.poll();
-    
+
     double V_adc = adc.get_voltage();
 
     double R_1 = 100000;
@@ -171,7 +176,9 @@ void init()
             102,
             []() -> double
             {
-                return as5047.get_velocity();
+                return velocity_filter.get();
+                // return velocity;
+                // return as5047.get_velocity();
             }
         )
     );
@@ -198,6 +205,21 @@ void update()
 
     as5047.refresh();
     angle_filter.update(as5047.get_angle());
+
+    double timestamp = System::get_seconds(true);
+    double angle = angle_filter.get();
+
+    double dTheta = angle - prev_angle;
+    double dt = timestamp - prev_timestamp;
+
+    if(dt != 0)
+        velocity = dTheta / dt;
+
+    prev_timestamp = timestamp;
+    prev_angle = angle;
+
+    velocity_filter.update(velocity);
+
 
     if(!System::is_OK())
     {
@@ -307,7 +329,7 @@ void step(double voltage, double delay_ms)
 
 double get_electrical_angle()
 {
-    return (as5047.get_angle() - offset) * 50;
+    return (as5047.get_angle()) * 50;
 }
 
 
