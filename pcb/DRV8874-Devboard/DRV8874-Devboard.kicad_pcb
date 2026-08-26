@@ -2223,7 +2223,7 @@
 		(path "/78f50a1f-a207-488b-bdf5-cd2f1d93583c")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 6.46)
@@ -3180,7 +3180,7 @@
 		(path "/87bf9c01-d87f-4950-8150-4e95123cb63d")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
@@ -4759,7 +4759,7 @@
 		(path "/03c514a1-bf0d-4405-95b7-6f3754bcfc86")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
@@ -5291,7 +5291,7 @@
 		(path "/fcf0275d-d8f1-4fd9-8b16-05d655696e4c")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
@@ -6016,7 +6016,7 @@
 		(path "/00330f1b-ac9f-433c-ae12-61c12bf5347d")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 9)
@@ -7203,7 +7203,7 @@
 		(path "/caddbb22-ad21-4af1-baaa-913290947131")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 6.46)
@@ -10731,7 +10731,7 @@
 				)
 			)
 		)
-		(property "FT Position Offset" "0.2,0.39"
+		(property "FT Position Offset" ""
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11687,7 +11687,7 @@
 		(path "/dc5453f8-06c7-4683-acf7-17fdc0456696")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 14.08)
@@ -13772,7 +13772,7 @@
 		(path "/97bf43ed-a4ec-4032-b356-f493cb6008fb")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 6.46)
@@ -14072,7 +14072,7 @@
 		(path "/0888bca5-2d1c-480d-8bd7-991048144190")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
@@ -15003,7 +15003,7 @@
 		(path "/e0a75e33-01ce-44f4-9356-c399f3c632b4")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start 27.175 25.72)
 			(end 27.175 24.39)

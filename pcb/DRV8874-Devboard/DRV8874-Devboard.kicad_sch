@@ -11209,7 +11209,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "00330f1b-ac9f-433c-ae12-61c12bf5347d")
 		(property "Reference" "J5"
 			(at 284.734 141.224 0)
@@ -11338,7 +11338,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "03c514a1-bf0d-4405-95b7-6f3754bcfc86")
 		(property "Reference" "J6"
 			(at 285.242 200.406 0)
@@ -11709,7 +11709,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "0888bca5-2d1c-480d-8bd7-991048144190")
 		(property "Reference" "J7"
 			(at 398.018 209.804 0)
@@ -14706,7 +14706,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "599cfc6a-163a-4393-8a6e-06b95d64e4cf")
 		(property "Reference" "U7"
@@ -16261,7 +16261,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "78f50a1f-a207-488b-bdf5-cd2f1d93583c")
 		(property "Reference" "J12"
 			(at -93.472 111.252 0)
@@ -16794,7 +16794,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "87bf9c01-d87f-4950-8150-4e95123cb63d")
 		(property "Reference" "J4"
 			(at 362.204 207.264 0)
@@ -17837,7 +17837,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "97bf43ed-a4ec-4032-b356-f493cb6008fb")
 		(property "Reference" "J3"
 			(at 158.242 216.154 0)
@@ -19165,7 +19165,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "caddbb22-ad21-4af1-baaa-913290947131")
 		(property "Reference" "J9"
 			(at 77.978 112.522 0)
@@ -19840,7 +19840,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "dc5453f8-06c7-4683-acf7-17fdc0456696")
 		(property "Reference" "J10"
 			(at 361.188 141.986 0)
@@ -20194,7 +20194,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e0a75e33-01ce-44f4-9356-c399f3c632b4")
 		(property "Reference" "U7"
@@ -21351,7 +21351,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "fcf0275d-d8f1-4fd9-8b16-05d655696e4c")
 		(property "Reference" "J1"
 			(at 319.024 137.414 0)
