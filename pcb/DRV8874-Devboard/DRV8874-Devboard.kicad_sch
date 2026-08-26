@@ -11209,7 +11209,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "00330f1b-ac9f-433c-ae12-61c12bf5347d")
 		(property "Reference" "J5"
 			(at 284.734 141.224 0)
@@ -11292,6 +11292,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 288.29 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3038feb5-708e-44a3-b871-5c2e1ddc1a36")
 		)
@@ -11320,7 +11329,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "03c514a1-bf0d-4405-95b7-6f3754bcfc86")
 		(property "Reference" "J6"
 			(at 285.242 200.406 0)
@@ -11384,6 +11393,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 284.48 205.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 284.48 205.74 0)
 			(effects
 				(font
@@ -11493,6 +11511,15 @@
 			)
 		)
 		(property "JLCPCB Part #" "C22809"
+			(at -114.3 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at -114.3 93.98 0)
 			(effects
 				(font
@@ -11655,7 +11682,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "0888bca5-2d1c-480d-8bd7-991048144190")
 		(property "Reference" "J7"
 			(at 398.018 209.804 0)
@@ -11719,6 +11746,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 398.78 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 398.78 204.47 0)
 			(effects
 				(font
@@ -11800,7 +11836,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part #" ""
+		(property "JLCPCB Part #" "C1855818"
 			(at 106.68 78.74 0)
 			(effects
 				(font
@@ -11828,6 +11864,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 106.68 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 106.68 78.74 0)
 			(effects
 				(font
@@ -12053,6 +12098,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at -114.3 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "3bd51661-04c1-4c59-b9d7-253f85ed9099")
 		)
@@ -12151,6 +12205,15 @@
 			)
 		)
 		(property "JLCPCB Part #" "C22788"
+			(at 236.22 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 236.22 237.49 0)
 			(effects
 				(font
@@ -12264,6 +12327,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at -78.74 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "5f491093-d74d-48f8-9dda-274773ccbad4")
 		)
@@ -12362,6 +12434,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 177.8 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 177.8 219.71 0)
 			(effects
 				(font
@@ -12610,6 +12691,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 356.87 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "15ea7976-1461-4a2d-a0bf-3d34eb319f96")
 		)
@@ -12716,6 +12806,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 130.81 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "b1bbc1f4-315b-4cb2-aa73-4c0756079760")
 		)
@@ -12813,6 +12912,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 116.84 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 116.84 242.57 0)
 			(effects
 				(font
@@ -12984,6 +13092,15 @@
 			)
 		)
 		(property "JLCPCB Part #" "C25744"
+			(at -33.02 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at -33.02 69.85 0)
 			(effects
 				(font
@@ -13230,6 +13347,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 57.15 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "a5f8a9d5-437b-49de-8f09-68c177b5c539")
 		)
@@ -13289,6 +13415,24 @@
 			)
 		)
 		(property "Description" "ST 32Kbit SPI EEPROM"
+			(at 204.47 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part #" "C283459"
+			(at 204.47 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" "-90"
 			(at 204.47 140.97 0)
 			(effects
 				(font
@@ -13420,6 +13564,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 92.71 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "4fa392a5-c775-44e5-a2f1-5d01ec98d8ff")
 		)
@@ -13518,6 +13671,15 @@
 			)
 		)
 		(property "JLCPCB Part #" "C25744"
+			(at 138.43 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 138.43 71.12 0)
 			(effects
 				(font
@@ -13681,6 +13843,24 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 327.66 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part #" "C12084"
+			(at 327.66 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 327.66 200.66 0)
 			(effects
 				(font
@@ -13879,6 +14059,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 115.57 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "561af94c-7bde-4c31-bc7f-86bbe231d23e")
 		)
@@ -14042,6 +14231,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 245.11 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 245.11 237.49 0)
 			(effects
 				(font
@@ -14288,6 +14486,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 293.37 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "f8c1a409-0328-4283-85d1-e36bc3125b19")
 		)
@@ -14310,7 +14517,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "599cfc6a-163a-4393-8a6e-06b95d64e4cf")
 		(property "Reference" "U7"
@@ -14350,6 +14557,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 384.81 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 384.81 72.39 0)
 			(effects
 				(font
@@ -14764,6 +14980,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 254 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "fdaa7dc6-f622-4e0b-8a5e-60f457874d13")
 		)
@@ -14936,6 +15161,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 34.29 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "0d30ca4a-3591-4fa0-a0dc-29db511d4e52")
 		)
@@ -15033,6 +15267,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 210.82 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 210.82 200.66 0)
 			(effects
 				(font
@@ -15277,6 +15520,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at -55.88 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3ce3f922-4d5f-4d74-b0bb-a5c9b84a4c2b")
 		)
@@ -15347,7 +15599,16 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part #" "C3032175"
+		(property "JLCPCB Part #" "C46550419"
+			(at 74.93 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" "180"
 			(at 74.93 41.91 0)
 			(effects
 				(font
@@ -15453,6 +15714,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 214.63 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 214.63 123.19 0)
 			(effects
 				(font
@@ -15690,6 +15960,24 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part #" "C430601"
+			(at 401.32 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 401.32 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "e40de8b0-df62-4b5e-8b1f-0dcc18233d19")
 		)
@@ -15712,7 +16000,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "78f50a1f-a207-488b-bdf5-cd2f1d93583c")
 		(property "Reference" "J12"
 			(at -93.472 111.252 0)
@@ -15776,6 +16064,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at -93.98 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at -93.98 106.68 0)
 			(effects
 				(font
@@ -15857,6 +16154,15 @@
 			)
 		)
 		(property "JLCPCB Part #" "C2480"
+			(at 231.14 214.63 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 231.14 214.63 90)
 			(effects
 				(font
@@ -15963,6 +16269,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 82.55 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 82.55 66.04 0)
 			(effects
 				(font
@@ -16191,7 +16506,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "87bf9c01-d87f-4950-8150-4e95123cb63d")
 		(property "Reference" "J4"
 			(at 362.204 207.264 0)
@@ -16255,6 +16570,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 364.49 201.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 364.49 201.93 0)
 			(effects
 				(font
@@ -16370,6 +16694,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 236.22 248.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "28b03acf-5791-4607-98da-c47ab9a73ed9")
 		)
@@ -16468,6 +16801,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 46.99 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 46.99 242.57 0)
 			(effects
 				(font
@@ -16648,6 +16990,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at -78.74 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "81b081b9-8e34-4828-986a-73ffb65496a9")
 		)
@@ -16718,7 +17069,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part #" ""
+		(property "JLCPCB Part #" "C1855818"
 			(at -64.77 77.47 0)
 			(effects
 				(font
@@ -16746,6 +17097,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at -64.77 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at -64.77 77.47 0)
 			(effects
 				(font
@@ -17037,6 +17397,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 115.57 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2ae43f1d-1532-49b0-9305-230d48099628")
 		)
@@ -17126,7 +17495,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "97bf43ed-a4ec-4032-b356-f493cb6008fb")
 		(property "Reference" "J3"
 			(at 158.242 216.154 0)
@@ -17190,6 +17559,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 157.48 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 157.48 210.82 0)
 			(effects
 				(font
@@ -17438,6 +17816,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 92.71 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "8757decf-bd0c-4362-9440-03a3bb805a37")
 		)
@@ -17536,6 +17923,15 @@
 			)
 		)
 		(property "JLCPCB Part #" "C25803"
+			(at 34.29 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 34.29 228.6 0)
 			(effects
 				(font
@@ -17906,6 +18302,24 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part #" "C1849461"
+			(at 55.88 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 55.88 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "17"
 			(uuid "ead12b0d-7931-410b-ae97-2b74ff78daed")
 		)
@@ -18201,6 +18615,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 57.15 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "a150ceb3-e827-4e1b-aa1d-1fa6b4bfa4c0")
 		)
@@ -18355,7 +18778,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "caddbb22-ad21-4af1-baaa-913290947131")
 		(property "Reference" "J9"
 			(at 77.978 112.522 0)
@@ -18419,6 +18842,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 77.47 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 77.47 107.95 0)
 			(effects
 				(font
@@ -18761,6 +19193,24 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part #" "C93176"
+			(at 195.58 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 195.58 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "feb1307b-588b-4932-8b69-1669b0cd878d")
 		)
@@ -18945,6 +19395,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at -40.64 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "1d7a5357-e611-4241-8c2d-8b718fe0b772")
 		)
@@ -18967,7 +19426,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "dc5453f8-06c7-4683-acf7-17fdc0456696")
 		(property "Reference" "J10"
 			(at 361.188 141.986 0)
@@ -19006,6 +19465,15 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated"
+			(at 363.22 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 363.22 152.4 0)
 			(effects
 				(font
@@ -19198,6 +19666,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 104.14 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "fb150c6f-c3fd-4037-b272-dbaa509a2e9d")
 		)
@@ -19285,7 +19762,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "e0a75e33-01ce-44f4-9356-c399f3c632b4")
 		(property "Reference" "U7"
@@ -19325,6 +19802,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 304.8 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 304.8 69.85 0)
 			(effects
 				(font
@@ -19870,6 +20356,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 34.29 217.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "ebc09b9f-7e5e-4823-b509-187e52ab1561")
 		)
@@ -20042,6 +20537,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at -88.9 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "27887312-5675-44fe-9705-fef76130a83b")
 		)
@@ -20112,7 +20616,16 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part #" "C3032175"
+		(property "JLCPCB Part #" "C46550419"
+			(at -96.52 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" "180"
 			(at -96.52 40.64 0)
 			(effects
 				(font
@@ -20264,6 +20777,15 @@
 				(hide yes)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 238.76 207.01 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "54a770b2-e6ed-46d7-bfdc-6aa640137d40")
 		)
@@ -20352,7 +20874,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "fcf0275d-d8f1-4fd9-8b16-05d655696e4c")
 		(property "Reference" "J1"
 			(at 319.024 137.414 0)
@@ -20427,6 +20949,15 @@
 			)
 		)
 		(property "Sim.Type" ""
+			(at 322.58 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
 			(at 322.58 146.05 0)
 			(effects
 				(font

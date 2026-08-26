@@ -330,6 +330,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "725e4b4d-6dc2-4f0a-ab0a-e0b6991c0a29")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/37d87328-1635-4b2a-a161-2eb8eec46bdb")
 		(sheetname "/")
@@ -479,6 +492,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "372b3918-e6f7-46de-9869-2b01fc97eb4b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "67e343c7-aead-40d0-9681-682e1d6aef59")
 			(effects
 				(font
 					(size 1 1)
@@ -809,6 +835,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "52c77309-4e5e-43e0-9b55-d4455614ed08")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/88287345-600d-4e65-bb70-04715d00352d")
 		(sheetname "/")
@@ -1002,6 +1041,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5bbdee96-e8ac-4a8b-b0fb-2b59f7b0b494")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/94f08077-bb97-4c16-9e6c-8e49a7b38068")
 		(sheetname "/")
@@ -1094,7 +1146,7 @@
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "17e419a1-ca0b-4356-8ace-5c740b99bb55")
-		(at 181.78 96.2)
+		(at 142.77 102.03)
 		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R18"
@@ -1188,6 +1240,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "5e04364f-bfb9-46a0-976d-44f1972c473a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7538edbd-f565-426a-9d8a-19fb2ade7927")
 			(effects
 				(font
 					(size 1 1)
@@ -1336,12 +1401,25 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C3032175"
+		(property "JLCPCB Part #" "C46550419"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "21e61cce-6c66-47bd-a509-55d9ce1a0122")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" "180"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3f1caa6d-f60b-4fde-aed8-90c6a7aea732")
 			(effects
 				(font
 					(size 1 1)
@@ -1831,6 +1909,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "6e94433f-fae3-412c-bf97-11a5e6b1cb68")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/a51145ce-6b83-4687-99e1-6018277e14cc")
 		(sheetname "/")
@@ -2011,11 +2102,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "bc8f97a7-eb38-443a-ab34-f6fe14e87aa9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/78f50a1f-a207-488b-bdf5-cd2f1d93583c")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 6.46)
@@ -2197,7 +2301,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "407d87c8-99e5-4a61-818c-80e1d83e59e6")
-		(at 194.24 95)
+		(at 144.49 103.75)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R19"
@@ -2298,6 +2402,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "39340af1-5377-4644-ad2a-e3f3c7b29029")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/dbb3936d-71ec-44d8-914f-48c12edcf9f4")
 		(sheetname "/")
@@ -2390,7 +2507,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "4cb72c03-a3a0-4910-b0ef-6eaeede4f893")
-		(at 190.58 95.48)
+		(at 140.83 104.23)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R20"
@@ -2491,6 +2608,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d2224fff-8111-446c-b407-8b63ee4ef123")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/2e1c1bac-4047-4f3d-975f-468240895058")
 		(sheetname "/")
@@ -2583,7 +2713,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "55871d58-350d-4e44-8d89-373158225888")
-		(at 195.79 78.32)
+		(at 145.98 95.22)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C9"
@@ -2677,6 +2807,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "ac38fd29-a257-417a-9119-85e52ea5d522")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ff52d06c-3406-47d9-87e7-cbd33cec38ee")
 			(effects
 				(font
 					(size 1 1)
@@ -2864,11 +3007,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d3d61629-2044-40ef-bd76-358194c85155")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/87bf9c01-d87f-4950-8150-4e95123cb63d")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
@@ -3151,6 +3307,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "920bd06b-ca57-410e-b115-6a31436b6889")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/20cd8e05-22b5-4a15-ba7a-e63ea6a14400")
 		(sheetname "/")
@@ -3243,7 +3412,7 @@
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "6a49309e-196e-4191-bdef-6295815fce97")
-		(at 181.78 91.18)
+		(at 142.77 97.01)
 		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R16"
@@ -3337,6 +3506,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "f9a6be4f-304a-4f92-9617-8a6efc39ee51")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "48fc3d75-62ef-418f-8eb8-55aa1ec5f77f")
 			(effects
 				(font
 					(size 1 1)
@@ -3537,6 +3719,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "36beb139-cea0-4c6f-929c-79a5a6d1a976")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/5f0dcf45-ca0f-4e40-b15a-b47a135ba39a")
 		(sheetname "/")
@@ -3629,7 +3824,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "6b910933-30bc-4c2e-986d-0a7bcae56cec")
-		(at 181.78 88.67)
+		(at 142.77 94.5)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C7"
@@ -3730,6 +3925,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "73fc69b8-7a99-4b16-8370-b968e55d08ef")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/f508616f-9534-49ef-b91b-38d90ee63f59")
 		(sheetname "/")
@@ -3822,7 +4030,7 @@
 	(footprint "Package_SO:SO-8_3.9x4.9mm_P1.27mm"
 		(layer "F.Cu")
 		(uuid "711321f2-8c27-4d24-8efe-55c0e464a6f8")
-		(at 143.655 94 90)
+		(at 144.25 86.25 90)
 		(descr "SO, 8 Pin (https://www.nxp.com/docs/en/data-sheet/PCF8523.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SO SO")
 		(property "Reference" "U6"
@@ -3867,6 +4075,32 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C283459"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d239e0c0-0df6-42c6-8f1d-62af385803ef")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" "-90"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "154606df-a77f-4eb8-95d9-b727232137b4")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -4274,11 +4508,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "adee80b0-5ae2-4410-95b7-bee67c8d07f9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/03c514a1-bf0d-4405-95b7-6f3754bcfc86")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
@@ -4561,6 +4808,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f5024a09-cc12-435b-978f-45e137c6dd7b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/13b6e01d-f995-4ee2-b103-1ef496d370a9")
 		(sheetname "/")
@@ -4754,11 +5014,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3c71afb1-1936-4778-b476-523cb748fbd5")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/fcf0275d-d8f1-4fd9-8b16-05d655696e4c")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
@@ -5013,6 +5286,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "83acda4b-b397-4716-92b9-a91750000cab")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/f776b496-1e04-457e-9f09-059a0956d5ef")
 		(sheetname "/")
@@ -5201,6 +5487,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "98c4b083-695f-4c93-890e-52cd2819efb2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "160c5567-e2e6-4bfa-830f-e322528f1e1d")
 			(effects
 				(font
 					(size 1 1)
@@ -5401,11 +5700,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3cdd632c-ad12-4089-9356-c850a2eeb8c1")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/00330f1b-ac9f-433c-ae12-61c12bf5347d")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 9)
@@ -5699,6 +6011,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "53a20833-40d8-4ba6-8726-aa2d591fa472")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/1df7f58d-b634-442c-b05a-56b2f8548a75")
 		(sheetname "/")
@@ -5892,6 +6217,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "229fb444-961d-4c8b-800d-905e007cef2e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/606f87ca-bad5-43be-827b-925825449c94")
 		(sheetname "/")
@@ -5984,7 +6322,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "8958aa2d-cfee-4552-aa6d-bdd0794aaacf")
-		(at 195.79 76.35)
+		(at 145.98 93.25)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C8"
@@ -6078,6 +6416,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "805ff983-4813-4f70-b0cd-400e8a17cc04")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4690a69e-24f9-4645-8bce-8aed1f854a89")
 			(effects
 				(font
 					(size 1 1)
@@ -6278,6 +6629,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "bcf780c3-77d6-4406-a492-1fffb4b6525d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/a1085e1e-2b43-4417-912a-1c6fc62495f6")
 		(sheetname "/")
@@ -6458,11 +6822,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5ccdf28a-817a-4e5a-bb6b-b64504e29cd8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/caddbb22-ad21-4af1-baaa-913290947131")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 6.46)
@@ -6693,7 +7070,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" ""
+		(property "JLCPCB Part #" "C1855818"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6738,6 +7115,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "a35f4ac7-62ad-445f-82f5-d77c60b45630")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a54a3140-216d-42e2-83ef-41f8389639a5")
 			(effects
 				(font
 					(size 1 1)
@@ -7200,7 +7590,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" ""
+		(property "JLCPCB Part #" "C1855818"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7245,6 +7635,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "9c4d21b0-c2b3-483e-aeb5-c743a5f55c0d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f6234a9e-547f-4b29-9322-710fbaa4171a")
 			(effects
 				(font
 					(size 1 1)
@@ -7759,6 +8162,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "9aa42fe8-3347-4dbe-9aa0-587a3592e1a8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/5950c20d-1028-429a-9daa-f5a507e651b1")
 		(sheetname "/")
@@ -7896,6 +8312,32 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C93176"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8ca8e644-acf0-4e44-a863-c95160d4be9f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3f5f9860-08ba-4f23-b9e7-4a281555c0c0")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -8244,12 +8686,25 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C3032175"
+		(property "JLCPCB Part #" "C46550419"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d95f37b3-1a84-47f6-b81a-11e99ed3de4f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" "180"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "82da3d7d-9b02-4322-a205-588ce7f38dfe")
 			(effects
 				(font
 					(size 1 1)
@@ -8739,6 +9194,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "72b75d73-0049-470c-8e95-e278c580cc74")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/4a969296-1dc5-483f-b47f-de8afcf098b5")
 		(sheetname "/")
@@ -8925,6 +9393,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "3f7cd86d-17d3-440a-be5a-d207a22d0f72")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "31f32509-ab8e-47c9-b21a-41f75a2c6daf")
 			(effects
 				(font
 					(size 1 1)
@@ -9125,6 +9606,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "efeedffe-a2da-437b-9432-745e5fe6c21a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/19674987-c4f7-4d61-85d9-f67b00db6488")
 		(sheetname "/")
@@ -9311,6 +9805,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "704155ec-3801-43f1-b3ee-25e332ed1a15")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7410261b-2dea-4a92-97c7-f28015109779")
 			(effects
 				(font
 					(size 1 1)
@@ -9511,6 +10018,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "016a1682-5488-4d3c-a643-c46ed59ee746")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/7fde6b5a-923f-40c3-881a-5297deb6267d")
 		(sheetname "/")
@@ -9609,7 +10129,7 @@
 			(at 4.5 -4.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "4c31bc96-9f24-4a73-a3bc-d0556389831f")
+			(uuid "a1e9fac0-906f-40f5-8fe0-111d6075f3ed")
 			(effects
 				(font
 					(size 1 1)
@@ -9621,7 +10141,7 @@
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "835bcd0e-8dd8-4506-a7bd-eab50dad4abe")
+			(uuid "470e70f6-6275-4b24-850f-faaf22ace1dc")
 			(effects
 				(font
 					(size 1 1)
@@ -9633,7 +10153,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c88a6dac-6f81-4176-bd8d-6bcfd51f24c5")
+			(uuid "bd7ee818-77c7-47fd-bad4-ef9f15f1f081")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9645,7 +10165,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1313ec88-def3-4370-82ba-ec0e7ad236a7")
+			(uuid "0179bb68-3a52-4d78-b6a5-5272fb5aa5ca")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9685,6 +10205,32 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "7a30d34e-56f0-4c14-9122-71dade7318ff")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C1849461"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "55b6ff13-b337-47ad-855f-1b0af11e296d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ca7519e8-dcdb-4f77-8ba6-199de2a1e971")
 			(effects
 				(font
 					(size 1 1)
@@ -11099,6 +11645,32 @@
 				)
 			)
 		)
+		(property "JLCPCB Part #" "C12084"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "528d02ff-389b-4bd9-aece-6939663bb93f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c9790b4e-290b-45b1-b094-3af0c1e1bd14")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "SOIC*3.9x4.9mm*P1.27mm*")
 		(path "/47e124b0-0819-4bbd-ba00-f48f4fa6f447")
 		(sheetname "/")
@@ -11464,11 +12036,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4dcca864-495e-45fa-ba0c-e2d62eb54f29")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/dc5453f8-06c7-4683-acf7-17fdc0456696")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 14.08)
@@ -11784,6 +12369,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e6061eb6-de23-4095-8545-4b54e9cae1ce")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/bfe1ac64-4b88-4c20-ab6d-8e428b0f1d7b")
 		(sheetname "/")
@@ -11876,7 +12474,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "d6e71f45-bf5d-47b0-b633-f83e0f6d4014")
-		(at 140.25 91.23 -90)
+		(at 140.845 83.48 -90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C14"
@@ -11970,6 +12568,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "9413c546-b32f-413a-9609-f70271a8c835")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "edc50b7a-07c1-4f76-93bb-21f6ac6db61b")
 			(effects
 				(font
 					(size 1 1)
@@ -12170,6 +12781,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "75caa57a-8ed3-4bea-a832-8e56a818e295")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/dcefbae2-7186-4339-a3b8-aeb9ed077812")
 		(sheetname "/")
@@ -12356,6 +12980,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "bd511a34-5822-4cfa-8dff-9c1e61f34508")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e25af981-0c8e-4425-8ee4-094d6db0cc5d")
 			(effects
 				(font
 					(size 1 1)
@@ -12556,6 +13193,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ab31c1d4-02df-47b7-9627-e043d8d57206")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/20947b0e-ef3e-4535-864a-c7feb1ea33cf")
 		(sheetname "/")
@@ -12648,7 +13298,7 @@
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "df299ee0-bfc4-4e39-bab9-b07bbaeb9c2d")
-		(at 181.78 93.69)
+		(at 142.77 99.52)
 		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R17"
@@ -12742,6 +13392,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "489a7a0e-8373-4bf8-8b08-f95a3a14f439")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e8c69ef3-ebc1-4fe4-af74-5efd7fb3f7a6")
 			(effects
 				(font
 					(size 1 1)
@@ -12942,6 +13605,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7b33d850-3888-4d6d-ba58-db2384aff3bd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/3a882334-f8aa-4cdb-99a9-30b6e50ed2a6")
 		(sheetname "/")
@@ -13135,6 +13811,19 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "43d29102-e93b-44fd-a4ff-def3425f1f6d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/ef9ea0f7-7274-4a2c-b540-f65f349562aa")
 		(sheetname "/")
@@ -13315,11 +14004,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "bec81c5f-8228-449a-aef8-593f39355582")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/97bf43ed-a4ec-4032-b356-f493cb6008fb")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start 1.38 1.27)
 			(end 1.38 6.46)
@@ -13589,11 +14291,24 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "853b007f-6037-4539-b2ee-dcb4f55525f4")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/0888bca5-2d1c-480d-8bd7-991048144190")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
@@ -13854,6 +14569,32 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "528df838-0e38-486c-b7d1-8ac9fe0d39ef")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C430601"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4a4ff1f3-3f0a-4cca-b35f-983de408b4e4")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "393fa7de-6f94-4034-b93a-c10270c1d906")
 			(effects
 				(font
 					(size 1 1)
@@ -14454,10 +15195,24 @@
 				(justify mirror)
 			)
 		)
+		(property "FT Rotation Offset" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "a3f07e04-a2ea-4c44-8e18-a90ac28fd29a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
 		(path "/e0a75e33-01ce-44f4-9356-c399f3c632b4")
 		(sheetname "/")
 		(sheetfile "DRV8874-Devboard.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start 27.175 25.72)
 			(end 27.175 24.39)
