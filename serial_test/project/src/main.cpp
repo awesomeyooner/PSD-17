@@ -23,6 +23,17 @@ float target_voltage = 0;
 
 int main(int argc, char* argv[])
 {
+    Logger::init("csv");
+    Logger::write_csv(
+        {
+            "Time (seconds)",
+            "Encoder Angle (Radians)",
+            "Fake Encoder Angle (Radians)",
+            "Target Velocity (Radians)",
+            "Encoder Velocity (Radians)"
+        }
+    );
+    
     ImPlotter::init();
 
     SerialInterface serial;
@@ -40,11 +51,25 @@ int main(int argc, char* argv[])
         auto angle_read = serial.request_data<double>(101, 500);
         auto vel_read = serial.request_data<double>(102, 500);
 
-        if(!angle_read.is_OK() || !vel_read.is_OK())
+        auto fake_angle_read = serial.request_data<double>(104, 500);
+
+        if(!angle_read.is_OK() || !vel_read.is_OK() || !fake_angle_read.is_OK())
         {
             Logger::error("Failed to read! Skipping iteration...");
             continue;
         }
+
+        double timestamp = System::get_epoch();
+
+        Logger::write_csv(
+            {
+                timestamp,
+                angle_read.value,
+                fake_angle_read.value,
+                target_voltage,
+                vel_read.value
+            }
+        );
 
         serial.write_data<double>(100, target_voltage);
 
@@ -69,6 +94,7 @@ int main(int argc, char* argv[])
 
     serial.close();
     ImPlotter::shutdown();
+    Logger::close();
 
     return 0;
 
