@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
-DATA_FILE = "data4"
+DATA_FILE = "data6"
 FILE_EXT = ".csv"
 
 data = pd.read_csv(DATA_FILE + FILE_EXT)
