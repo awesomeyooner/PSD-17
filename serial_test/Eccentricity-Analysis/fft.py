@@ -66,7 +66,7 @@ for t_i in range(len(time)):
     sum = 0
 
     for p_i in range(len(peak_idxs)):
-        # n = pow(2, p_i)
+        
         f = frequency_peaks[p_i]
         n = round(2 * math.pi * f)
         amp = amplitude_peaks[p_i]
@@ -75,6 +75,8 @@ for t_i in range(len(time)):
         phase_abs = phase - n * readings[0]
 
         # sum += amp * math.sin(n * theta + phase_abs)
+
+        # sum += amp * math.cos(n * (t) + (phase))
         sum += amp * math.cos(n * (theta - readings[0] + time[0]) + (phase))
         # sum -= amp * math.sin(2 * math.pi * f * (theta - residual[0]) + phase)
         # sum += amp * math.sin(2 * math.pi * f * (t - time[0]) + phase)
@@ -107,9 +109,9 @@ ax1.grid(True, linestyle='--', alpha=0.6)
 
 fig2, ax2 = plt.subplots(figsize=(10, 4))
 
-# ax2.plot(constructed_x, constructed_y, color='red', linewidth=1.5)
-# ax2.plot(time, residual, color='green', linewidth=1.5)
-ax2.plot(time, diff_y, color='purple', linewidth=1.5)
+ax2.plot(constructed_x, constructed_y, color='red', linewidth=1.5)
+ax2.plot(time, residual, color='green', linewidth=1.5)
+# ax2.plot(time, diff_y, color='purple', linewidth=1.5)
 ax2.set_title("Reconstructed Noise")
 ax2.set_xlabel("Time (seconds)")
 ax2.set_ylabel("Angle (rads)")
