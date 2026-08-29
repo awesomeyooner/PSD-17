@@ -21,6 +21,8 @@ using namespace std;
 
 float target_voltage = 0;
 
+bool start_recording = false;
+
 int main(int argc, char* argv[])
 {
     Logger::init("csv");
@@ -59,19 +61,18 @@ int main(int argc, char* argv[])
             continue;
         }
 
-        double timestamp = System::get_epoch();
-
-        Logger::write_csv(
-            {
-                timestamp,
-                angle_read.value,
-                fake_angle_read.value,
-                target_voltage,
-                vel_read.value
-            }
-        );
-
         serial.write_data<double>(100, target_voltage);
+
+        if(start_recording)
+            Logger::write_csv(
+                {
+                    System::get_epoch(),
+                    angle_read.value,
+                    fake_angle_read.value,
+                    target_voltage,
+                    vel_read.value
+                }
+            );
 
         ImPlotter::push_data(
             angle_read.value,
@@ -86,6 +87,8 @@ int main(int argc, char* argv[])
         function<void()> add_inputs = []()
         {
             ImGui::SliderFloat("Voltage", &target_voltage, -24, 24, "%.3f V");
+
+            ImGui::Checkbox("My Checkbox", &start_recording);
         };
 
         if(ImPlotter::update(add_inputs) == StatusCode::FAILED)

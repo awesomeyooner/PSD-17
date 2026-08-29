@@ -13,8 +13,8 @@ time = data['Normalized Time'].to_numpy()
 residual = data['Residual'].to_numpy()
 readings = data['Encoder Angle (Radians)'].to_numpy()
 
-num_samples = len(time)
-total_time = time[-1] - time[0]
+num_samples = len(readings)
+total_time = readings[-1] - readings[0]
 period = total_time / num_samples
 frequency = 1 / period
 
@@ -53,41 +53,30 @@ peak_csv = pd.DataFrame({
 
 print("Frequency data saved!")
 
-constructed_x = []
-constructed_y = []
+reconstructed = []
 
-for t_i in range(len(time)):
+for i in range(len(time)):
 
-    t = time[t_i]
-    theta = readings[t_i]
-
-    constructed_x.append(t)
+    theta = readings[i]
 
     sum = 0
 
     for p_i in range(len(peak_idxs)):
-
+        
         f = frequency_peaks[p_i]
         n = round(2 * math.pi * f)
         amp = amplitude_peaks[p_i]
         phase = phase_peaks[p_i]
 
-        phase_abs = phase - n * readings[0]
+        sum += amp * math.cos(n * (theta + readings[0]) + (phase))
 
-        # sum += amp * math.sin(n * theta + phase_abs)
-
-        # sum += amp * math.cos(n * (t) + (phase))
-        sum += amp * math.cos(n * (theta - readings[0] + time[0]) + (phase))
-        # sum -= amp * math.sin(2 * math.pi * f * (theta - residual[0]) + phase)
-        # sum += amp * math.sin(2 * math.pi * f * (t - time[0]) + phase)
-
-    constructed_y.append(sum)
+    reconstructed.append(sum)
 
 diff_y = []
 
 for i in range(len(time)):
     raw = residual[i]
-    predict = constructed_y[i]
+    predict = reconstructed[i]
 
     diff_y.append(raw - predict)
 
@@ -109,28 +98,13 @@ ax1.grid(True, linestyle='--', alpha=0.6)
 
 fig2, ax2 = plt.subplots(figsize=(10, 4))
 
-ax2.plot(constructed_x, constructed_y, color='red', linewidth=1.5)
-ax2.plot(time, residual, color='green', linewidth=1.5)
-# ax2.plot(time, diff_y, color='purple', linewidth=1.5)
+ax2.plot(readings, reconstructed, color='red', linewidth=1.5)
+ax2.plot(readings, residual, color='green', linewidth=1.5)
+# ax2.plot(readings, diff_y, color='purple', linewidth=1.5)
 ax2.set_title("Reconstructed Noise")
-ax2.set_xlabel("Time (seconds)")
-ax2.set_ylabel("Angle (rads)")
+ax2.set_xlabel("Encoder Angle (Radians)")
+ax2.set_ylabel("Error (Radians)")
 ax2.grid(True, linestyle='--', alpha=0.6)
 
 plt.tight_layout()
 plt.show()
-
-# plt.figure(figsize=(10, 4))
-# plt.plot(frequencies, amplitude, color='blue', linewidth=1.5)
-
-# for peak_idx in peak_idxs:
-#     x = frequencies[peak_idx]
-#     y = amplitude[peak_idx]
-
-#     plt.plot(x, y, "x")
-
-# plt.title("Frequency Spectrum")
-# plt.xlabel("Frequency (Hz)")
-# plt.ylabel("Amplitude")
-# plt.grid(True, linestyle='--', alpha=0.6)
-# plt.show()
