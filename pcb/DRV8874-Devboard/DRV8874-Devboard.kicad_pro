@@ -460,7 +460,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
       "similar_label_and_power": "warning",
@@ -529,7 +529,7 @@
         "line_style": 0,
         "name": "GND",
         "pcb_color": "rgb(72, 72, 72)",
-        "priority": 9,
+        "priority": 8,
         "schematic_color": "rgb(72, 72, 72)",
         "wire_width": 6
       },
@@ -555,9 +555,9 @@
         "bus_width": 12,
         "line_style": 0,
         "name": "PHASE_B",
-        "pcb_color": "rgb(0, 255, 255)",
+        "pcb_color": "rgb(0, 4, 255)",
         "priority": 5,
-        "schematic_color": "rgb(0, 255, 255)",
+        "schematic_color": "rgb(0, 4, 255)",
         "wire_width": 6
       },
       {
@@ -565,17 +565,8 @@
         "line_style": 0,
         "name": "PWR",
         "pcb_color": "rgb(255, 0, 0)",
-        "priority": 8,
-        "schematic_color": "rgb(255, 0, 0)",
-        "wire_width": 6
-      },
-      {
-        "bus_width": 12,
-        "line_style": 0,
-        "name": "SIG_INPUT",
-        "pcb_color": "rgb(0, 0, 255)",
         "priority": 7,
-        "schematic_color": "rgb(0, 0, 255)",
+        "schematic_color": "rgb(255, 0, 0)",
         "wire_width": 6
       },
       {
