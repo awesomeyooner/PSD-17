@@ -10616,12 +10616,12 @@
 		(uuid "16284852-099f-4b74-b181-f0d667cc00c8")
 	)
 	(label "B_IN2"
-		(at 400.05 86.36 0)
+		(at 372.11 83.82 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "19e3dbfe-4df9-4367-ade1-6d71936a1546")
 	)
@@ -10706,7 +10706,7 @@
 		(uuid "3f3cebf6-2e2c-47da-8e3e-83eaa743ba4c")
 	)
 	(label "B_IPROPI"
-		(at 355.6 68.58 180)
+		(at 355.6 63.5 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10756,12 +10756,12 @@
 		(uuid "50a4b66e-46a0-4a75-900d-dffcb317a698")
 	)
 	(label "A_IN2"
-		(at 400.05 81.28 0)
+		(at 372.11 78.74 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "53035f64-e990-4419-8fbe-a5ee5c84e311")
 	)
@@ -10776,12 +10776,12 @@
 		(uuid "58e54448-a030-4297-bdc4-5d0d7fd1a487")
 	)
 	(label "A_IN1"
-		(at 372.11 78.74 180)
+		(at 400.05 81.28 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "5b02a0e1-a9a2-4234-958c-e09404bc99c6")
 	)
@@ -10976,7 +10976,7 @@
 		(uuid "84515fd6-a95f-488f-b483-ec6c8294b652")
 	)
 	(label "A_IPROPI"
-		(at 355.6 63.5 180)
+		(at 355.6 68.58 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11226,12 +11226,12 @@
 		(uuid "d784eb67-de5b-4131-ae6a-70602aac32e7")
 	)
 	(label "B_IN1"
-		(at 372.11 83.82 180)
+		(at 400.05 86.36 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "d844cf0f-b203-4d8e-b4b2-681e70e5c1eb")
 	)
