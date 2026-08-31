@@ -11105,7 +11105,7 @@
 		)
 		(uuid "ad220b94-aa7f-4378-b8c6-5492abadfd57")
 	)
-	(label "B_IRPOPI"
+	(label "B_IPROPI"
 		(at 271.78 181.61 0)
 		(effects
 			(font
