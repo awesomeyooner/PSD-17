@@ -11499,6 +11499,16 @@
 		)
 		(uuid "fe724ba8-d3af-4815-9c31-23c0a18cc348")
 	)
+	(label "EEPROM_PWR"
+		(at 231.14 72.39 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "fffdbbf9-aea4-456f-9f33-0c26deb61dbc")
+	)
 	(symbol
 		(lib_id "Connector:Conn_01x04_Pin")
 		(at 351.79 214.63 180)
