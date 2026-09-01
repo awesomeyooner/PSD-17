@@ -5188,7 +5188,7 @@
 		)
 	)
 	(rectangle
-		(start 73.66 242.57)
+		(start 67.31 242.57)
 		(end 200.66 312.42)
 		(stroke
 			(width 0)
@@ -5819,6 +5819,16 @@
 		)
 		(uuid "a9f02c7e-f147-44b7-882e-95061677396d")
 	)
+	(text "100nF \nDecoupling Cap\n"
+		(exclude_from_sim no)
+		(at 76.2 273.558 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "b29746a3-3a49-4f5b-b702-e0dcfe8aaba5")
+	)
 	(text "HOLD\nHIGH -> Unused\nLOW -> SPI Paused"
 		(exclude_from_sim no)
 		(at 210.312 110.49 0)
@@ -5892,7 +5902,7 @@
 	)
 	(text "Max V: 36V\nMin V: 6V\n(for DRV8874)"
 		(exclude_from_sim no)
-		(at 83.058 259.334 0)
+		(at 76.962 249.682 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6302,6 +6312,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a2547758-99d9-4e8b-85af-ee8cda288739")
+	)
+	(junction
+		(at 92.71 300.99)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a6219829-32c4-4adb-bcdd-95144a23d0b8")
 	)
 	(junction
 		(at 314.96 254)
@@ -7612,6 +7628,16 @@
 			(type default)
 		)
 		(uuid "361fcd67-9b96-4356-9368-68bdac4ea5e4")
+	)
+	(wire
+		(pts
+			(xy 78.74 283.21) (xy 78.74 300.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37821fcf-d491-433b-a875-21e2a3543de6")
 	)
 	(wire
 		(pts
@@ -9465,6 +9491,16 @@
 	)
 	(wire
 		(pts
+			(xy 78.74 260.35) (xy 78.74 275.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ade7339e-faac-425d-9fc0-4687fde4ad68")
+	)
+	(wire
+		(pts
 			(xy 271.78 251.46) (xy 271.78 254)
 		)
 		(stroke
@@ -10195,6 +10231,16 @@
 	)
 	(wire
 		(pts
+			(xy 78.74 300.99) (xy 92.71 300.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3a0eb60-f910-4594-b646-127e7eb5fac8")
+	)
+	(wire
+		(pts
 			(xy 283.21 88.9) (xy 283.21 97.79)
 		)
 		(stroke
@@ -10442,6 +10488,16 @@
 			(type default)
 		)
 		(uuid "f27d58ee-641c-4e68-9e3e-908599f9e7a1")
+	)
+	(wire
+		(pts
+			(xy 92.71 260.35) (xy 78.74 260.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f29c48c1-0c90-4337-a3c0-bfc4a74fd257")
 	)
 	(wire
 		(pts
@@ -19358,7 +19414,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SO:HTSSOP-20-1EP_4.4x6.5mm_P0.65mm_EP2.85x4mm"
+		(property "Footprint" "HTSSOP20_PWP_TEX"
 			(at 114.3 260.35 0)
 			(effects
 				(font
@@ -22140,6 +22196,129 @@
 			(project "DRV8874-Devboard"
 				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
 					(reference "#PWR024")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 78.74 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fc93966c-6474-4555-9a04-bfff19042c08")
+		(property "Reference" "C15"
+			(at 74.93 280.6701 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 74.93 278.1301 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 77.7748 275.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 78.74 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 78.74 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part #" " C307331"
+			(at 78.74 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 78.74 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 78.74 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 78.74 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(at 78.74 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Position Offset" ""
+			(at 78.74 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "920ac0cd-279f-4eec-a1a8-8e678acc3ddc")
+		)
+		(pin "2"
+			(uuid "6a578ef8-c8ba-407b-9f2b-36b4c3c59936")
+		)
+		(instances
+			(project "DRV8874-Devboard"
+				(path "/b57ce88b-13b6-41b4-aa44-cbc2ef4083a9"
+					(reference "C15")
 					(unit 1)
 				)
 			)
