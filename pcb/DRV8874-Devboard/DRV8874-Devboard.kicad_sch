@@ -6580,10 +6580,6 @@
 		(uuid "262bbbbe-0e53-4cd5-ab44-0896d950a0d5")
 	)
 	(no_connect
-		(at 372.11 53.34)
-		(uuid "28ae89fc-8e5c-450f-8ca5-f934081970ce")
-	)
-	(no_connect
 		(at 400.05 91.44)
 		(uuid "39aecfe9-666d-4ef6-a85c-71acd35c4a28")
 	)
@@ -6606,18 +6602,6 @@
 	(no_connect
 		(at 331.47 156.21)
 		(uuid "9c06d850-ef9b-494f-b216-e5e6fbc9ae54")
-	)
-	(no_connect
-		(at 372.11 48.26)
-		(uuid "bcb71aa3-8542-4ac9-8008-e261837e2630")
-	)
-	(no_connect
-		(at 400.05 55.88)
-		(uuid "c25ea1d5-0592-4eb0-b665-e55c233342f2")
-	)
-	(no_connect
-		(at 400.05 50.8)
-		(uuid "c83f75f5-ad40-43ff-b451-a0220e4787f1")
 	)
 	(no_connect
 		(at 372.11 45.72)
@@ -10780,7 +10764,7 @@
 		(uuid "16284852-099f-4b74-b181-f0d667cc00c8")
 	)
 	(label "B_IN2"
-		(at 372.11 83.82 180)
+		(at 372.11 48.26 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10920,7 +10904,7 @@
 		(uuid "50a4b66e-46a0-4a75-900d-dffcb317a698")
 	)
 	(label "A_IN2"
-		(at 372.11 78.74 180)
+		(at 372.11 53.34 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10940,7 +10924,7 @@
 		(uuid "58e54448-a030-4297-bdc4-5d0d7fd1a487")
 	)
 	(label "A_IN1"
-		(at 400.05 81.28 0)
+		(at 400.05 55.88 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11390,7 +11374,7 @@
 		(uuid "d784eb67-de5b-4131-ae6a-70602aac32e7")
 	)
 	(label "B_IN1"
-		(at 400.05 86.36 0)
+		(at 400.05 50.8 0)
 		(effects
 			(font
 				(size 1.27 1.27)
