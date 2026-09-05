@@ -11,6 +11,7 @@ D2,D_SMA,1,D_Schottky,C2480
 "J1, J5",PinHeader_1x04_P2.54mm_Vertical,2,Conn_01x04_Pin,
 "J10, J11",PinHeader_1x06_P2.54mm_Vertical,2,Conn_01x06_Pin,
 "J12, J3, J4, J6, J7, J8, J9",PinHeader_1x03_P2.54mm_Vertical,7,Conn_01x03_Pin,
+"J13, J14",PinHeader_1x02_P2.54mm_Vertical,2,Conn_01x02_Pin,
 J2,CONN-TH_2P-P5.08_DB128L-5.08-2P-BK-S,1,Screw_Terminal_01x02,C430601
 L2,1008,1,4u7,C5832360
 "R1, R19",0402,2,2k2, C25879
