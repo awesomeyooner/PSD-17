@@ -609,11 +609,11 @@
       },
       {
         "netclass": "CAN",
-        "pattern": "*CAN*"
+        "pattern": "*/CAN*"
       },
       {
         "netclass": "I2C",
-        "pattern": "*I2C*"
+        "pattern": "*/I2C*"
       },
       {
         "netclass": "PWR",
@@ -621,23 +621,23 @@
       },
       {
         "netclass": "SPI",
-        "pattern": "*SPI*"
+        "pattern": "*/SPI*"
       },
       {
         "netclass": "PHASE_A",
-        "pattern": "*A_*"
+        "pattern": "*/A_*"
       },
       {
         "netclass": "PHASE_B",
-        "pattern": "*B_*"
+        "pattern": "*/B_*"
       },
       {
         "netclass": "TPS",
-        "pattern": "*TPS*"
+        "pattern": "*/TPS*"
       },
       {
         "netclass": "BL9342",
-        "pattern": "*BL*"
+        "pattern": "*/BL*"
       }
     ]
   },
