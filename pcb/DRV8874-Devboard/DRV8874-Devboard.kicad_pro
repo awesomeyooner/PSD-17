@@ -609,11 +609,11 @@
       },
       {
         "netclass": "CAN",
-        "pattern": "/CAN*"
+        "pattern": "*CAN*"
       },
       {
         "netclass": "I2C",
-        "pattern": "/I2C*"
+        "pattern": "*I2C*"
       },
       {
         "netclass": "PWR",
@@ -621,23 +621,23 @@
       },
       {
         "netclass": "SPI",
-        "pattern": "/SPI*"
+        "pattern": "*SPI*"
       },
       {
         "netclass": "PHASE_A",
-        "pattern": "/A_*"
+        "pattern": "*A_*"
       },
       {
         "netclass": "PHASE_B",
-        "pattern": "/B_*"
+        "pattern": "*B_*"
       },
       {
         "netclass": "TPS",
-        "pattern": "/TPS*"
+        "pattern": "*TPS*"
       },
       {
         "netclass": "BL9342",
-        "pattern": "/BL*"
+        "pattern": "*BL*"
       }
     ]
   },
@@ -820,6 +820,38 @@
     [
       "b57ce88b-13b6-41b4-aa44-cbc2ef4083a9",
       "Root"
+    ],
+    [
+      "a4248afc-ab15-495b-b9f0-9f78ed30e8bb",
+      "Tiny Thinker"
+    ],
+    [
+      "c85b4bc7-ab3a-4c71-9a86-a80e0ba7aadc",
+      "Power Protection"
+    ],
+    [
+      "aeee3572-6cdd-4d63-92b1-db77ec61e5d0",
+      "MCU Step Down-Converter"
+    ],
+    [
+      "9d0f9184-434e-4e3f-ab14-0ce2892458b3",
+      "Phase Drivers"
+    ],
+    [
+      "5b04a459-c355-4f7d-8fa3-df9f0ff7ed02",
+      "CAN Transceiver"
+    ],
+    [
+      "6c89825b-91b0-4f0e-b948-0291626bead1",
+      "EEPROM"
+    ],
+    [
+      "4317c465-625c-4a93-933b-4bd596df875d",
+      "RGB LEDS"
+    ],
+    [
+      "c7813879-b5d3-47c5-b193-d442495b6c01",
+      "Voltage Sensing"
     ]
   ],
   "text_variables": {}
