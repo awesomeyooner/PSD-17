@@ -31,6 +31,8 @@ target_compile_definitions(shared_library INTERFACE
 # Add any libraries using these lines
 # add_subdirectory(lib/MyLib)
 
+set(EMBEDDEDLIB_BUILD_I2C OFF CACHE BOOL "Disable I2C compiling" FORCE)
+
 add_subdirectory(lib/EmbeddedLib)
 target_link_libraries(EmbeddedLib PRIVATE shared_library)
 
