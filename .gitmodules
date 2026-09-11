@@ -28,3 +28,6 @@
 [submodule "serial_test/project/lib/PlotLib"]
 	path = serial_test/project/lib/PlotLib
 	url = https://github.com/awesomeyooner/PlotLib.git
+[submodule "firmware/lib/EmbeddedLib"]
+	path = firmware/lib/EmbeddedLib
+	url = https://github.com/awesomeyooner/EmbeddedLib.git

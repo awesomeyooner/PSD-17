@@ -26,11 +26,17 @@ target_compile_definitions(shared_library INTERFACE
 # add_subdirectory(lib/MyLib)
 # target_link_libraries(MyLib PRIVATE shared_library)
 
+set(EMBEDDEDLIB_BUILD_I2C OFF CACHE BOOL "Disable I2C compiling" FORCE)
+
+add_subdirectory(lib/EmbeddedLib)
+target_link_libraries(EmbeddedLib PRIVATE shared_library)
+
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     shared_library
 
     # MyLib
+    EmbeddedLib
 )
 
 # Add sources to executable
