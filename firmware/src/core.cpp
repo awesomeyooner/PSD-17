@@ -9,8 +9,9 @@
 #include "ActionLib/ActionManager.hpp"
 
 #include "PolarFOC/devices/encoders/as5047.hpp"
+#include "PolarFOC/devices/drivers/dual_pwm_driver.hpp"
 
-#include "devices/dual_pwm_driver.hpp"
+#include "PolarFOC/devices/motors/stepper_motor.hpp"
 
 
 using namespace std;
@@ -28,19 +29,28 @@ DualPWMDriver phaseB = DualPWMDriver(&htim8, TIM_CHANNEL_3, TIM_CHANNEL_4);
 
 ADCDevice i_sensor = ADCDevice(&hadc1, 2);
 
+StepperMotor motor = StepperMotor(50);
+
 void init()
 {
+    System::init();
+
     ActionManager::init();
 
     leds.init();
 
-    sensor.init();
-
     voltage_sensor.start_DMA();
     i_sensor.start_DMA();
 
-    phaseA.init();
-    phaseB.init();
+    motor.link_drivers(&phaseA, &phaseB);
+    motor.link_encoder(&sensor);
+
+    double V_in = 24.343;
+
+    motor.set_input_voltage(V_in);
+
+    motor.init();
+    motor.calibrate_angle_offset(12);
 
     ActionManager::add(
         Action(0.02).link_callback(
@@ -56,7 +66,15 @@ void init()
                 phaseA.set_input_voltage(V_in);
                 phaseB.set_input_voltage(V_in);
 
-                Serial.println(V_in);
+                // Serial.println(V_in);
+
+                double iA = i_sensor.get_voltage(0);
+                double iB = i_sensor.get_voltage(1);
+
+                string text = "A: " + string_formatter::to_string(iA) + "\t";
+                text += "B: " + string_formatter::to_string(iB);
+
+                Serial.println(text);
 
                 return StatusedValue<bool>(false, StatusCode::OK);
             }
@@ -72,8 +90,11 @@ void update()
 
     ActionManager::update();
 
-    phaseA.set_percent(0.1);
-    phaseB.set_voltage(12);
+    motor.refresh();
+
+    led.set_low();
+
+    motor.inverse_park(12);
 
 } // end of "update()"
 
