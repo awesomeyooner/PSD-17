@@ -27,7 +27,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "core.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,7 +52,15 @@
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void SystemClock_Config(void);
+
+#ifdef __cplusplus
+}
+#endif
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -100,7 +108,7 @@ int main(void)
   MX_SPI2_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+    init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -110,6 +118,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    update();
   }
   /* USER CODE END 3 */
 }

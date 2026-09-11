@@ -29,7 +29,7 @@ project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
 # Enable CMake support for ASM and C languages
-enable_language(C ASM)
+enable_language(C CXX ASM)
 
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME})
@@ -65,4 +65,37 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
 
     # Add user defined libraries
+)
+
+# Create .bin file after building
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY}
+    -O binary
+    $<TARGET_FILE:${PROJECT_NAME}>
+    ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin
+    COMMENT "Generating binary (.bin) from ELF"
+)
+
+# Flash via DFU
+find_program(DFU_UTIL dfu-util REQUIRED)
+
+add_custom_target(flash_dfu
+    COMMAND ${DFU_UTIL}
+        -a 0
+        -s 0x08000000:leave
+        -D ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin
+    DEPENDS ${PROJECT_NAME}
+    COMMENT "Flashing firmware over DFU"
+)
+
+# Flash via ST-Link
+find_program(OPENOCD openocd REQUIRED)
+
+add_custom_target(flash_stlink
+    COMMAND ${OPENOCD}
+        -f interface/stlink.cfg
+        -f target/stm32f4x.cfg
+        -c "program $<TARGET_FILE:${PROJECT_NAME}> verify reset exit"
+    DEPENDS ${PROJECT_NAME}
+    COMMENT "Flashing STM32 via ST-Link/OpenOCD"
 )
