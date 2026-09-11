@@ -6,6 +6,7 @@
 #include "EmbeddedLib/devices/gpio_device.hpp"
 #include "EmbeddedLib/devices/adc_device.hpp"
 #include "EmbeddedLib/math/math_util.hpp"
+#include "EmbeddedLib/math/vector2d.hpp"
 
 #include "WireLib/communication/wire_manager.hpp"
 #include "WireLib/communication/protocols/serial_interface.hpp"
@@ -16,6 +17,9 @@
 #include "PolarFOC/foc_math.hpp"
 #include "PolarFOC/devices/encoders/as5047.hpp"
 #include "PolarFOC/devices/drivers/l298n.hpp"
+#include "PolarFOC/devices/motors/stepper_motor.hpp"
+#include "PolarFOC/filters/low_pass_filter.hpp"
+
 // #include "devices/as5047.hpp"
 // #include "devices/l298n.hpp"
 // #include "devices/adc_device.hpp"
@@ -37,19 +41,20 @@ using namespace math;
 using namespace std;
 
 
-const double DRIVER_INPUT_VOLTAGE = 24; // V
-
-
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
+
+StepperMotor motor = StepperMotor(50);
 
 L298N phase_A = L298N(&htim3, TIM_CHANNEL_3, TIM_CHANNEL_4);
 L298N phase_B = L298N(&htim3, TIM_CHANNEL_1, TIM_CHANNEL_2);
 
 AS5047 as5047 = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
+LowPassFilter angle_filter = LowPassFilter(0.9);
+LowPassFilter velocity_filter = LowPassFilter(0.9);
 
 ADCDevice adc = ADCDevice(&hadc1);
 
-double offset = 0;
+Vector2d phase_voltages;
 
 void stop();
 void inverse_park(double el_angle, double vd, double vq = 0);
@@ -58,10 +63,11 @@ double get_electrical_angle();
 double get_angle_offset(double voltage = 12);
 double get_input_voltage();
 
+double prev_angle = 0;
+double prev_timestamp = 0;
+double velocity = 0;
 
-int pole_pairs = 0;
-
-double voltage = 0;
+double target = 0;
 
 
 void stop()
@@ -71,7 +77,7 @@ void stop()
 }
 
 
-void get_pole_pairs()
+double get_pole_pairs()
 {
     HAL_Delay(500);
 
@@ -95,23 +101,14 @@ void get_pole_pairs()
     double rotations = diff / (2 * M_PI);
 
     // pole_pairs = (double)steps / rotations;
-    pole_pairs = std::round((double)steps / rotations);
+    return std::round((double)steps / rotations);
 }
 
 
 double get_input_voltage()
 {
-    // uint32_t adc_reading = 0;
-
-    // HAL_ADC_Start(&hadc1);
-
-    // if(HAL_ADC_PollForConversion(&hadc1, 100) == HAL_OK)
-    //     adc_reading = HAL_ADC_GetValue(&hadc1);
-
-    // HAL_ADC_Stop(&hadc1);
-
-    // double V_adc = 3.3 * ((double)adc_reading / 4096);
     adc.poll();
+
     double V_adc = adc.get_voltage();
 
     double R_1 = 100000;
@@ -122,8 +119,6 @@ double get_input_voltage()
 } // end of "get_input_voltage()"
 
 
-double input_voltage = 0;
-
 void init()
 {
     System::init();
@@ -132,15 +127,16 @@ void init()
 
     WireManager::attach(Serial);
 
-    phase_A.init();
-    phase_B.init();
+    motor.link_drivers(&phase_A, &phase_B);
+    motor.link_encoder(&as5047);
 
-    phase_A.set_input_voltage(DRIVER_INPUT_VOLTAGE);
-    phase_B.set_input_voltage(DRIVER_INPUT_VOLTAGE);
+    motor.set_input_voltage(
+        get_input_voltage()
+    );
 
-    as5047.init();
+    motor.init();
 
-    offset = get_angle_offset();
+    motor.calibrate_angle_offset(12);
 
     // get_pole_pairs();
 
@@ -151,7 +147,8 @@ void init()
             {
                 System::feed();
 
-                voltage = data;
+                target = data;
+                // motor.set_target_voltage(data);
                 
                 return StatusCode::OK;
             }
@@ -163,7 +160,8 @@ void init()
             101,
             []() -> double
             {
-                return as5047.get_angle();
+                return angle_filter.get();
+                // return as5047.get_angle();
             }
         )
     );
@@ -173,12 +171,32 @@ void init()
             102,
             []() -> double
             {
-                return as5047.get_velocity();
+                return velocity_filter.get();
+                // return velocity;
+                // return as5047.get_velocity();
             }
         )
     );
 
-    input_voltage = get_input_voltage();
+    RegisterManager::add_request(
+        Request<double>(
+            103,
+            []() -> double
+            {
+                return motor.get_input_voltage();
+            }
+        )
+    );
+
+    RegisterManager::add_request(
+        Request<double>(
+            104,
+            []() -> double
+            {
+                return motor.m_openloop_angle;
+            }
+        )
+    );
 
 } // end of "init()"
 
@@ -188,86 +206,54 @@ void update()
     System::update();
     ActionManager::update();
 
-    as5047.refresh();
-    // led.set_high();
+    motor.refresh();
+    angle_filter.update(motor.get_encoder()->get_angle());
 
-    // step(12, 3);
+    // as5047.refresh();
+    // angle_filter.update(as5047.get_angle());
 
-    // HAL_Delay(5);
+    double timestamp = System::get_seconds(true);
+    double angle = angle_filter.get();
 
-    // double electrical_angle = get_electrical_angle();
+    double dTheta = angle - prev_angle;
+    double dt = timestamp - prev_timestamp;
 
-    // Serial.print(System::get_seconds(true), 9);
-    // Serial.print("     ");
-    // Serial.println(System::get_seconds(false));
+    if(dt != 0)
+        velocity = dTheta / dt;
+
+    prev_timestamp = timestamp;
+    prev_angle = angle;
+
+    velocity_filter.update(velocity);
+
 
     if(!System::is_OK())
     {
         led.set_high();
-        stop();
+        // stop();
+        motor.stop();
 
         return;
     }
 
     led.set_low();
 
-    inverse_park(
-        get_electrical_angle(),
-        0,
-        voltage
-    );
-
-    // inverse_park(
-    //     get_electrical_angle(),
-    //     0,
-    //     5
-    // );
-
-    // Serial.println(as5047.get_angle());
-
-    // phase_A.stop();
-    // phase_B.stop();
-    
-    // double angle = as5047.get_angle();
-    // double angle = as5047.get_raw_angle();
-
-    // auto bytes = ByteConverter::double_to_bytes(angle);
-
-    // HAL_Delay(50);
-    // Serial.transmit_bytes(bytes);
-
-    // auto status = Serial.println(angle);
-
-    // if(angle == 0.0)
-    // {
-    //     led.set_high();
-    //     // HAL_Delay(500);
-    // }
-    // else
-    //     led.set_low();
-
-    // Serial.println(angle, 9);
-    // Serial.transmit_bytes(bytes);
-
-    // HAL_Delay(5);
-
-    // HAL_Delay(100);
-
-    // Serial.println(pole_pairs);
-    // Serial.println(angle);
-
-    // Serial.println(electrical_angle, 9);
+    motor.inverse_park_openloop(12, target);
+    // motor.move();
 
 } // end of "update()"
 
 
 void inverse_park(double el_angle, double vd, double vq)
 {
-    double vA = vd * cos(el_angle) - vq * sin(el_angle);
-    double vB = vd * sin(el_angle) + vq * cos(el_angle);
+    phase_voltages = {vd, vq};
 
-    phase_A.set_voltage(vA);
-    phase_B.set_voltage(vB);
+    phase_voltages = phase_voltages.rotate(el_angle);
+    // double vA = vd * cos(el_angle) - vq * sin(el_angle);
+    // double vB = vd * sin(el_angle) + vq * cos(el_angle);
+
+    phase_A.set_voltage(phase_voltages.at(0));
+    phase_B.set_voltage(phase_voltages.at(1));
 }
 
 
@@ -317,18 +303,31 @@ void step(double voltage, double delay_ms)
 
 double get_electrical_angle()
 {
-    return (as5047.get_angle() - offset) * 50;
+    return (as5047.get_angle()) * 50;
 }
 
 
 double get_angle_offset(double voltage)
 {
+    // for(int i = 0; i < 4; i++)
+    // {
+    //     step(12, 100);
+    //     HAL_Delay(500);
+    // }
+
     HAL_Delay(500);
 
     phase_A.set_voltage(voltage);
     phase_B.set_voltage(0);
 
     HAL_Delay(1000);
+
+    as5047.refresh();
+
+    HAL_Delay(500);
+
+    phase_A.stop();
+    phase_B.stop();
 
     return as5047.get_angle();
 }

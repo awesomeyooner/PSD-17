@@ -1,9 +1,3 @@
-[submodule "firmware/lib/WireLib"]
-	path = firmware/lib/WireLib
-	url = https://github.com/awesomeyooner/WireLib.git
-[submodule "firmware/lib/EmbeddedLib"]
-	path = firmware/lib/EmbeddedLib
-	url = https://github.com/awesomeyooner/EmbeddedLib.git
 [submodule "led_test/firmware/lib/WireLib"]
 	path = led_test/firmware/lib/WireLib
 	url = https://github.com/awesomeyooner/WireLib.git

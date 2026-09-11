@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.8,
-          "height": 1.27,
-          "width": 2.54
+          "drill": 0.0,
+          "height": 0.64,
+          "width": 0.54
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.15,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.25
         }
       },
       "diff_pair_dimensions": [
@@ -144,7 +144,7 @@
         "min_track_width": 0.15,
         "min_via_annular_width": 0.2,
         "min_via_diameter": 0.4,
-        "solder_mask_to_copper_clearance": 0.0,
+        "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [
@@ -196,7 +196,8 @@
         0.3,
         0.5,
         0.75,
-        1.0
+        1.0,
+        1.5
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -460,7 +461,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
       "similar_label_and_power": "warning",
@@ -529,7 +530,7 @@
         "line_style": 0,
         "name": "GND",
         "pcb_color": "rgb(72, 72, 72)",
-        "priority": 9,
+        "priority": 8,
         "schematic_color": "rgb(72, 72, 72)",
         "wire_width": 6
       },
@@ -555,9 +556,9 @@
         "bus_width": 12,
         "line_style": 0,
         "name": "PHASE_B",
-        "pcb_color": "rgb(0, 255, 255)",
+        "pcb_color": "rgb(0, 4, 255)",
         "priority": 5,
-        "schematic_color": "rgb(0, 255, 255)",
+        "schematic_color": "rgb(0, 4, 255)",
         "wire_width": 6
       },
       {
@@ -565,17 +566,8 @@
         "line_style": 0,
         "name": "PWR",
         "pcb_color": "rgb(255, 0, 0)",
-        "priority": 8,
-        "schematic_color": "rgb(255, 0, 0)",
-        "wire_width": 6
-      },
-      {
-        "bus_width": 12,
-        "line_style": 0,
-        "name": "SIG_INPUT",
-        "pcb_color": "rgb(0, 0, 255)",
         "priority": 7,
-        "schematic_color": "rgb(0, 0, 255)",
+        "schematic_color": "rgb(255, 0, 0)",
         "wire_width": 6
       },
       {
@@ -617,35 +609,35 @@
       },
       {
         "netclass": "CAN",
-        "pattern": "/CAN*"
+        "pattern": "*/CAN*"
       },
       {
         "netclass": "I2C",
-        "pattern": "/I2C*"
+        "pattern": "*/I2C*"
       },
       {
         "netclass": "PWR",
-        "pattern": "+5V"
+        "pattern": "+5V*"
       },
       {
         "netclass": "SPI",
-        "pattern": "/SPI*"
+        "pattern": "*/SPI*"
       },
       {
         "netclass": "PHASE_A",
-        "pattern": "/A_*"
+        "pattern": "*/A_*"
       },
       {
         "netclass": "PHASE_B",
-        "pattern": "/B_*"
+        "pattern": "*/B_*"
       },
       {
         "netclass": "TPS",
-        "pattern": "/TPS*"
+        "pattern": "*/TPS*"
       },
       {
         "netclass": "BL9342",
-        "pattern": "/BL*"
+        "pattern": "*/BL*"
       }
     ]
   },
@@ -763,6 +755,18 @@
           "label": "Sim.Pins",
           "name": "Sim.Pins",
           "show": false
+        },
+        {
+          "group_by": false,
+          "label": "FT Rotation Offset",
+          "name": "FT Rotation Offset",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "FT Position Offset",
+          "name": "FT Position Offset",
+          "show": true
         }
       ],
       "filter_string": "",
@@ -816,6 +820,38 @@
     [
       "b57ce88b-13b6-41b4-aa44-cbc2ef4083a9",
       "Root"
+    ],
+    [
+      "a4248afc-ab15-495b-b9f0-9f78ed30e8bb",
+      "Tiny Thinker"
+    ],
+    [
+      "c85b4bc7-ab3a-4c71-9a86-a80e0ba7aadc",
+      "Power Protection"
+    ],
+    [
+      "aeee3572-6cdd-4d63-92b1-db77ec61e5d0",
+      "MCU Step Down-Converter"
+    ],
+    [
+      "9d0f9184-434e-4e3f-ab14-0ce2892458b3",
+      "Phase Drivers"
+    ],
+    [
+      "5b04a459-c355-4f7d-8fa3-df9f0ff7ed02",
+      "CAN Transceiver"
+    ],
+    [
+      "6c89825b-91b0-4f0e-b948-0291626bead1",
+      "EEPROM"
+    ],
+    [
+      "4317c465-625c-4a93-933b-4bd596df875d",
+      "RGB LEDS"
+    ],
+    [
+      "c7813879-b5d3-47c5-b193-d442495b6c01",
+      "Voltage Sensing"
     ]
   ],
   "text_variables": {}
