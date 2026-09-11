@@ -37,3 +37,6 @@
 [submodule "firmware/lib/ActionLib"]
 	path = firmware/lib/ActionLib
 	url = https://github.com/awesomeyooner/ActionLib.git
+[submodule "firmware/lib/PolarFOC"]
+	path = firmware/lib/PolarFOC
+	url = https://github.com/awesomeyooner/PolarFOC.git

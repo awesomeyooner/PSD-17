@@ -37,6 +37,9 @@ target_link_libraries(ActionLib PRIVATE shared_library)
 add_subdirectory(lib/WireLib)
 target_link_libraries(WireLib PRIVATE shared_library)
 
+add_subdirectory(lib/PolarFOC)
+target_link_libraries(PolarFOC PRIVATE shared_library)
+
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     shared_library
@@ -45,6 +48,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     EmbeddedLib
     ActionLib
     WireLib
+    PolarFOC
 )
 
 # Add sources to executable
