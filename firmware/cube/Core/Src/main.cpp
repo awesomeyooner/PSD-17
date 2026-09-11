@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "can.h"
 #include "dma.h"
 #include "spi.h"
 #include "tim.h"
@@ -107,6 +108,7 @@ int main(void)
   MX_ADC2_Init();
   MX_SPI2_Init();
   MX_TIM2_Init();
+  MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
     init();
   /* USER CODE END 2 */
