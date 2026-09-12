@@ -56,7 +56,7 @@ void init()
     motor.calibrate_input_voltage(100000, 10000);
 
     motor.init();
-    // motor.calibrate_angle_offset(12);
+    motor.calibrate_angle_offset(12);
 
     ActionManager::add(
         Action(0.02).link_callback(
@@ -69,13 +69,11 @@ void init()
 
                 string text = "";
 
-                Serial.println(motor.get_input_voltage());
+                text += "A: " + string_formatter::to_string(iA);
+                text += "\t";
+                text += "B: " + string_formatter::to_string(iB);
 
-                // text += "A: " + string_formatter::to_string(iA);
-                // text += "\t";
-                // text += "B: " + string_formatter::to_string(iB);
-
-                // Serial.println(text);
+                Serial.println(text);
 
                 return StatusedValue<bool>(false, StatusCode::OK);
             }
@@ -94,6 +92,8 @@ void update()
     // motor.set_target_voltage(12);
 
     // motor.move();
+
+    motor.set_percents(0.5, 0.25);
 
 } // end of "update()"
 
