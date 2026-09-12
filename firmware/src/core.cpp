@@ -94,6 +94,8 @@ void update()
 {
     ActionManager::update();
 
+    leds.set_HSV(System::get_seconds(true) / 5, 1, 0.1);
+
     motor.refresh();
 
     // motor.set_target_voltage(15);
