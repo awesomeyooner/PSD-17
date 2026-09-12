@@ -55,17 +55,22 @@ void init()
     
     motor.calibrate_input_voltage(100000, 10000);
 
-    motor.init();
+    if(motor.init() != StatusCode::OK)
+        led.set_high();
+
     motor.calibrate_angle_offset(12);
 
     ActionManager::add(
         Action(0.02).link_callback(
             [](double, double) -> StatusedValue<bool>
             {
-                auto currents = motor.get_dq_currents();
+                auto currents = i_sensor.get_phase_currents();
 
-                double iA = currents.at(0);
-                double iB = currents.at(1);
+                // double iA = currents.at(0);
+                // double iB = currents.at(1);
+
+                double iA = i_sensor.get_adc()->get_voltage(0);
+                double iB = i_sensor.get_adc()->get_voltage(1);
 
                 string text = "";
 
@@ -89,11 +94,13 @@ void update()
 
     motor.refresh();
 
-    // motor.set_target_voltage(12);
+    // motor.set_target_voltage(15);
 
     // motor.move();
 
-    motor.set_percents(0.5, 0.25);
+    motor.set_voltages(12, 12);
+
+    // motor.set_percents(0.5, 0.25);
 
 } // end of "update()"
 
