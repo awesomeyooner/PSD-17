@@ -47,13 +47,13 @@ void init()
 
     leds.init();
 
-    motor.calibrate_input_voltage(100000, 10000);
-
     motor.link_drivers(&phaseA, &phaseB);
     motor.link_encoder(&as5047);
 
     motor.link_current_sensor(&i_sensor);
     motor.link_voltage_sensor(&v_sensor);
+    
+    motor.calibrate_input_voltage(100000, 10000);
 
     motor.init();
     motor.calibrate_angle_offset(12);
@@ -69,11 +69,13 @@ void init()
 
                 string text = "";
 
-                text += "A: " + string_formatter::to_string(iA);
-                text += "\t";
-                text += "B: " + string_formatter::to_string(iB);
+                Serial.println(motor.get_input_voltage());
 
-                Serial.println(text);
+                // text += "A: " + string_formatter::to_string(iA);
+                // text += "\t";
+                // text += "B: " + string_formatter::to_string(iB);
+
+                // Serial.println(text);
 
                 return StatusedValue<bool>(false, StatusCode::OK);
             }
@@ -89,9 +91,9 @@ void update()
 
     motor.refresh();
 
-    motor.set_target_voltage(12);
+    // motor.set_target_voltage(12);
 
-    motor.move();
+    // motor.move();
 
 } // end of "update()"
 
