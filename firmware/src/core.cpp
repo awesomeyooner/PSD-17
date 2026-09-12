@@ -45,6 +45,8 @@ void init()
     // Set initial timestamp
     ActionManager::init();
 
+    HAL_TIM_OC_Start(&htim1, TIM_CHANNEL_1);
+
     leds.init();
 
     motor.link_drivers(&phaseA, &phaseB);
@@ -58,19 +60,19 @@ void init()
     if(motor.init() != StatusCode::OK)
         led.set_high();
 
-    motor.calibrate_angle_offset(12);
+    motor.calibrate_angle_offset(16);
 
     ActionManager::add(
         Action(0.02).link_callback(
             [](double, double) -> StatusedValue<bool>
             {
-                auto currents = i_sensor.get_phase_currents();
+                // auto currents = motor.get_dq_currents();
 
                 // double iA = currents.at(0);
                 // double iB = currents.at(1);
 
-                double iA = i_sensor.get_adc()->get_voltage(0);
-                double iB = i_sensor.get_adc()->get_voltage(1);
+                double iA = i_sensor.get_adc()->get_value(0);
+                double iB = i_sensor.get_adc()->get_value(1);
 
                 string text = "";
 
