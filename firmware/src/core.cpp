@@ -18,36 +18,42 @@ using namespace std;
 using namespace status_utils;
 
 
+// Status LEDs
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 WS2812B leds = WS2812B(4, &htim2, TIM_CHANNEL_2);
-ADCDevice voltage_sensor = ADCDevice(&hadc2, 2);
 
-AS5047 sensor = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
+// Current and Voltage Sensors
+ADCDevice v_sensor = ADCDevice(&hadc2, 2);
+ADCCurrentSensor i_sensor = ADCCurrentSensor(&hadc1, 2200, 0.00045);
 
+// Angle Sensor
+AS5047 as5047 = AS5047(&hspi1, GPIOD, GPIO_PIN_2);
+
+// Phase Drivers
 DualPWMDriver phaseA = DualPWMDriver(&htim8, TIM_CHANNEL_1, TIM_CHANNEL_2);
 DualPWMDriver phaseB = DualPWMDriver(&htim8, TIM_CHANNEL_3, TIM_CHANNEL_4);
 
-ADCDevice i_sensor = ADCDevice(&hadc1, 2);
-
+// Motor Abstraction Class
 StepperMotor motor = StepperMotor(50);
+
 
 void init()
 {
+    // Enable DWT for nanosecond precision
     System::init();
 
+    // Set initial timestamp
     ActionManager::init();
 
     leds.init();
 
-    voltage_sensor.start_DMA();
-    i_sensor.start_DMA();
+    motor.calibrate_input_voltage(100000, 10000);
 
     motor.link_drivers(&phaseA, &phaseB);
-    motor.link_encoder(&sensor);
+    motor.link_encoder(&as5047);
 
-    double V_in = 24.343;
-
-    motor.set_input_voltage(V_in);
+    motor.link_current_sensor(&i_sensor);
+    motor.link_voltage_sensor(&v_sensor);
 
     motor.init();
     motor.calibrate_angle_offset(12);
@@ -56,22 +62,15 @@ void init()
         Action(0.02).link_callback(
             [](double, double) -> StatusedValue<bool>
             {
-                double R1 = 100000;
-                double R2 = 10000;
+                auto currents = motor.get_dq_currents();
 
-                double V_out = voltage_sensor.get_voltage(0);
+                double iA = currents.at(0);
+                double iB = currents.at(1);
 
-                double V_in = V_out * (R1 + R2) / R2;
+                string text = "";
 
-                phaseA.set_input_voltage(V_in);
-                phaseB.set_input_voltage(V_in);
-
-                // Serial.println(V_in);
-
-                double iA = i_sensor.get_voltage(0);
-                double iB = i_sensor.get_voltage(1);
-
-                string text = "A: " + string_formatter::to_string(iA) + "\t";
+                text += "A: " + string_formatter::to_string(iA);
+                text += "\t";
                 text += "B: " + string_formatter::to_string(iB);
 
                 Serial.println(text);
@@ -86,15 +85,13 @@ void init()
 
 void update()
 {
-    sensor.refresh();
-
     ActionManager::update();
 
     motor.refresh();
 
-    led.set_low();
+    motor.set_target_voltage(12);
 
-    motor.inverse_park(12);
+    motor.move();
 
 } // end of "update()"
 
