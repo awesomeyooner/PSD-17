@@ -23,7 +23,7 @@ GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 WS2812B leds = WS2812B(4, &htim2, TIM_CHANNEL_2);
 
 // Current and Voltage Sensors
-ADCDevice v_sensor = ADCDevice(&hadc2, 2);
+ADCDevice v_sensor = ADCDevice(&hadc2);
 ADCCurrentSensor i_sensor = ADCCurrentSensor(&hadc1, 2200, 0.00045);
 
 // Angle Sensor
@@ -56,7 +56,7 @@ void init()
     motor.calibrate_input_voltage(100000, 10000);
 
     motor.init();
-    motor.calibrate_angle_offset(12);
+    // motor.calibrate_angle_offset(12);
 
     ActionManager::add(
         Action(0.02).link_callback(
