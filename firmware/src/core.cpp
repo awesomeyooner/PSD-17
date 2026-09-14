@@ -50,10 +50,12 @@ void init()
     Serial.set_parse_type(ParseType::PACKET);
     WireManager::attach(Serial);
 
+    // Start Master Timer
     HAL_TIM_OC_Start(&htim1, TIM_CHANNEL_1);
 
     leds.init();
 
+    // Link all helper devices
     motor.link_drivers(&phaseA, &phaseB);
     motor.link_encoder(&as5047);
 
@@ -100,7 +102,7 @@ void init()
             101, // Register Byte
             []() -> double
             {   
-                return motor.get_phase_currents().at(0);
+                return motor.get_dq_currents().at(0);
             }
         )
     );
@@ -110,7 +112,7 @@ void init()
             102, // Register Byte
             []() -> double
             {   
-                return motor.get_phase_currents().at(1);
+                return motor.get_dq_currents().at(1);
             }
         )
     );
