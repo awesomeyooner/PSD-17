@@ -100,7 +100,7 @@ void init()
             101, // Register Byte
             []() -> double
             {   
-                return motor.get_dq_currents().at(0);
+                return motor.get_phase_currents().at(0);
             }
         )
     );
@@ -110,7 +110,7 @@ void init()
             102, // Register Byte
             []() -> double
             {   
-                return motor.get_dq_currents().at(1);
+                return motor.get_phase_currents().at(1);
             }
         )
     );

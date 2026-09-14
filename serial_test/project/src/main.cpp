@@ -7,6 +7,8 @@
 
 #include "plib/util/string_util.hpp"
 
+#include "plib/math/vector2d.hpp"
+
 #include "CommiFaceLib/protocols/serial.hpp"
 #include "CommiFaceLib/interfaces/communication_interface.hpp"
 
@@ -43,17 +45,24 @@ int main(int argc, char* argv[])
     {
         try
         {
-            auto iB_read = serial.request_data<double>(101, 500);
-            this_thread::sleep_for(chrono::milliseconds(5));
-            auto iA_read = serial.request_data<double>(102, 500);
-            this_thread::sleep_for(chrono::milliseconds(5));
-            auto angle_read = serial.request_data<double>(103, 500);
-            this_thread::sleep_for(chrono::milliseconds(5));
+            this_thread::sleep_for(chrono::milliseconds(20));
+
+            auto iA_read = serial.request_data<double>(101, 500);
+            auto iB_read = serial.request_data<double>(102, 500);
+            // auto angle_read = serial.request_data<double>(103, 500);
+            // this_thread::sleep_for(chrono::milliseconds(5));
 
             serial.write_data<double>(99, target_vd);
             // this_thread::sleep_for(chrono::milliseconds(5));
             serial.write_data<double>(100, target_vq);
             // this_thread::sleep_for(chrono::milliseconds(5));
+
+            Vector2d currents = {iA_read.value, iB_read.value};
+
+            ImPlotter::push_data(
+                currents.get_magnitude(),
+                "Current Magnitude (Amps)"
+            );
 
             ImPlotter::push_data(
                 iA_read.value,
@@ -65,10 +74,10 @@ int main(int argc, char* argv[])
                 "Phase B Current (Amps)"
             );
 
-            ImPlotter::push_data(
-                angle_read.value,
-                "Angle (Radians)"
-            );
+            // ImPlotter::push_data(
+            //     angle_read.value,
+            //     "Angle (Radians)"
+            // );
 
             function<void()> add_inputs = []()
             {
@@ -86,7 +95,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    serial.close();
+    // serial.close();
     ImPlotter::shutdown();
     Logger::close();
 
