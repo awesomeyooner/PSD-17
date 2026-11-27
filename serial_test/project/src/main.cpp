@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
 
             auto iA_read = serial.request_data<double>(101, 500);
             auto iB_read = serial.request_data<double>(102, 500);
-            // auto angle_read = serial.request_data<double>(103, 500);
+
             // this_thread::sleep_for(chrono::milliseconds(5));
 
             serial.write_data<double>(99, target_vd);
@@ -81,8 +81,8 @@ int main(int argc, char* argv[])
 
             function<void()> add_inputs = []()
             {
-                ImGui::SliderFloat("D-Voltage", &target_vd, -24, 24, "%.3f V");
-                ImGui::SliderFloat("Q-Voltage", &target_vq, -24, 24, "%.3f V");
+                ImGui::SliderFloat("D-Voltage (Flux)", &target_vd, -24, 24, "%.3f V");
+                ImGui::SliderFloat("Q-Voltage (Torque)", &target_vq, -24, 24, "%.3f V");
             };
 
             if(ImPlotter::update(add_inputs) == StatusCode::FAILED)
